@@ -21,7 +21,6 @@ public class NavMeshDummy : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("We hit the plane");
                 nm.SetDestination(hit.point);
 
                 // Do something with the object that was hit by the raycast.
