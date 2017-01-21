@@ -626,10 +626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bb541961978a84990fb1293bbe5872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
-  effects: []
-  buttonIsDisplayed: 
-  index: 0
 --- !u!114 &114026664629938664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,9 +637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114047431227763920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -709,11 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aabac9dcc8d9164d9c774895505d043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  counter: 0
-  limit: 0
-  active: 0
-  strings: []
+  lifeTimeMax: 3
 --- !u!114 &114129296560974516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -984,9 +975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114350433317308946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -998,9 +988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114397283887059714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1012,9 +1001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114448994492820742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1107,9 +1095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114469291534973146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1121,9 +1108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114469475452366184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1216,9 +1202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114540671854632362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1413,9 +1398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114721763168662462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1454,9 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114755808427258738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1576,9 +1559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114888287808724352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1590,9 +1572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114898753971782508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1631,9 +1612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850e720ef89b9544aafd0a33ab62b67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
-  limit: 15
-  growth: 1.01
+  lifeTimeMax: 12
+  growScale: 1.04
 --- !u!114 &114971485583206724
 MonoBehaviour:
   m_ObjectHideFlags: 1

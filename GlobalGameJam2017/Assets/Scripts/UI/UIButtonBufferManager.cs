@@ -5,24 +5,27 @@ using UnityEngine.UI;
 
 public class UIButtonBufferManager : MonoBehaviour {
 
-    public Image[] buttons;
-    public GameObject[] effects;
-    StringEffectManager sem;
-    public bool[] buttonIsDisplayed;
-    public int index;
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// VARIABLES
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void Awake()
-    {
-        initialize();
-    }
+    private StringEffectManager stringEffectManager;
+    private Image[] buttons;
+    private Image[] effects;
+    private bool[] buttonIsDisplayed;
+    private int slotIndex = 0;
+    private const int BUTTON_A = 0;
+    private const int BUTTON_B = 1;
+    private const int BUTTON_X = 2;
+    private const int BUTTON_Y = 3;
 
-    void initialize()
-    {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// UNITY
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Awake() {
         buttons = new Image[12];
-        effects = new GameObject[12];
-        buttonIsDisplayed = new bool[12];
-        index = 0;
-
         buttons[0] = GameObject.Find("A1_Button").GetComponent<Image>();
         buttons[1] = GameObject.Find("A2_Button").GetComponent<Image>();
         buttons[2] = GameObject.Find("A3_Button").GetComponent<Image>();
@@ -36,80 +39,103 @@ public class UIButtonBufferManager : MonoBehaviour {
         buttons[10] = GameObject.Find("Y2_Button").GetComponent<Image>();
         buttons[11] = GameObject.Find("Y3_Button").GetComponent<Image>();
 
-        effects[0] = GameObject.Find("A1_Effect");
-        effects[1] = GameObject.Find("A2_Effect");
-        effects[2] = GameObject.Find("A3_Effect");
-        effects[3] = GameObject.Find("B1_Effect");
-        effects[4] = GameObject.Find("B2_Effect");
-        effects[5] = GameObject.Find("B3_Effect");
-        effects[6] = GameObject.Find("X1_Effect");
-        effects[7] = GameObject.Find("X2_Effect");
-        effects[8] = GameObject.Find("X3_Effect");
-        effects[9] = GameObject.Find("Y1_Effect");
-        effects[10] = GameObject.Find("Y2_Effect");
-        effects[11] = GameObject.Find("Y3_Effect");
+        effects = new Image[12];
+        effects[0] = GameObject.Find("A1_Effect").GetComponent<Image>();
+        effects[1] = GameObject.Find("A2_Effect").GetComponent<Image>();
+        effects[2] = GameObject.Find("A3_Effect").GetComponent<Image>();
+        effects[3] = GameObject.Find("B1_Effect").GetComponent<Image>();
+        effects[4] = GameObject.Find("B2_Effect").GetComponent<Image>();
+        effects[5] = GameObject.Find("B3_Effect").GetComponent<Image>();
+        effects[6] = GameObject.Find("X1_Effect").GetComponent<Image>();
+        effects[7] = GameObject.Find("X2_Effect").GetComponent<Image>();
+        effects[8] = GameObject.Find("X3_Effect").GetComponent<Image>();
+        effects[9] = GameObject.Find("Y1_Effect").GetComponent<Image>();
+        effects[10] = GameObject.Find("Y2_Effect").GetComponent<Image>();
+        effects[11] = GameObject.Find("Y3_Effect").GetComponent<Image>();
 
-        sem = GameObject.Find("StringEffect").GetComponent<StringEffectManager>();
+        stringEffectManager = GameObject.Find("StringEffect").GetComponent<StringEffectManager>();
+    }
 
-        for (int i = 0; i < 12; i++) buttonIsDisplayed[i] = false;
-        for (int i = 0; i < 12; i++) effects[i].GetComponent<Image>().enabled = false;
+
+    void Start() {
+        buttonIsDisplayed = new bool[12];
+        for (int i = 0; i < 12; i++) {
+            buttonIsDisplayed[i] = false;
+            effects[i].enabled = false;
+        }
     }
 	
-	// Update is called once per frame
+
 	void Update () {
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             buttons[i].enabled = buttonIsDisplayed[i];
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0)) setDisplay(0);
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1)) setDisplay(1);
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2)) setDisplay(2);
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3)) setDisplay(3);
-        if (Input.GetKeyDown(KeyCode.Joystick1Button5)) playChord();
+        if (Input.GetButtonDown("Heal"))
+            SetDisplay(BUTTON_A);
+        if (Input.GetButtonDown("Damage"))
+            SetDisplay(BUTTON_B);
+        if (Input.GetButtonDown("Radius"))
+            SetDisplay(BUTTON_X);
+        if (Input.GetButtonDown("Speed"))
+            SetDisplay(BUTTON_Y);
+        if (Input.GetAxisRaw("Play Chord") != 0)
+            PlayChord();
     }
 
-    public void setDisplay(int button) // button is 0,1,2,3 for A,B,X,Y
-    {
-        if (index == 3 || sem.active == true) return;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /// METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private void SetDisplay(int button) {
+        if (slotIndex == 3 || stringEffectManager.GetIsActive() == true) return;
 
         switch (button) {
             case 0:
-                buttonIsDisplayed[0 + index] = true;
-                playEffect(0 + index);
-                index++;
+                buttonIsDisplayed[0 + slotIndex] = true;
+                PlayEffect(0 + slotIndex);
+                slotIndex++;
                 break;
             case 1:
-                buttonIsDisplayed[3 + index] = true;
-                playEffect(3 + index);
-                index++;
+                buttonIsDisplayed[3 + slotIndex] = true;
+                PlayEffect(3 + slotIndex);
+                slotIndex++;
                 break;
             case 2:
-                buttonIsDisplayed[6 + index] = true;
-                playEffect(6 + index);
-                index++;
+                buttonIsDisplayed[6 + slotIndex] = true;
+                PlayEffect(6 + slotIndex);
+                slotIndex++;
                 break;
             case 3:
-                buttonIsDisplayed[9 + index] = true;
-                playEffect(9 + index);
-                index++;
+                buttonIsDisplayed[9 + slotIndex] = true;
+                PlayEffect(9 + slotIndex);
+                slotIndex++;
                 break;
             default:
                 break;
         }
     }
 
-    public void playChord()
-    {
-        if (index == 3)
-        {
-            sem.active = true;
-            index = 0;
+
+    private void PlayChord() {
+        if (slotIndex == 3) {
+            stringEffectManager.SetIsActive(true);
+            slotIndex = 0;
         }
     }
 
-    public void playEffect(int effect)
-    {
-        effects[effect].GetComponent<Image>().enabled = true;
+
+    private void PlayEffect(int effect) {
+        effects[effect].enabled = true;
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /// GET / SET
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void SetButtonIsDisplayed(int index, bool value) {
+        buttonIsDisplayed[index] = value;
     }
 }
