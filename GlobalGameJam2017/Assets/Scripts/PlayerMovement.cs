@@ -9,19 +9,19 @@ public class PlayerMovement : MonoBehaviour
     Animator anim;                      // Reference to the animator component.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 
-    int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
-    float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+    public LayerMask floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 
-	float currentOrientation = 0;
-	Transform hips;
+	public Plane ground;
+	//Transform hips;
 
 
     void Awake()
     {
-        floorMask = LayerMask.GetMask("Floor");
+        //floorMask = LayerMask.GetMask("Floor");
+		Debug.Log (floorMask.value);
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
-		hips = transform.Find("Armature/hipsCtrl");
+		//hips = transform.Find("Armature/hipsCtrl");
     }
 
 
@@ -54,15 +54,16 @@ public class PlayerMovement : MonoBehaviour
     void Turning()
     {
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit floorHit;
+        float floorHit;
 
-        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
+		if (ground.Raycast (camRay, out floorHit))
         {
-            Vector3 playerToMouse = floorHit.point - transform.position;
+			Vector3 playerToMouse = camRay.GetPoint(floorHit) - transform.position;
             playerToMouse.y = 0f;
 			Quaternion rotation = Quaternion.LookRotation (playerToMouse);
 			transform.rotation = rotation;
 			//playerRigidbody.MoveRotation (rotation);
+
         }
     }
 

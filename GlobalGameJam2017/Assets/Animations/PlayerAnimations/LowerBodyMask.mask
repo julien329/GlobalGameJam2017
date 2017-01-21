@@ -7,4 +7,94 @@ AvatarMask:
   m_PrefabInternal: {fileID: 0}
   m_Name: LowerBodyMask
   m_Mask: 01000000000000000000000001000000010000000000000000000000000000000000000001000000010000000100000001000000
-  m_Elements: []
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_L
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_L/footRollCtrl_L
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_L/heelRoll_L
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_L/heelRoll_L/toeRoll_L
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_L/heelRoll_L/toeRoll_L/footK_L
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_L/kneeCtrl_L
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_R
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_R/footRollCtrl_R
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_R/heelRoll_R
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_R/heelRoll_R/toeRoll_R
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_R/heelRoll_R/toeRoll_R/footIK_R
+    m_Weight: 1
+  - m_Path: Armature/footCtrl_R/kneeCtrl_R
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/neck
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/neck/head
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/mid1_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/mid1_L/mid2_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/thumb1_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/thumb1_L/thumb2_L
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/mid1_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/mid1_R/mid2_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/thumb1_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/thumb1_R/thumb2_R
+    m_Weight: 0
+  - m_Path: Armature/hipsCtrl/Root/upLeg_L
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_L/lowLeg_L
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_L/lowLeg_L/foot_L
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_L/lowLeg_L/foot_L/toes_L
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_R
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_R/lowLeg_R
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_R/lowLeg_R/foot_R
+    m_Weight: 1
+  - m_Path: Armature/hipsCtrl/Root/upLeg_R/lowLeg_R/foot_R/toes_R
+    m_Weight: 1
+  - m_Path: Character
+    m_Weight: 0
