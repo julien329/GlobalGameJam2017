@@ -145,6 +145,18 @@ GameObject:
   m_PrefabParentObject: {fileID: 1627329232498940, guid: 2c83a835494807a4daf1326186d428cc,
     type: 2}
   m_PrefabInternal: {fileID: 794914313}
+--- !u!114 &134882325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 134882324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49b6b42c9fafd443b5e0a770fda848d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GuitarInputs: 
 --- !u!4 &134882329 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4740127883245912, guid: 2c83a835494807a4daf1326186d428cc,
@@ -352,7 +364,33 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114842530447117156, guid: 2c83a835494807a4daf1326186d428cc,
+        type: 2}
+      propertyPath: GuitarInputs.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 199074947139476148, guid: 2c83a835494807a4daf1326186d428cc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d456dca5c35e6204ea64b8a0899ccd0c, type: 2}
+    - target: {fileID: 199074947139476148, guid: 2c83a835494807a4daf1326186d428cc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d456dca5c35e6204ea64b8a0899ccd0c, type: 2}
+    - target: {fileID: 198616858959309490, guid: 2c83a835494807a4daf1326186d428cc,
+        type: 2}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198616858959309490, guid: 2c83a835494807a4daf1326186d428cc,
+        type: 2}
+      propertyPath: randomSeed
+      value: 1088223701
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114842530447117156, guid: 2c83a835494807a4daf1326186d428cc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2c83a835494807a4daf1326186d428cc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1109857985
@@ -493,7 +531,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -958174053
+  randomSeed: 1984371010
   InitialModule:
     serializedVersion: 3
     enabled: 1

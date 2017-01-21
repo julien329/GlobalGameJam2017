@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 
-	void StartAttackAnim() {
+	public void StartAttackAnim() {
 		anim.SetTrigger ("Attack");
 	}
 }
