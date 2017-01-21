@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public abstract class IEnemy : MonoBehaviour
 {
     //NavMeshAgent component in order to find paths

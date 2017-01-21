@@ -7,6 +7,19 @@ using UnityEngine.AI;
 public class CannonScript : IEnemy {
 
     Animator anim;
+    [SerializeField]
+    GameObject CannonBall;
+    [SerializeField]
+    GameObject CannonPosition;
+
+    //Look at rotation
+    Quaternion targetRotation;
+    float turnSpeed = 720f;
+    float turnSpeedChange = 20f;
+    float shootDelay = 2.0f;
+    Transform rotatingTransform;
+    bool isReadyToShoot;
+    //Transform desiredRotation;
 
     public override void EnemyDie()
     {
@@ -27,7 +40,18 @@ public class CannonScript : IEnemy {
 
     protected override void AggressiveAction()
     {
-        navMeshAgent.SetDestination(humanPlayer.transform.position);
+        targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.transform.position - transform.position));
+        float angleToTurn = Quaternion.Angle(transform.rotation, targetRotation);
+        if (!isReadyToShoot && angleToTurn < 10.0f)
+        {
+            Debug.Log("Locked on");
+            isReadyToShoot = true;
+            StartCoroutine("ShootDelay", shootDelay);
+        }
+ 
+        turnSpeed = Mathf.Min(angleToTurn, turnSpeed + turnSpeedChange * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Clamp01(angleToTurn > 0 ? turnSpeed * Time.deltaTime / angleToTurn : 0f));
+
     }
 
     protected override void CooldownAction()
@@ -50,6 +74,7 @@ public class CannonScript : IEnemy {
             case State.IDLE:
                 if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange)
                 {
+                    navMeshAgent.ResetPath();
                     state = State.ATTACKING;
                     action = AggressiveAction;
                     //anim.SetBool("isRun", false);
@@ -66,14 +91,16 @@ public class CannonScript : IEnemy {
             case State.FOLLOWING:
                 if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange)
                 {
+                    navMeshAgent.ResetPath();
                     state = State.ATTACKING;
                     action = AggressiveAction;
-                    LaunchAttack();
+                    //LaunchAttack();
                 }
                 break;
             case State.ROAMING:
                 if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange)
                 {
+                    navMeshAgent.ResetPath();
                     state = State.ATTACKING;
                     action = AggressiveAction;
                     //anim.SetBool("isRun", false);
@@ -123,6 +150,7 @@ public class CannonScript : IEnemy {
             NavMeshHit hit;
             NavMesh.SamplePosition(randomDirection, out hit, idleRoamRange, 1);
             Vector3 targetPosition = hit.position;
+
             navMeshAgent.SetDestination(targetPosition);
 
             //anim.SetBool("isWalk", true);
@@ -133,6 +161,10 @@ public class CannonScript : IEnemy {
 
     protected override void LaunchAttack()
     {
+        targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.transform.position - transform.position));
+        var news = GameObject.Instantiate(CannonBall, CannonPosition.transform.position, targetRotation);
+        Debug.Log(news.transform.position);
+        AttackIsOver();
         //anim.SetBool("isRun", false);
         //anim.SetBool("LowKick", true);
     }
@@ -143,12 +175,24 @@ public class CannonScript : IEnemy {
         state = State.COOLDOWN;
         action = CooldownAction;
         navMeshAgent.speed = idleSpeed;
+        isCooldown = false;
+        isReadyToShoot = false;
     }
 
     //Animation for death is over
     protected void DeathIsOver()
     {
         StartCoroutine("DeathDelay");
+    }
+
+    //Delay until cannon shoots
+    IEnumerator ShootDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (gameObject != null && state != State.DYING && !isCooldown)
+        {
+            LaunchAttack();
+        }
     }
 
     //Cooldown between attacks
@@ -181,6 +225,7 @@ public class CannonScript : IEnemy {
         base.Init();
         anim = transform.GetChild(0).gameObject.GetComponent<Animator>();
         isCooldown = false;
+        isReadyToShoot = false;
     }
 
     // Update is called once per frame
