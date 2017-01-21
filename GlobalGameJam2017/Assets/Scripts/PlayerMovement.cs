@@ -1,100 +1,100 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
-{
-	public float speed = 4f;            // The speed that the player will move at.
+public class PlayerMovement : MonoBehaviour {
 
-	Vector3 movement;                   // The vector to store the direction of the player's movement.
-	Animator anim;                      // Reference to the animator component.
-	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// VARIABLES
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public LayerMask floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
+    public float speed = 4f;                    // The speed that the player will move at.
+    public float gravity = -9.8f;
+    public float accelerationTime = 0.05f;
+    public float rotationTime = 0.05f;
 
-	public Plane ground;
-	//Transform hips;
+    private Vector3 movement;                   // The vector to store the direction of the player's movement.
+    private Vector3 viewDirection;
+    private Animator anim;                      // Reference to the animator component.
+	private Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+    private Vector3 velocity;
+    private float activeVelocityXSmoothing;
+    private float activeVelocityYSmoothing;
 
 
-	void Awake()
-	{
-		//floorMask = LayerMask.GetMask("Floor");
-		Debug.Log (floorMask.value);
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// UNITY
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Awake() {
 		anim = GetComponent<Animator>();
 		playerRigidbody = GetComponent<Rigidbody>();
-		//hips = transform.Find("Armature/hipsCtrl");
+    }
+
+
+	void Update() {
+        Move();
+        Rotate();
+        Animating();
+    }
+
+
+    void FixedUpdate() {
+        playerRigidbody.AddForce(new Vector3(0, gravity, 0), ForceMode.Acceleration);
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /// METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Move() {
+        // Get input value of left joystick
+        float h = Input.GetAxis("LeftHorizontal");
+        float v = Input.GetAxis("LeftVertical");
+
+        // Set the movement vector based on the player input.
+        velocity.x = Mathf.SmoothDamp(velocity.x, h, ref activeVelocityXSmoothing, accelerationTime);
+        velocity.z = Mathf.SmoothDamp(velocity.z, v, ref activeVelocityYSmoothing, accelerationTime);
+        velocity = Vector3.ClampMagnitude(velocity, 1.0f);
+
+        // Move current position to target position, smoothed and scaled by speed
+        playerRigidbody.MovePosition(transform.position + velocity * speed * Time.deltaTime);
 	}
 
 
-	void FixedUpdate()
-	{
-		float h = Input.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
+    void Rotate() {
+        // Get input value of right joystick
+        float h = Input.GetAxis("RightHorizontal");
+        float v = Input.GetAxis("RightVertical");
 
-		Move(h, v);
-		Turning ();
-		Animating (h, v);
-	}
+        // Set looking direction of the player
+        viewDirection.Set(h, 0f, v);
+        viewDirection = (viewDirection == Vector3.zero) ? velocity : Vector3.ClampMagnitude(viewDirection, 1.0f);
 
-	void LateUpdate()
-	{
+        // If new direction, change rotation of the player
+        if (viewDirection != Vector3.zero) {
+            Quaternion targetRotation = Quaternion.LookRotation(viewDirection, Vector3.up);
+            Quaternion newRotation = Quaternion.Lerp(GetComponent<Rigidbody>().rotation, targetRotation, rotationTime * Time.deltaTime);
+            playerRigidbody.MoveRotation(newRotation);
+        }
+    }
 
-	}
 
-	//--------------------------- Methods ----------------------------//
-
-	// General Movement
-	void Move(float h, float v)
-	{
-		Vector3 cameraDirection = Vector3.Normalize(Camera.main.transform.forward);
-		cameraDirection.y = 0f;
-
-		float angle = Vector3.Angle (Vector3.forward, cameraDirection.normalized);
-		movement = Vector3.Normalize(new Vector3(h, 0f, v));
-
-		movement = Quaternion.AngleAxis(-angle, Vector3.up) * movement;
-
-		movement = movement.normalized * speed * Time.deltaTime;
-		playerRigidbody.MovePosition(transform.position + movement);
-	}
-
-	// General Turning method
-	void Turning()
-	{
-		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit floorHit;
-
-		if (Physics.Raycast (camRay, out floorHit, Mathf.Infinity, floorMask))
-		{
-			Vector3 playerToMouse = floorHit.point - transform.position;
-			playerToMouse.y = 0f;
-			Quaternion rotation = Quaternion.LookRotation (playerToMouse);
-			transform.rotation = rotation;
-			//playerRigidbody.MoveRotation (rotation);
-
-		}
-	}
-
-	// Animate the character with the right animation clip
-	void Animating(float h, float v)
-	{
-
+    void Animating() {
 		Vector3 cameraDirection = Vector3.Normalize(Camera.main.transform.forward);
 		cameraDirection.y = 0f;
 
 		// Where the player will move
-		Vector3 movement_dir = new Vector3 (h, 0f, v); 
+		Vector3 movement_dir = new Vector3 (velocity.x, 0f, velocity.z);
 
-		movement_dir = Quaternion.AngleAxis (angle360 (transform.forward, cameraDirection.normalized, transform.right), Vector3.up) * movement_dir;
+        // Calculate mouvement direction
+        float angle = Vector3.Angle(transform.forward, cameraDirection.normalized);
+        angle = (Vector3.Angle(transform.right, cameraDirection.normalized) > 90f) ? 360f - angle : angle;
+        movement_dir = Quaternion.AngleAxis (angle , Vector3.up) * movement_dir;
 	
-		//translated movement diretion
+		//translated movement direction
 		anim.SetFloat("Horizontal", movement_dir.x, 0.15f, Time.deltaTime);
 		anim.SetFloat("Vertical", movement_dir.z, 0.15f, Time.deltaTime);
-	}
-
-
-	float angle360(Vector3 from, Vector3 to, Vector3 right) {
-		float angle = Vector3.Angle (from, to);
-		return (Vector3.Angle(right,to) > 90f) ? 360f - angle : angle;
 	}
 }
 
