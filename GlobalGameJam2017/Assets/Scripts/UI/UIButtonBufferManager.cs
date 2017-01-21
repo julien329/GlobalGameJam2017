@@ -81,6 +81,8 @@ public class UIButtonBufferManager : MonoBehaviour {
             SetDisplay(BUTTON_Y);
         if (Input.GetAxisRaw("Play Chord") != 0)
             PlayChord();
+        if (Input.GetAxisRaw("Clear Chord") != 0)
+            ClearChord();
     }
 
 
@@ -122,6 +124,14 @@ public class UIButtonBufferManager : MonoBehaviour {
         if (slotIndex == 3) {
             stringEffectManager.SetIsActive(true);
             slotIndex = 0;
+        }
+    }
+
+
+    private void ClearChord() {
+        slotIndex = 0;
+        for (int i = 0; i < buttonIsDisplayed.Length; i++) {
+            buttonIsDisplayed[i] = false;
         }
     }
 
