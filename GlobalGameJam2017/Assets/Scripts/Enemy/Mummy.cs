@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-
 
 public class Mummy : IEnemy {
 
     Animator anim;
+
+    
 
     public override void EnemyDie()
     {
@@ -60,7 +61,6 @@ public class Mummy : IEnemy {
                     state = State.FOLLOWING;
                     action = FollowingAction;
                     anim.SetBool("isRun", true);
-                    navMeshAgent.speed = chaseSpeed;
                 }
                 break;
             case State.FOLLOWING:
@@ -71,23 +71,7 @@ public class Mummy : IEnemy {
                     LaunchAttack();
                 }
                 break;
-            case State.ROAMING:
-                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange)
-                {
-                    state = State.ATTACKING;
-                    action = AggressiveAction;
-                    anim.SetBool("isRun", false);
-                    anim.SetBool("LowKick", true);
-                    isCooldown = false;
-                }
-                else if (Vector3.Distance(humanPlayer.transform.position, transform.position) < chaseRange)
-                {
-                    state = State.FOLLOWING;
-                    action = FollowingAction;
-                    anim.SetBool("isRun", true);
-                    navMeshAgent.speed = chaseSpeed;
-                    isCooldown = false;
-                }
+            case State.FLEEING:
                 break;
             case State.ATTACKING:
                 break;
@@ -100,12 +84,9 @@ public class Mummy : IEnemy {
         }
     }
 
-    protected override void RoamingAction()
+    protected override void FleeingAction()
     {
-        if (!navMeshAgent.hasPath && !isCooldown)
-        {
-            StartCoroutine("Cooldown", idleWait);
-        }
+        navMeshAgent.SetDestination(transform.position);
     }
 
     protected override void FollowingAction()
@@ -115,20 +96,7 @@ public class Mummy : IEnemy {
 
     protected override void IdleAction()
     {
-        //Find a random place to roam to
-        if (!navMeshAgent.hasPath && !isCooldown)
-        {    
-            Vector3 randomDirection = Random.insideUnitCircle * idleRoamRange;
-            randomDirection += transform.position;
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomDirection, out hit, idleRoamRange, 1);
-            Vector3 targetPosition = hit.position;
-            navMeshAgent.SetDestination(targetPosition);
-            
-            anim.SetBool("isWalk", true);
-            state = State.ROAMING;
-            action = RoamingAction;
-        }
+        
     }
 
     protected override void LaunchAttack()
@@ -142,7 +110,6 @@ public class Mummy : IEnemy {
     {
         state = State.COOLDOWN;
         action = CooldownAction;
-        navMeshAgent.speed = idleSpeed;
     }
 
     //Animation for death is over
@@ -155,15 +122,12 @@ public class Mummy : IEnemy {
     IEnumerator Cooldown(float time)
     {
         isCooldown = true;
-        anim.SetBool("isRun", false);
-        anim.SetBool("isWalk", false);
-        navMeshAgent.ResetPath();
+        TakeDamage(1);
         yield return new WaitForSeconds(time);
         //Cooldown over
-        if(gameObject != null && state != State.DYING && isCooldown)
+        if(gameObject != null && state != State.DYING)
         {
             state = State.IDLE;
-            action = IdleAction;
             isCooldown = false;
         }
     }

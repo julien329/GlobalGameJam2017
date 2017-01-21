@@ -1617,15 +1617,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humanPlayer: {fileID: 1062262455}
-  idleSpeed: 2
-  idleWait: 2
-  idleRoamRange: 5
-  chaseSpeed: 6
-  chaseRange: 10
-  attackRange: 3
-  attackCooldown: 1
-  HP: 5
-  Speed: 5
+  HP: 0
+  Speed: 0
+  cooldown: 2.5
 --- !u!195 &1091498395
 NavMeshAgent:
   m_ObjectHideFlags: 0
