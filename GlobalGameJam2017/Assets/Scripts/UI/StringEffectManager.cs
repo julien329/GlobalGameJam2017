@@ -5,83 +5,111 @@ using UnityEngine.UI;
 
 public class StringEffectManager : MonoBehaviour {
 
-    public int index;
-    public int counter;
-    public int limit;
-    public bool active;
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// VARIABLES
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public GameObject[] strings;
+    public int lifeTimeMax = 3;
 
-    // Use this for initialization
+    private UIButtonBufferManager buttonBufferManager;
+    private Image[] strings;
+    private bool active = false;
+    private int lifeTime = 0;
+    private int index = 0;
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// UNITY
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Awake() {
+        strings = new Image[6];
+        strings[0] = GameObject.Find("StringEffect1").GetComponent<Image>();
+        strings[1] = GameObject.Find("StringEffect2").GetComponent<Image>();
+        strings[2] = GameObject.Find("StringEffect3").GetComponent<Image>();
+        strings[3] = GameObject.Find("StringEffect4").GetComponent<Image>();
+        strings[4] = GameObject.Find("StringEffect5").GetComponent<Image>();
+        strings[5] = GameObject.Find("StringEffect6").GetComponent<Image>();
+
+        buttonBufferManager = GameObject.Find("Tab").GetComponent<UIButtonBufferManager>();
+    }
+
+
     void Start () {
-        index = 0;
-        counter = 0;
-        limit = 3;
-        active = false;
-
-        strings = new GameObject[6];
-
-        strings[0] = GameObject.Find("StringEffect1");
-        strings[1] = GameObject.Find("StringEffect2");
-        strings[2] = GameObject.Find("StringEffect3");
-        strings[3] = GameObject.Find("StringEffect4");
-        strings[4] = GameObject.Find("StringEffect5");
-        strings[5] = GameObject.Find("StringEffect6");
-
-        for (int i = 0; i < 6; i++) strings[i].GetComponent<Image>().enabled = false;
+        for (int i = 0; i < 6; i++) {
+            strings[i].GetComponent<Image>().enabled = false;
+        }
     }
 	
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (active)
-        {
-            switch (index)
-            {
+
+	void Update () {
+        if (active) {
+            switch (index) {
                 case 0:
-                    strings[0].GetComponent<Image>().enabled = true;
+                    strings[0].enabled = true;
                     break;
                 case 1:
-                    strings[0].GetComponent<Image>().enabled = false;
-                    strings[1].GetComponent<Image>().enabled = true;
-                    for (int i = 0; i < 3; i++) GameObject.Find("Tab").GetComponent<UIButtonBufferManager>().buttonIsDisplayed[9 + i] = false;
+                    strings[0].enabled = false;
+                    strings[1].enabled = true;
+                    for (int i = 0; i < 3; i++) {
+                        buttonBufferManager.SetButtonIsDisplayed(9 + i, false);
+                    }
                     break;
                 case 2:
-                    strings[1].GetComponent<Image>().enabled = false;
-                    strings[2].GetComponent<Image>().enabled = true;
-                    for (int i = 0; i < 3; i++) GameObject.Find("Tab").GetComponent<UIButtonBufferManager>().buttonIsDisplayed[6 + i] = false;
+                    strings[1].enabled = false;
+                    strings[2].enabled = true;
+                    for (int i = 0; i < 3; i++) {
+                        buttonBufferManager.SetButtonIsDisplayed(6 + i, false);
+                    }
                     break;
                 case 3:
-                    strings[2].GetComponent<Image>().enabled = false;
-                    strings[3].GetComponent<Image>().enabled = true;
-                    for (int i = 0; i < 3; i++) GameObject.Find("Tab").GetComponent<UIButtonBufferManager>().buttonIsDisplayed[3 + i] = false;
+                    strings[2].enabled = false;
+                    strings[3].enabled = true;
+                    for (int i = 0; i < 3; i++) {
+                        buttonBufferManager.SetButtonIsDisplayed(3 + i, false);
+                    }
                     break;
                 case 4:
-                    strings[3].GetComponent<Image>().enabled = false;
-                    strings[4].GetComponent<Image>().enabled = true;
-                    for (int i = 0; i < 3; i++) GameObject.Find("Tab").GetComponent<UIButtonBufferManager>().buttonIsDisplayed[0 + i] = false;
+                    strings[3].enabled = false;
+                    strings[4].enabled = true;
+                    for (int i = 0; i < 3; i++) {
+                        buttonBufferManager.SetButtonIsDisplayed(0 + i, false);
+                    }
                     break;
                 case 5:
-                    strings[4].GetComponent<Image>().enabled = false;
-                    strings[5].GetComponent<Image>().enabled = true;
+                    strings[4].enabled = false;
+                    strings[5].enabled = true;
                     break;
                 default:
                     break;
             }
 
-            counter++;
+            lifeTime++;
 
-            if (counter >= limit)
-            {
-                counter = 0;
+            if (lifeTime >= lifeTimeMax) {
+                lifeTime = 0;
                 index++;
             }
 
-            if (index == 6)
-            {
+            if (index == 6) {
                 index = 0;
-                strings[5].GetComponent<Image>().enabled = false;
+                strings[5].enabled = false;
                 active = false;
             }
         } 
 	}
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// GET / SET
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public bool GetIsActive() {
+        return active;
+    }
+
+
+    public void SetIsActive(bool active) {
+        this.active = active;
+    }
 }
