@@ -1,0 +1,46 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class EnemyCounter : MonoBehaviour {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// VARIABLES
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    Text value { get; set; }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// UNITY
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Use this for initialization
+    void Awake()
+    {
+        value = GameObject.Find("EnemyCounterValue").GetComponent<Text>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q)) addEnemy(1);
+        if (Input.GetKeyDown(KeyCode.W)) subEnemy(1);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /// METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void addEnemy(int count)
+    {
+        int current = int.Parse(value.text);
+        value.text = (current + count).ToString();
+    }
+
+    public void subEnemy(int count)
+    {
+        int current = int.Parse(value.text);
+        if (current > 0) value.text = (current - 1).ToString();
+    }
+}
