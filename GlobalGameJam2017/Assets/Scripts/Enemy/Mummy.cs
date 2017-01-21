@@ -7,14 +7,23 @@ public class Mummy : IEnemy {
 
     Animator anim;
 
+    
+
     public override void EnemyDie()
     {
-        throw new NotImplementedException();
+        state = State.DYING;
+        action = DyingAction;
+        anim.SetBool("isDeath", true);
     }
 
     public override void TakeDamage(int damage)
     {
-        throw new NotImplementedException();
+        anim.SetBool("isDamage", true);
+        HP -= damage;
+        if(HP < 1)
+        {
+            EnemyDie();
+        }
     }
 
     protected override void AggressiveAction()
@@ -22,9 +31,17 @@ public class Mummy : IEnemy {
         navMeshAgent.SetDestination(humanPlayer.transform.position);
     }
 
+    protected override void CooldownAction()
+    {
+        if(!isCooldown)
+        {
+            StartCoroutine("Cooldown", attackCooldown);
+        }
+    }
+
     protected override void DyingAction()
     {
-        throw new NotImplementedException();
+
     }
 
     protected override void EvaluateState()
@@ -32,7 +49,14 @@ public class Mummy : IEnemy {
         switch (state)
         {
             case State.IDLE:
-                if(Vector3.Distance(humanPlayer.transform.position, transform.position) < 8.0f)
+                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange)
+                {
+                    state = State.ATTACKING;
+                    action = AggressiveAction;
+                    anim.SetBool("isRun", false);
+                    anim.SetBool("LowKick", true);
+                }
+                else if (Vector3.Distance(humanPlayer.transform.position, transform.position) < chaseRange)
                 {
                     state = State.FOLLOWING;
                     action = FollowingAction;
@@ -40,18 +64,18 @@ public class Mummy : IEnemy {
                 }
                 break;
             case State.FOLLOWING:
-                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < 3.0f)
+                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange)
                 {
                     state = State.ATTACKING;
                     action = AggressiveAction;
-                    anim.SetBool("isRun", false);
-                    anim.SetBool("LowKick", true);
-                    
+                    LaunchAttack();
                 }
                 break;
             case State.FLEEING:
                 break;
             case State.ATTACKING:
+                break;
+            case State.COOLDOWN:
                 break;
             case State.DYING:
                 break;
@@ -77,38 +101,54 @@ public class Mummy : IEnemy {
 
     protected override void LaunchAttack()
     {
-        throw new NotImplementedException();
+        anim.SetBool("isRun", false);
+        anim.SetBool("LowKick", true);
     }
 
+    //Animation for attack is over
     protected void AttackIsOver()
     {
-        state = State.FLEEING;
-        action = FleeingAction;
-        Debug.Log("Animation is over");
+        state = State.COOLDOWN;
+        action = CooldownAction;
+    }
+
+    //Animation for death is over
+    protected void DeathIsOver()
+    {
+        StartCoroutine("DeathDelay");
+    }
+
+    //Cooldown between attacks
+    IEnumerator Cooldown(float time)
+    {
+        isCooldown = true;
+        TakeDamage(1);
+        yield return new WaitForSeconds(time);
+        //Cooldown over
+        if(gameObject != null && state != State.DYING)
+        {
+            state = State.IDLE;
+            isCooldown = false;
+        }
+    }
+
+    //Delay where the corpse is on the ground
+    IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(gameObject);
     }
 
     // Use this for initialization
     void Start () {
         base.Init();
         anim = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        isCooldown = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         EvaluateState();
         action();
-    }
-
-    //Animation d'attaque
-    private IEnumerator WaitForAnimationAttack(Animation animation)
-    {
-        Debug.Log("Animation is playing");
-
-        do
-        {
-            yield return null;
-        } while (animation.isPlaying);
-        state = State.FLEEING;
-        Debug.Log("Animation is over");
     }
 }
