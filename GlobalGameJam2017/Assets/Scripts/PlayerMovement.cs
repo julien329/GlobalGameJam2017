@@ -96,6 +96,11 @@ public class PlayerMovement : MonoBehaviour {
 		anim.SetFloat("Horizontal", movement_dir.x, 0.15f, Time.deltaTime);
 		anim.SetFloat("Vertical", movement_dir.z, 0.15f, Time.deltaTime);
 	}
+
+
+	void StartAttackAnim() {
+		anim.SetTrigger ("Attack");
+	}
 }
 
 

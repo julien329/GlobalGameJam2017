@@ -102,6 +102,7 @@ ModelImporter:
     7400006: Idle
     7400008: Strafe
     7400010: Strumming
+    7400012: Attack
     9500000: //RootNode
     13700000: Character
   materials:
@@ -733,6 +734,124 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/footCtrl_L
+        weight: 0
+      - path: Armature/footCtrl_L/footRollCtrl_L
+        weight: 0
+      - path: Armature/footCtrl_L/heelRoll_L
+        weight: 0
+      - path: Armature/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 0
+      - path: Armature/footCtrl_L/heelRoll_L/toeRoll_L/footK_L
+        weight: 0
+      - path: Armature/footCtrl_L/kneeCtrl_L
+        weight: 0
+      - path: Armature/footCtrl_R
+        weight: 0
+      - path: Armature/footCtrl_R/footRollCtrl_R
+        weight: 0
+      - path: Armature/footCtrl_R/heelRoll_R
+        weight: 0
+      - path: Armature/footCtrl_R/heelRoll_R/toeRoll_R
+        weight: 0
+      - path: Armature/footCtrl_R/heelRoll_R/toeRoll_R/footIK_R
+        weight: 0
+      - path: Armature/footCtrl_R/kneeCtrl_R
+        weight: 0
+      - path: Armature/hipsCtrl
+        weight: 1
+      - path: Armature/hipsCtrl/Root
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/neck
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/neck/head
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/mid1_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/mid1_L/mid2_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/thumb1_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_L/upArm_L/lowArm_L/hand/thumb1_L/thumb2_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/mid1_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/mid1_R/mid2_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/thumb1_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/Spine1/spine2/shoulder_R/upArm_R/lowArm_R/hand_R/thumb1_R/thumb2_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_L/lowLeg_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_L/lowLeg_L/foot_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_L/lowLeg_L/foot_L/toes_L
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_R/lowLeg_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_R/lowLeg_R/foot_R
+        weight: 1
+      - path: Armature/hipsCtrl/Root/upLeg_R/lowLeg_R/foot_R/toes_R
+        weight: 1
+      - path: Character
+        weight: 0
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
+    - serializedVersion: 16
+      name: Attack
+      takeName: Default Take
+      firstFrame: 209
+      lastFrame: 229
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

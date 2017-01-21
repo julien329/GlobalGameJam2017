@@ -125,6 +125,9 @@ public class UIButtonBufferManager : MonoBehaviour {
             stringEffectManager.SetIsActive(true);
             slotIndex = 0;
         }
+
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		player.SendMessage("StartAttackAnim");
     }
 
 
