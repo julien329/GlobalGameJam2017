@@ -124,6 +124,12 @@ public class ParticuleEffects : MonoBehaviour
             }
         }
         rend.material.color = result/guitarInput.Length;
+        rend.material.SetColor("_EmissionColor", rend.material.color);
+
+        Color emis = rend.material.color;
+        emis.a = 1;
+        main.startColor=(emis);
+        
         shoot();
     }
 
