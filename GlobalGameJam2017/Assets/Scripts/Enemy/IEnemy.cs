@@ -13,6 +13,14 @@ public abstract class IEnemy : MonoBehaviour
 
     //AI element
     [SerializeField]
+    protected float idleSpeed;
+    [SerializeField]
+    protected float idleWait;
+    [SerializeField]
+    protected float idleRoamRange;
+    [SerializeField]
+    protected float chaseSpeed;
+    [SerializeField]
     protected float chaseRange;
     [SerializeField]
     protected float attackRange;
@@ -35,6 +43,7 @@ public abstract class IEnemy : MonoBehaviour
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         action = IdleAction;
         state = State.IDLE;
+        navMeshAgent.speed = idleSpeed;
     }
 
     //Used when unit launches an attack
@@ -52,7 +61,7 @@ public abstract class IEnemy : MonoBehaviour
     //Five type of actions depending on the state
     protected abstract void IdleAction();
     protected abstract void FollowingAction();
-    protected abstract void FleeingAction();
+    protected abstract void RoamingAction();
     protected abstract void AggressiveAction();
     protected abstract void CooldownAction();
     protected abstract void DyingAction();
@@ -62,7 +71,7 @@ public abstract class IEnemy : MonoBehaviour
     {
         IDLE,
         FOLLOWING,
-        FLEEING,
+        ROAMING,
         ATTACKING,
         COOLDOWN,
         DYING
