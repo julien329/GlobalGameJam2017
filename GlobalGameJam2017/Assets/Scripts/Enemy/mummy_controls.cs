@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class anims_controls : MonoBehaviour {
+public class mummy_controls : MonoBehaviour {
 
-	Animator anim;
+	public Animator anim;
 
 	void Awake()
 	{
@@ -19,6 +19,7 @@ public class anims_controls : MonoBehaviour {
 	public void KickOver()
 	{
 		anim.SetBool("LowKick", false);
+        transform.parent.gameObject.SendMessage("AttackIsOver");
 	}
 
 	public void DeathOver()

@@ -9,7 +9,7 @@ public abstract class IEnemy : MonoBehaviour
     //NavMeshAgent component in order to find paths
     protected NavMeshAgent navMeshAgent;
     //Human player is kept in memory in order to track his movements and decide on actions
-    protected GameObject humanPlayer;
+    public GameObject humanPlayer;
 
     //Enemy main stats
     public int HP;
@@ -17,13 +17,20 @@ public abstract class IEnemy : MonoBehaviour
 
     //Function delegate to run the actions correctly
     protected delegate void ActionType();
-    ActionType action;
+    protected State state;
+    protected ActionType action;
 
     // Use this for initialization
     void Start () {
+        Init();
+	}
+
+    protected void Init()
+    {
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         action = IdleAction;
-	}
+        state = State.IDLE;
+    }
 
     //Used when unit launches an attack
     protected abstract void LaunchAttack();
@@ -45,7 +52,7 @@ public abstract class IEnemy : MonoBehaviour
     protected abstract void DyingAction();
 
     //Unit states used for decision making
-    protected enum STATE
+    protected enum State
     {
         IDLE,
         FOLLOWING,
