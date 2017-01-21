@@ -38,7 +38,6 @@ public class mummy_controls : MonoBehaviour {
 	{
         if(!anim.GetBool("isDeath"))
         {
-            Debug.Log("Damage is over");
             anim.SetBool("isDamage", false);
         }
         
