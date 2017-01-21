@@ -8,8 +8,7 @@ public class mummy_controls : MonoBehaviour {
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
-
-	}
+    }
 
 	public void Att()
 	{
@@ -24,9 +23,10 @@ public class mummy_controls : MonoBehaviour {
 
 	public void DeathOver()
 	{
-		anim.SetBool("isDeath", false);
-	}
-	public void DeathOver2()
+        anim.SetBool("isDamage", false);
+        transform.parent.gameObject.SendMessage("DeathIsOver");
+    }
+    public void DeathOver2()
 	{
 		anim.SetBool("isDeath2", false);
 	}
@@ -36,6 +36,11 @@ public class mummy_controls : MonoBehaviour {
 	}
 	public void DamageOver ()
 	{
-		anim.SetBool("isDamage", false);
+        if(!anim.GetBool("isDeath"))
+        {
+            Debug.Log("Damage is over");
+            anim.SetBool("isDamage", false);
+        }
+        
 	}
 }

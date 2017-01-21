@@ -11,6 +11,15 @@ public abstract class IEnemy : MonoBehaviour
     //Human player is kept in memory in order to track his movements and decide on actions
     public GameObject humanPlayer;
 
+    //AI element
+    [SerializeField]
+    protected float chaseRange;
+    [SerializeField]
+    protected float attackRange;
+    [SerializeField]
+    protected float attackCooldown;
+    protected bool isCooldown;
+
     //Enemy main stats
     public int HP;
     public int Speed;
@@ -20,11 +29,7 @@ public abstract class IEnemy : MonoBehaviour
     protected State state;
     protected ActionType action;
 
-    // Use this for initialization
-    void Start () {
-        Init();
-	}
-
+    //Standard init for all ennemies, must be called from derived class
     protected void Init()
     {
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -49,6 +54,7 @@ public abstract class IEnemy : MonoBehaviour
     protected abstract void FollowingAction();
     protected abstract void FleeingAction();
     protected abstract void AggressiveAction();
+    protected abstract void CooldownAction();
     protected abstract void DyingAction();
 
     //Unit states used for decision making
@@ -58,6 +64,7 @@ public abstract class IEnemy : MonoBehaviour
         FOLLOWING,
         FLEEING,
         ATTACKING,
+        COOLDOWN,
         DYING
     }
 }
