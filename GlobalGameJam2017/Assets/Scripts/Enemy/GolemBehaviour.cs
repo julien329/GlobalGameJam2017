@@ -107,6 +107,7 @@ public class GolemBehaviour : IEnemy {
             action = DyingAction;
             DropItems();
             ScoreHandler.totalScore += pointWorth;
+            ScoreHandler.UpdateScore();
             clearAnimParameters();
             anim.SetBool("isDeath", true);
             StartCoroutine("DeathDelay");
