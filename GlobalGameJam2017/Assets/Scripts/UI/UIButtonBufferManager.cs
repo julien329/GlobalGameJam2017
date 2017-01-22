@@ -14,6 +14,7 @@ public class UIButtonBufferManager : MonoBehaviour {
     public float soundFadeSpeed = 9f;
     public AudioClip[] singleNotesClips;
     public AudioClip[] specialCombosClips;
+    public AudioClip[] longFinishersClips;
 
     private StringEffectManager stringEffectManager;
     private PlayerMovement playerMovement;
@@ -23,6 +24,7 @@ public class UIButtonBufferManager : MonoBehaviour {
     private RawImage[] cooldownLines;
     private AudioSource[] singleNotesPlayers;
     private AudioSource specialComboSource;
+    private AudioSource regularAttackSource;
     private bool[] buttonIsDisplayed;
     private bool[] buttonOnCooldown;
     private int slotIndex = 0;
@@ -104,6 +106,12 @@ public class UIButtonBufferManager : MonoBehaviour {
         specialComboSource.playOnAwake = false;
         specialComboSource.loop = false;
         specialComboSource.volume = 1.0f;
+
+        regularAttackSource = gameObject.AddComponent<AudioSource>();
+        regularAttackSource.playOnAwake = false;
+        regularAttackSource.loop = false;
+        regularAttackSource.volume = soundVolume;
+
     }
 
 
@@ -203,6 +211,12 @@ public class UIButtonBufferManager : MonoBehaviour {
         singleNotesClips[index1] = singleNotesClips[index2];
         singleNotesClips[index2] = temp;
         return temp;
+    }
+
+
+    public void PlayRegularAttack() {
+        regularAttackSource.clip = longFinishersClips[Random.Range(0, longFinishersClips.Length)];
+        regularAttackSource.Play();
     }
 
 

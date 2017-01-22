@@ -1835,10 +1835,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b041e17a568d4ea45a5d3fe92a4d98c7, type: 3}
   - {fileID: 8300000, guid: 1cb26de9aa9bf5f4e8bc33e6a35dd932, type: 3}
   specialCombosClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 1f2fa5cb05d97794fa20792af929e036, type: 3}
+  - {fileID: 8300000, guid: 8eed2a9d517cc11429f3c81d4e6bba0f, type: 3}
+  - {fileID: 8300000, guid: 729bc28abdbddfd469abe6bb6b824842, type: 3}
+  - {fileID: 8300000, guid: 4ebb422fbccf203408e5bcc7b8c60588, type: 3}
+  longFinishersClips:
+  - {fileID: 8300000, guid: c4bdaa3d0b3b9394c864b0a7625d786e, type: 3}
+  - {fileID: 8300000, guid: da6da3ab09c149f4382ed461a4ccccf5, type: 3}
+  - {fileID: 8300000, guid: dd4ba350fb43ad0428034d0e3fa2338b, type: 3}
+  - {fileID: 8300000, guid: 0e65a7ec3c48efd44844c14ea472fbb5, type: 3}
+  - {fileID: 8300000, guid: 9af47eeaac795a6468c79803fc2c48f2, type: 3}
 --- !u!114 &114018747907046656
 MonoBehaviour:
   m_ObjectHideFlags: 1
