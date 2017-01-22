@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135395622319960460}
   - component: {fileID: 195699571857829562}
   - component: {fileID: 114551322861817958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4167891290408146}
   - component: {fileID: 33743336000855398}
   - component: {fileID: 23762566144262190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4621048037451502}
   - component: {fileID: 33763360251752360}
   - component: {fileID: 23903477094492806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CommandPod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4862746973310338}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CannonSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4976126607990394}
   - component: {fileID: 33281208779331220}
   - component: {fileID: 23930335556522210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

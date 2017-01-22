@@ -25,6 +25,13 @@ public class PlayerCombat : MonoBehaviour {
 
     }
 
+    public void RestoreHealth(int ammount)
+    {
+        HP += ammount;
+        if (HP > 100)
+            HP = 100;
+    }
+
     public void ApplyImpulse(Vector3 direction, float power)
     {
         gameObject.GetComponent<Rigidbody>().AddForce(direction * power, ForceMode.Impulse);
