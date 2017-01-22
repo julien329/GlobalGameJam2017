@@ -1321,8 +1321,8 @@ MonoBehaviour:
   idleSpeed: 3
   idleWait: 4
   idleRoamRange: 6
-  chaseSpeed: 5
-  chaseRange: 12
+  chaseSpeed: 5.5
+  chaseRange: 16
   attackRange: 2.5
   attackCooldown: 4
   fameCrystalDrop: 0.05
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   shieldCrystal: {fileID: 1744259822240700, guid: 60af0e8e7343cef4db4756da420b7d30,
     type: 2}
   pointWorth: 0
-  HP: 4
+  HP: 7
   Speed: 2
 --- !u!136 &136679357856888246
 CapsuleCollider:

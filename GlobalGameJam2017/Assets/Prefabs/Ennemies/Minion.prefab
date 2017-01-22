@@ -436,16 +436,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24a5b4ae7ba8fd4fb588fad7c1b5d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSpeed: 1
+  idleSpeed: 3
   idleWait: 3
   idleRoamRange: 10
-  chaseSpeed: 2
-  chaseRange: 12
-  attackRange: 15
+  chaseSpeed: 3
+  chaseRange: 16
+  attackRange: 10
   attackCooldown: 4
-  fameCrystalDrop: 0.02
-  painCrystalDrop: 0.02
-  shieldCrystalDrop: 0.05
+  fameCrystalDrop: 0.15
+  painCrystalDrop: 0.1
+  shieldCrystalDrop: 0.1
   fameCrystal: {fileID: 1026509927695300, guid: 7faf3f7a71df8364280ef770d234bb4c,
     type: 2}
   painCrystal: {fileID: 1707279966548250, guid: db0e8266641eb144192c889b6d737193,
@@ -453,7 +453,7 @@ MonoBehaviour:
   shieldCrystal: {fileID: 1744259822240700, guid: 60af0e8e7343cef4db4756da420b7d30,
     type: 2}
   pointWorth: 0
-  HP: 6
+  HP: 10
   Speed: 5
   CannonBall: {fileID: 1998402804003072, guid: c0030c25a0ced2047a6d99e64f28fbfb, type: 2}
   CannonPosition: {fileID: 1569980406305476}
