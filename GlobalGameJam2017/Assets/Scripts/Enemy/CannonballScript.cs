@@ -35,21 +35,22 @@ public class CannonballScript : MonoBehaviour {
         //rb.AddExplosionForce(force, transform.position - transform.forward, 3.0f, liftFactor, ForceMode.Impulse);
 	}
 	
-	void OnCollisionEnter(Collision coll)
-    {
+	void OnCollisionEnter(Collision coll) {
         var exp = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-        float distance = Vector3.Distance(player.transform.position, transform.position);
-        if ( distance < 2.5f)
-        {
-            Debug.Log("It's a hit!");
-            if (distance < 1.0f)
-                player.GetComponent<PlayerCombat>().ApplyDamage(25);
-            else
-                player.GetComponent<PlayerCombat>().ApplyDamage(10);
-            Rigidbody rb = player.GetComponent<Rigidbody>();
-            rb.AddExplosionForce(12f, transform.position, 5.0f, 4f, ForceMode.Impulse);
-            //player.GetComponent<PlayerCombat>().ApplyImpulse(player.transform.position - transform.position, 10f);
+        if (player) {
+            float distance = Vector3.Distance(player.transform.position, transform.position);
+            if (distance < 2.5f) {
+                Debug.Log("It's a hit!");
+                if (distance < 1.0f)
+                    player.GetComponent<PlayerCombat>().ApplyDamage(25);
+                else
+                    player.GetComponent<PlayerCombat>().ApplyDamage(10);
+                Rigidbody rb = player.GetComponent<Rigidbody>();
+                rb.AddExplosionForce(12f, transform.position, 5.0f, 4f, ForceMode.Impulse);
+                //player.GetComponent<PlayerCombat>().ApplyImpulse(player.transform.position - transform.position, 10f);
+            }
         }
+
         Destroy(exp, 5.0f);
         Destroy(gameObject);
     }
