@@ -1591,6 +1591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2fa4b2ca726af489aa2d19e970bce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathExplosion: {fileID: 1550611228512522, guid: 7bff242a5568d6b499096d17bab683a6,
+    type: 2}
+  shieldWeight: 20
+  baseWeight: 1
 --- !u!136 &136103693895000320
 CapsuleCollider:
   m_ObjectHideFlags: 1

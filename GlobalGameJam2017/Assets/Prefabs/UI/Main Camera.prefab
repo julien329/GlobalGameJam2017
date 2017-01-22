@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586741098841204}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 25, z: -45}
+  m_LocalPosition: {x: 0, y: 25, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,7 +65,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -109,7 +109,7 @@ MonoBehaviour:
   glowRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7, type: 3}
   glowLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967279
   renderCamera: {fileID: 20577716639293774}
   showCutoutGlow: 0
   showTransparentGlow: 1

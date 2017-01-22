@@ -80,15 +80,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.1
+    agentRadius: 0.44
     agentHeight: 5
-    agentSlope: 45.1
-    agentClimb: 0.5
+    agentSlope: 45.04
+    agentClimb: 1.65
     ledgeDropHeight: 5
     maxJumpAcrossDistance: 0
     minRegionArea: 2
-    manualCellSize: 1
-    cellSize: 0.04
+    manualCellSize: 0
+    cellSize: 0.14666666
     accuratePlacement: 0
   m_NavMeshData: {fileID: 23800000, guid: f0f5734de5d80d246962a67f00f155fc, type: 2}
 --- !u!1 &498153898
@@ -255,21 +255,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 960711634}
-    - target: {fileID: 114095474491658228, guid: d6098aa4d770a9944bf2316255e16f48,
-        type: 2}
-      propertyPath: glowLayer.m_Bits
-      value: 4294967279
-      objectReference: {fileID: 0}
-    - target: {fileID: 114095474491658228, guid: d6098aa4d770a9944bf2316255e16f48,
-        type: 2}
-      propertyPath: glowType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20577716639293774, guid: d6098aa4d770a9944bf2316255e16f48,
-        type: 2}
-      propertyPath: orthographic size
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6098aa4d770a9944bf2316255e16f48, type: 2}
   m_IsPrefabParent: 0

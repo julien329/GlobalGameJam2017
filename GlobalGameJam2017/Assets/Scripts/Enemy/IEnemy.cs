@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class IEnemy : MonoBehaviour
-{
+public abstract class IEnemy : MonoBehaviour {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// VARIABLES
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
     //NavMeshAgent component in order to find paths
     protected NavMeshAgent navMeshAgent;
     //Human player is kept in memory in order to track his movements and decide on actions
@@ -36,9 +40,13 @@ public abstract class IEnemy : MonoBehaviour
     protected State state;
     protected ActionType action;
 
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /// METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
     //Standard init for all ennemies, must be called from derived class
-    protected void Init()
-    {
+    protected void Init() {
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         action = IdleAction;
         state = State.IDLE;
@@ -67,8 +75,7 @@ public abstract class IEnemy : MonoBehaviour
     protected abstract void DyingAction();
 
     //Unit states used for decision making
-    protected enum State
-    {
+    protected enum State {
         IDLE,
         FOLLOWING,
         ROAMING,

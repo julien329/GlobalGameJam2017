@@ -8,38 +8,57 @@ public class SpawnManager : MonoBehaviour {
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public Transform[] spawnPoints;
-    public Transform player;
     public GameObject mummy;
     public GameObject minion;
     public GameObject golem;
-    public int spawnTime;
-    public int maxEnnemyOnScene;
-    public int nbMummyLeft;
-    public int nbMinionLeft;
-    public int nbGolemLeft;
 
-    private int nbEnnemy = 0;
     private List<GameObject> ennemyAvailable;
+    private Transform[] spawnPoints;
+    private Transform player;
+    private int nbEnnemy = 0;
+    private int spawnTime;
+    private int maxEnnemyOnScene;
+    private int nbMummyLeft;
+    private int nbMinionLeft;
+    private int nbGolemLeft;
+    private const int NB_SPAWNS = 6;
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void Start () {
+    void Awake () {
         ennemyAvailable = new List<GameObject>();
-        ennemyAvailable.Add(mummy);
-        ennemyAvailable.Add(minion);
-        ennemyAvailable.Add(golem);
-
-        InvokeRepeating("SpawnEnnemy", spawnTime, spawnTime);
+        player = GameObject.Find("Player").transform;
+        spawnPoints = new Transform[NB_SPAWNS];
+        for (int i = 0; i < NB_SPAWNS; i++) {
+            spawnPoints[i] = GameObject.Find("Spawn " + (i + 1)).transform;
+        }
     }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void SetRoundAndStart(int spawnTime, int maxEnnemyOnScene, int nbMummyLeft, int nbMinionLeft, int nbGolemLeft) {
+        this.spawnTime = spawnTime;
+        this.maxEnnemyOnScene = maxEnnemyOnScene;
+        this.nbMummyLeft = nbMummyLeft;
+        this.nbMinionLeft = nbMinionLeft;
+        this.nbGolemLeft = nbGolemLeft;
+        nbEnnemy = 0;
+
+        ennemyAvailable.Clear();
+        ennemyAvailable.Add(mummy);
+        ennemyAvailable.Add(minion);
+        ennemyAvailable.Add(golem);
+
+        CancelInvoke("SpawnEnnemy");
+        InvokeRepeating("SpawnEnnemy", spawnTime, spawnTime);
+    }
+
 
     private void SpawnEnnemy() {
         if(nbEnnemy >= maxEnnemyOnScene || ennemyAvailable.Count == 0) {
