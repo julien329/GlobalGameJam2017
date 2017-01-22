@@ -52,8 +52,7 @@ public class Mummy : IEnemy {
                 {
                     state = State.ATTACKING;
                     action = AggressiveAction;
-                    anim.SetBool("isRun", false);
-                    anim.SetBool("LowKick", true);
+                    LaunchAttack();
                 }
                 else if (Vector3.Distance(humanPlayer.transform.position, transform.position) < chaseRange)
                 {
@@ -76,8 +75,7 @@ public class Mummy : IEnemy {
                 {
                     state = State.ATTACKING;
                     action = AggressiveAction;
-                    anim.SetBool("isRun", false);
-                    anim.SetBool("LowKick", true);
+                    LaunchAttack();
                     isCooldown = false;
                 }
                 else if (Vector3.Distance(humanPlayer.transform.position, transform.position) < chaseRange)
@@ -133,7 +131,6 @@ public class Mummy : IEnemy {
 
     protected override void LaunchAttack()
     {
-        anim.SetBool("isRun", false);
         anim.SetBool("LowKick", true);
     }
 

@@ -78,9 +78,7 @@ public class ParticuleEffects : MonoBehaviour
     void Update()
     {
         // GameObject.FindGameObjectWithTag("Player").GetComponent<Rotation>();
-        float Angle = Quaternion.Angle(Quaternion.Euler(new Vector3(0, 0, 0)), transform.rotation);
-        Debug.Log(Angle);
-        
+        float Angle = Quaternion.Angle(Quaternion.Euler(new Vector3(0, 0, 0)), transform.rotation);        
         main.startRotationY = angle360(Angle,-particleSystem.startRotation3D,transform.parent.right) * Mathf.Deg2Rad;
     }
 
