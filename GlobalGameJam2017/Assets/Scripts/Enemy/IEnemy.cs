@@ -74,6 +74,9 @@ public abstract class IEnemy : MonoBehaviour {
     protected abstract void CooldownAction();
     protected abstract void DyingAction();
 
+    //
+    public abstract void ShockwaveHit(float distance);
+
     //Unit states used for decision making
     protected enum State {
         IDLE,

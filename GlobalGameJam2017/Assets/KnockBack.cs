@@ -15,6 +15,11 @@ public class KnockBack : MonoBehaviour
 	    enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
+            float distance = Vector3.Distance(GameObject.Find("Player").transform.position, enemy.transform.position);
+            if (distance < 8.0f)
+            {
+                enemy.GetComponent<IEnemy>().ShockwaveHit(distance);
+            }
             //enemy.GetComponent<Rigidbody>().MovePosition(Vector3.forward * 150);
             //enemy.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, radius, upwardsModifier, ForceMode.Impulse);
         }

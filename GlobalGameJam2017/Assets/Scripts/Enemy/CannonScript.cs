@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -150,7 +151,7 @@ public class CannonScript : IEnemy {
         //Find a random place to roam to
         if (!navMeshAgent.hasPath && !isCooldown)
         {
-            Vector3 randomDirection = Random.insideUnitCircle * idleRoamRange;
+            Vector3 randomDirection = UnityEngine.Random.insideUnitCircle * idleRoamRange;
             randomDirection += transform.position;
             NavMeshHit hit;
             NavMesh.SamplePosition(randomDirection, out hit, idleRoamRange, 1);
@@ -263,5 +264,11 @@ public class CannonScript : IEnemy {
         anim.SetBool("isDeath2", false);
         anim.SetBool("HitStrike", false);
         anim.SetBool("isDamage", false);
+    }
+
+    public override void ShockwaveHit(float distance)
+    {
+        AttackIsOver();
+        StartCoroutine("Cooldown", (2 / distance));
     }
 }

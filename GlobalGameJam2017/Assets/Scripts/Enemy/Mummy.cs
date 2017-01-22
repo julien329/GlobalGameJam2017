@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -134,7 +135,7 @@ public class Mummy : IEnemy {
     protected override void IdleAction() {
         //Find a random place to roam to
         if (!navMeshAgent.hasPath && !isCooldown) {    
-            Vector3 randomDirection = Random.insideUnitCircle * idleRoamRange;
+            Vector3 randomDirection = UnityEngine.Random.insideUnitCircle * idleRoamRange;
             randomDirection += transform.position;
             NavMeshHit hit;
             NavMesh.SamplePosition(randomDirection, out hit, idleRoamRange, 1);
@@ -211,5 +212,11 @@ public class Mummy : IEnemy {
         }
 
         Destroy(gameObject);
+    }
+
+    public override void ShockwaveHit(float distance)
+    {
+        AttackIsOver();
+        StartCoroutine("Cooldown", (10 / distance));
     }
 }
