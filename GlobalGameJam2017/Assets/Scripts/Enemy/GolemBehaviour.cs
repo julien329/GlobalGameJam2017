@@ -160,6 +160,9 @@ public class GolemBehaviour : IEnemy {
 
 
     protected override void LaunchAttack() {
+        audioSource.clip = attackClips[Random.Range(0, attackClips.Length)];
+        audioSource.Play();
+
         anim.SetBool("isWalk", false);
         anim.SetTrigger("HornAttack");
         AttackIsOver();

@@ -58,6 +58,11 @@ public abstract class IEnemy : MonoBehaviour {
     protected Collider collider;
     protected HitController hitController;
 
+    [SerializeField]
+    protected AudioClip[] attackClips;
+    protected AudioSource audioSource;
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +77,7 @@ public abstract class IEnemy : MonoBehaviour {
         humanPlayer = GameObject.Find("Player").transform;
         spawnManager = GameObject.Find("Map").GetComponent<SpawnManager>();
         playerCombat = GameObject.Find("Player").GetComponent<PlayerCombat>();
+        audioSource = GetComponent<AudioSource>();
         collider = GetComponent<Collider>();
 
         hitController = GetComponent<HitController>();

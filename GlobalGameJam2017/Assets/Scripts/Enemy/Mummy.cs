@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,7 +12,6 @@ public class Mummy : IEnemy {
 
     private Animator anim;
 
-   
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
@@ -162,6 +160,9 @@ public class Mummy : IEnemy {
     }
 
     protected override void LaunchAttack() {
+        audioSource.clip = attackClips[Random.Range(0, attackClips.Length)];
+        audioSource.Play();
+
         anim.SetBool("LowKick", true);
         playerCombat.ApplyDamage(15);
     }

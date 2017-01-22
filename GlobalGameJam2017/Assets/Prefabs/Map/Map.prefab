@@ -4240,7 +4240,7 @@ MonoBehaviour:
   nbMummyGrowth: 1.5
   initNbMinion: 1
   nbMinionGowth: 1
-  initNbGolem: 0
+  initNbGolem: 1
   nbGolemGrowth: 0.5
   timeBetweenWaves: 10
   deathTimer: 5

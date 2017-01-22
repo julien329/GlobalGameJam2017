@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -193,6 +192,9 @@ public class CannonScript : IEnemy {
 
 
     protected override void LaunchAttack() {
+        audioSource.clip = attackClips[Random.Range(0, attackClips.Length)];
+        audioSource.Play();
+
         targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.position - transform.position));
         var news = Instantiate(CannonBall, CannonPosition.transform.position, targetRotation);
         Debug.Log(news.transform.position);
