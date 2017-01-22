@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 195747319042487766}
   - component: {fileID: 114947325346693432}
   - component: {fileID: 54642683426106296}
+  - component: {fileID: 114668481873289606}
   m_Layer: 9
   m_Name: Mummy_char
   m_TagString: Enemy
@@ -511,6 +512,7 @@ GameObject:
   - component: {fileID: 114795213187089430}
   - component: {fileID: 114406806024355394}
   - component: {fileID: 114517560330890118}
+  - component: {fileID: 114140649474710542}
   m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
@@ -1121,7 +1123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168465176638700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.51, y: 0.21, z: 5.34}
+  m_LocalPosition: {x: -3.5204933, y: 0.13999996, z: -9.74}
   m_LocalScale: {x: 1.4905688, y: 1.4905691, z: 1.4905691}
   m_Children:
   - {fileID: 4736829698292706}
@@ -1190,6 +1192,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114140649474710542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1814735020090130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faefd7282e5a58e4db599670a55aebe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTextObject: {fileID: 1581632627841154, guid: e0d35fd2cd519754db6fdb2d7a30c993,
+    type: 2}
 --- !u!114 &114326463871721956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1229,6 +1244,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f1b789476e16548bcbfc5cbbf2d6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114668481873289606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1168465176638700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faefd7282e5a58e4db599670a55aebe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTextObject: {fileID: 1581632627841154, guid: e0d35fd2cd519754db6fdb2d7a30c993,
+    type: 2}
 --- !u!114 &114795213187089430
 MonoBehaviour:
   m_ObjectHideFlags: 1

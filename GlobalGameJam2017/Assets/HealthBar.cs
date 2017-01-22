@@ -22,4 +22,6 @@ public class HealthBar : MonoBehaviour {
         panel.transform.localScale = new Vector3((float)HP / maxHP, 1, 1);
         
     }
+
+
 }
