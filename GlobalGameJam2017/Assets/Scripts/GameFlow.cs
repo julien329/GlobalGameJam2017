@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFlow : MonoBehaviour {
 
@@ -8,7 +9,7 @@ public class GameFlow : MonoBehaviour {
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public AudioClip themeMusic;
+    public AudioClip[] longHurtSounds;
     public float initSpawnTime;
     public float spawnTimeGrowth;
     public float initMaxNbEnemies;
@@ -20,6 +21,7 @@ public class GameFlow : MonoBehaviour {
     public float initNbGolem;
     public float nbGolemGrowth;
     public float timeBetweenWaves;
+    public float deathTimer;
 
     private AudioSource audioSource;
     private SpawnManager spawnManager;
@@ -42,10 +44,6 @@ public class GameFlow : MonoBehaviour {
 
 
     void Start() {
-        audioSource.loop = true;
-        audioSource.clip = themeMusic;
-        audioSource.Play();
-
         spawnTime = initSpawnTime;
         maxNbEnemies = initMaxNbEnemies;
         nbMummy = initNbMummy;
@@ -59,6 +57,7 @@ public class GameFlow : MonoBehaviour {
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     public void WaveEnded() {
         StartCoroutine(BetweenWavesCountdown());
@@ -80,5 +79,23 @@ public class GameFlow : MonoBehaviour {
         nbGolem += nbGolemGrowth;
 
         spawnManager.SetRoundAndStart(Mathf.FloorToInt(spawnTime), Mathf.FloorToInt(maxNbEnemies), Mathf.FloorToInt(nbMummy), Mathf.FloorToInt(nbMinion), Mathf.FloorToInt(nbGolem));
+    }
+
+
+    public void PlayerDied() {
+        audioSource.clip = longHurtSounds[Random.Range(0, longHurtSounds.Length)];
+        audioSource.Play();
+    }
+
+
+    private IEnumerator GameEndedCountdown() {
+        countDown = deathTimer;
+
+        while (countDown > 0) {
+            yield return new WaitForSeconds(1f);
+            countDown--;
+        }
+
+        SceneManager.LoadScene(0);
     }
 }

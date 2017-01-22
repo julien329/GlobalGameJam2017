@@ -79,7 +79,7 @@ public class SpawnManager : MonoBehaviour {
 
 
     private void SpawnEnnemy() {
-        if(nbEnemyOnScene >= maxEnnemyOnScene || enemyAvailable.Count == 0) {
+        if(nbEnemyOnScene >= maxEnnemyOnScene || enemyAvailable.Count == 0 || !player) {
             return;
         }
 
