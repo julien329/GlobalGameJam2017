@@ -6,6 +6,8 @@ public class PlayerCombat : MonoBehaviour {
 
     [SerializeField]
     GameObject deathExplosion;
+    [SerializeField]
+    GameObject shield;
 
     int HP;
     int buffTimer;
@@ -47,10 +49,8 @@ public class PlayerCombat : MonoBehaviour {
 
     public void ApplyShield()
     {
-        ApplyDamage(100); //DEBUG
-
         gameObject.GetComponent<Rigidbody>().mass = shieldWeight;
-
+        shield.SetActive(true);
         if (buffTimer < 5)
             buffTimer = 15;
         else
@@ -72,6 +72,7 @@ public class PlayerCombat : MonoBehaviour {
     void EndBuff()
     {
         gameObject.GetComponent<Rigidbody>().mass = baseWeight;
+        shield.SetActive(false);
     }
 
 }
