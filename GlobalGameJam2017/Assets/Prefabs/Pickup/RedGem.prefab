@@ -185,7 +185,7 @@ MonoBehaviour:
     type: 2}
   appearEffect: {fileID: 1967853591741254, guid: 30917407cbc453e4e828eac4be67844c,
     type: 2}
-  lifetime: 15
+  lifetime: 10
 --- !u!136 &136323935298579824
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -66,8 +66,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4654239418639764}
-  - component: {fileID: 114516385365475076}
   - component: {fileID: 136122460165539488}
+  - component: {fileID: 114840145012833728}
   m_Layer: 0
   m_Name: PurpleGem
   m_TagString: Untagged
@@ -168,7 +168,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1009031290461744}
   m_Mesh: {fileID: 4300000, guid: 4154849dd5b65a34db29b4d18af33a3d, type: 3}
---- !u!114 &114516385365475076
+--- !u!114 &114840145012833728
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744259822240700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4410a5b66f71fe4aa3ff0e26a1b881e, type: 3}
+  m_Script: {fileID: 11500000, guid: 660a9303637ab4649852f0ee9f772e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickupEffect: {fileID: 1841076606010548, guid: ac41e0f62c12aa04787db01132fe961d,
@@ -185,7 +185,7 @@ MonoBehaviour:
     type: 2}
   appearEffect: {fileID: 1990445687459874, guid: 319c4f47d3f9e14479ad0c0d6555efe1,
     type: 2}
-  lifetime: 15
+  lifetime: 10
 --- !u!136 &136122460165539488
 CapsuleCollider:
   m_ObjectHideFlags: 1

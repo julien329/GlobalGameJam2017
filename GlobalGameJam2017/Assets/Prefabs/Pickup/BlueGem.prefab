@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4495152664615382}
-  - component: {fileID: 114378863068737876}
   - component: {fileID: 136933374762803674}
+  - component: {fileID: 114416151751134776}
   m_Layer: 0
   m_Name: BlueGem
   m_TagString: Untagged
@@ -168,7 +168,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541994307883918}
   m_Mesh: {fileID: 4300000, guid: 4154849dd5b65a34db29b4d18af33a3d, type: 3}
---- !u!114 &114378863068737876
+--- !u!114 &114416151751134776
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026509927695300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4410a5b66f71fe4aa3ff0e26a1b881e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ae9fd28c7d09d34a83811aa87841d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickupEffect: {fileID: 1992211221925302, guid: 738e6c51208263845aa2b89a33ff64ce,
@@ -185,7 +185,7 @@ MonoBehaviour:
     type: 2}
   appearEffect: {fileID: 1112601320570140, guid: ae015599475b92a4d85080eceda55948,
     type: 2}
-  lifetime: 15
+  lifetime: 10
 --- !u!136 &136933374762803674
 CapsuleCollider:
   m_ObjectHideFlags: 1
