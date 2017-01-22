@@ -8,7 +8,7 @@ public class ShieldRuby : IPickup
 
     protected override void PickupAction(GameObject player)
     {
-        //player.GetComponent<PlayerCombat>().RestoreHealth(20);
+        player.GetComponent<PlayerCombat>().ApplyShield();
         var ring = Instantiate(pickupEffect, player.transform.localPosition, Quaternion.LookRotation(Vector3.up, Vector3.right), player.transform);
         Destroy(ring, 5.0f);
         Destroy(gameObject);

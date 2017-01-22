@@ -10,9 +10,13 @@ public class PlayerCombat : MonoBehaviour {
 
     public AudioClip[] shortHurtSounds;
     public AudioClip[] longHurtSounds;
+    public float shieldWeight = 20f;
+    public float baseWeight = 1f;
 
     private AudioSource audioSource;
+    private Rigidbody playerRigidbody;
     private int HP;
+    private int buffTimer;
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,12 +25,16 @@ public class PlayerCombat : MonoBehaviour {
 
     void Awake() {
         audioSource = GetComponent<AudioSource>();
+        playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    [SerializeField]
+    GameObject deathExplosion;
 
 	void Start () {
         HP = 100;
-    }
+        InvokeRepeating("DecrementTimer", 1.0f, 1.0f);
+	}
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,6 +56,8 @@ public class PlayerCombat : MonoBehaviour {
     public void PlayerDies() {
         audioSource.clip = longHurtSounds[Random.Range(0, longHurtSounds.Length)];
         audioSource.Play();
+		var exp = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.Euler(-90,0,0));
+        Destroy(exp, 5.0f);
     }
 
 
@@ -62,4 +72,31 @@ public class PlayerCombat : MonoBehaviour {
         gameObject.GetComponent<Rigidbody>().AddForce(direction * power, ForceMode.Impulse);
     }
 
+
+    public void ApplyShield() {
+        ApplyDamage(100); //DEBUG
+
+        gameObject.GetComponent<Rigidbody>().mass = shieldWeight;
+
+        if (buffTimer < 5)
+            buffTimer = 15;
+        else
+            buffTimer += 10;
+    }
+
+
+    public void DecrementTimer() {
+        if (buffTimer > 0) {
+
+            buffTimer--;
+            if (buffTimer <= 0)
+                EndBuff();
+        }
+
+    }
+
+
+    void EndBuff() {
+        playerRigidbody.mass = baseWeight;
+    }
 }

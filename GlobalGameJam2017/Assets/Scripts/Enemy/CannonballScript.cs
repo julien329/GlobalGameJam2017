@@ -41,7 +41,7 @@ public class CannonballScript : MonoBehaviour {
         float distance = Vector3.Distance(player.transform.position, transform.position);
         if ( distance < 2.5f)
         {
-
+            Debug.Log("It's a hit!");
             player.GetComponent<PlayerCombat>().ApplyImpulse(player.transform.position - transform.position, 10f);
         }
         Destroy(exp, 5.0f);

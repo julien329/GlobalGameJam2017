@@ -11,6 +11,8 @@ public class CannonScript : IEnemy {
     GameObject CannonBall;
     [SerializeField]
     GameObject CannonPosition;
+    [SerializeField]
+    GameObject DeathExplosion;
 
     //Look at rotation
     Quaternion targetRotation;
@@ -27,6 +29,8 @@ public class CannonScript : IEnemy {
         action = DyingAction;
         clearAnimParameters();
         anim.SetBool("isDeath", true);
+        Destroy(gameObject, 0.5f);
+        Instantiate(DeathExplosion, transform.position, Quaternion.identity);
     }
 
     public override void TakeDamage(int damage)
