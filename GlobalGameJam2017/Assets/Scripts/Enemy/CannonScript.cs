@@ -37,8 +37,6 @@ public class CannonScript : IEnemy {
         {
             EnemyDie();
         }
-        else
-            gameObject.GetComponentInChildren<HealthBar>().UpdateBar(HPMax, HP);
     }
 
     protected override void AggressiveAction()
@@ -250,8 +248,7 @@ public class CannonScript : IEnemy {
         isCooldown = true;
         //anim.SetBool("isRun", false);
         //anim.SetBool("isWalk", false);
-        if(state != State.DYING)
-            navMeshAgent.ResetPath();
+        navMeshAgent.ResetPath();
         yield return new WaitForSeconds(time);
         //Cooldown over
         if (gameObject != null && state != State.DYING && isCooldown) {

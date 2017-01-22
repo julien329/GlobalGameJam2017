@@ -27,7 +27,6 @@ public abstract class IEnemy : MonoBehaviour {
     protected bool isCooldown;
 
     //Enemy main stats
-    protected int HPMax;
     public int HP;
     public int Speed;
 
@@ -48,7 +47,6 @@ public abstract class IEnemy : MonoBehaviour {
 
     //Standard init for all ennemies, must be called from derived class
     protected void Init() {
-        HPMax = HP;
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         action = IdleAction;
         state = State.IDLE;

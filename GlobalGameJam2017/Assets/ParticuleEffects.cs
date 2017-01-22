@@ -5,9 +5,9 @@ public class ParticuleEffects : MonoBehaviour
 {
     private Renderer rend;
 
-    public float defaultSpeed = 5;
+    public float defaultSpeed =5;
     public float defaultDamage = 1;
-    public float defaultScale = 1f;
+    public float defaultScale= 1f;
 
 
     public GameObject projectile;
