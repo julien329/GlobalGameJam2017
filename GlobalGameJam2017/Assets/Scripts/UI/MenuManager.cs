@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
 
@@ -35,6 +36,7 @@ public class MenuManager : MonoBehaviour {
         creditNames[4] = GameObject.Find("Leandre").GetComponent<Image>();
         creditNames[5] = GameObject.Find("Philippe").GetComponent<Image>();
 
+        logo = GameObject.Find("Logo").GetComponent<Image>();
         layout = GameObject.Find("ControlLayout").GetComponent<Image>();
     }
 
@@ -50,12 +52,14 @@ public class MenuManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.DownArrow) && choice < 4 && ticketsImg[0].enabled == true) { choice++; updateChoice(); }
         if (Input.GetKeyDown(KeyCode.UpArrow) && choice > 1 && ticketsImg[0].enabled == true) { choice--; updateChoice(); }
         if (Input.GetKeyDown(KeyCode.Return) && choice == 4 && ticketsImg[0].enabled == true) { modeCredits(); }
-        if (Input.GetKeyDown(KeyCode.Return) && choice == 2 && ticketsImg[0].enabled == true) { modeHelp(); }
         if (Input.GetKeyDown(KeyCode.Return) && choice == 3 && ticketsImg[0].enabled == true)
         {
             UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
+        if (Input.GetKeyDown(KeyCode.Return) && choice == 2 && ticketsImg[0].enabled == true) { modeHelp(); }
+        if (Input.GetKeyDown(KeyCode.Return) && choice == 1 && ticketsImg[0].enabled == true) { SceneManager.LoadScene("Main_Scene"); }
+
         if (Input.GetKeyDown(KeyCode.Escape)) { modeMenu(); }
     }
 
@@ -84,6 +88,7 @@ public class MenuManager : MonoBehaviour {
     {
         for (int i = 0; i < 4; i++) ticketsImg[i].enabled = true;
         for (int i = 0; i < 6; i++) creditNames[i].enabled = false;
+        logo.enabled = true;
         layout.enabled = false;
     }
 
@@ -91,6 +96,7 @@ public class MenuManager : MonoBehaviour {
     {
         for (int i = 0; i < 4; i++) ticketsImg[i].enabled = false;
         for (int i = 0; i < 6; i++) creditNames[i].enabled = true;
+        logo.enabled = false;
         layout.enabled = false;
     }
 
@@ -98,6 +104,7 @@ public class MenuManager : MonoBehaviour {
     {
         for (int i = 0; i < 4; i++) ticketsImg[i].enabled = false;
         for (int i = 0; i < 6; i++) creditNames[i].enabled = false;
+        logo.enabled = false;
         layout.enabled = true;
     }
 }
