@@ -332,6 +332,8 @@ MonoBehaviour:
   Speed: 5
   CannonBall: {fileID: 1998402804003072, guid: c0030c25a0ced2047a6d99e64f28fbfb, type: 2}
   CannonPosition: {fileID: 1569980406305476}
+  DeathExplosion: {fileID: 1021702017086820, guid: d656e0b4922686540947dbc2392732a7,
+    type: 2}
 --- !u!135 &135395622319960460
 SphereCollider:
   m_ObjectHideFlags: 1
