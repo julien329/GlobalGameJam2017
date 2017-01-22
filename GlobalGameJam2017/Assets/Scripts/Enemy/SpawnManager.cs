@@ -63,9 +63,15 @@ public class SpawnManager : MonoBehaviour {
         nbEnemyOnScene = 0;
 
         enemyAvailable.Clear();
-        enemyAvailable.Add(mummy);
-        enemyAvailable.Add(minion);
-        enemyAvailable.Add(golem);
+        if (nbMummyLeft > 0) {
+            enemyAvailable.Add(mummy);
+        }
+        if (nbMinionLeft > 0) {
+            enemyAvailable.Add(minion);
+        }
+        if (nbGolemLeft > 0) {
+            enemyAvailable.Add(golem);
+        }
 
         CancelInvoke("SpawnEnnemy");
         InvokeRepeating("SpawnEnnemy", spawnTime, spawnTime);
