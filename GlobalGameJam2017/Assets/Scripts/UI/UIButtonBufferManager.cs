@@ -10,6 +10,7 @@ public class UIButtonBufferManager : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public int coolDownTime = 5;
+    public AudioClip[] singleNotesClips;
 
     private StringEffectManager stringEffectManager;
     private PlayerMovement playerMovement;
@@ -17,11 +18,25 @@ public class UIButtonBufferManager : MonoBehaviour {
     private Image[] buttons;
     private Image[] effects;
     private RawImage[] cooldownLines;
+    private AudioSource[] singleNotesPlayers;
     private bool[] buttonIsDisplayed;
     private bool[] buttonOnCooldown;
     private int slotIndex = 0;
     private GuitarInput[] guitarInputs;
     private int countDown;
+
+    public AudioSource AddAudio(AudioClip clip, bool loop, bool playAwake, float vol) {
+
+        AudioSource newAudio = gameObject.AddComponent<AudioSource>();
+
+        newAudio.clip = clip;
+        newAudio.loop = loop;
+        newAudio.playOnAwake = playAwake;
+        newAudio.volume = vol;
+
+        return newAudio;
+
+    }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +84,8 @@ public class UIButtonBufferManager : MonoBehaviour {
         cooldownLines[2] = GameObject.Find("LineBloc2").GetComponent<RawImage>();
         cooldownLines[3] = GameObject.Find("LineBloc1").GetComponent<RawImage>();
 
+        singleNotesPlayers = new AudioSource[3];
+
         stringEffectManager = GameObject.Find("StringEffect").GetComponent<StringEffectManager>();
     }
 
@@ -83,6 +100,13 @@ public class UIButtonBufferManager : MonoBehaviour {
         buttonOnCooldown = new bool[4];
         for(int i = 0; i < 4; i++) {
             buttonOnCooldown[i] = false;
+        }
+
+        for(int i = 0; i < 3; i++) {
+            singleNotesPlayers[i] = gameObject.AddComponent<AudioSource>(); ;
+            singleNotesPlayers[i].playOnAwake = false;
+            singleNotesPlayers[i].loop = false;
+            singleNotesPlayers[i].volume = 0.5f;
         }
     }
 
@@ -116,11 +140,17 @@ public class UIButtonBufferManager : MonoBehaviour {
     private void SetDisplay(GuitarInput button) {
         if (slotIndex == 3 || stringEffectManager.GetIsActive() == true) return;
 
+        AudioSource activeSource = singleNotesPlayers[slotIndex];
+        activeSource.volume = 0.5f;
+        int index = ((int)button - 1) * 2;
+        activeSource.clip = GetAndSwitchClips(index, index + 1);
+        activeSource.Play();
+
         switch (button) {
             case GuitarInput.A_HEAL:
                 buttonIsDisplayed[0 + slotIndex] = true;
                 PlayEffect(0 + slotIndex);
-                guitarInputs[slotIndex]= GuitarInput.A_HEAL;
+                guitarInputs[slotIndex] = GuitarInput.A_HEAL;
                 slotIndex++;
                 break;
             case GuitarInput.B_POWER:
@@ -161,11 +191,22 @@ public class UIButtonBufferManager : MonoBehaviour {
         for (int i = 0; i < buttonIsDisplayed.Length; i++) {
             buttonIsDisplayed[i] = false;
         }
+        for (int i = 0; i < singleNotesPlayers.Length; i++) {
+            singleNotesPlayers[i].volume = Mathf.Lerp(singleNotesPlayers[i].volume, 0, Time.deltaTime * 10);
+        }
     }
 
 
     private void PlayEffect(int effect) {
         effects[effect].enabled = true;
+    }
+
+
+    private AudioClip GetAndSwitchClips(int index1, int index2) {
+        AudioClip temp = singleNotesClips[index1];
+        singleNotesClips[index1] = singleNotesClips[index2];
+        singleNotesClips[index2] = temp;
+        return temp;
     }
 
 

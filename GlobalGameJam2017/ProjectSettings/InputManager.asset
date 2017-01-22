@@ -229,3 +229,19 @@ InputManager:
     type: 0
     axis: 4
     joyNum: 1
+  - serializedVersion: 3
+    m_Name: DPadVertical
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 2
+    axis: 6
+    joyNum: 1

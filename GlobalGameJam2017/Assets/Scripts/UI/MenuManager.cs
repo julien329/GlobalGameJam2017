@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour {
     public Image layout;
     public Image[] creditNames;
     public int choice;
+    bool dPadReady;
 
     // Use this for initialization
     void Awake() {
@@ -45,22 +46,24 @@ public class MenuManager : MonoBehaviour {
         modeMenu();
         choice = 1;
         updateChoice();
+        dPadReady = true;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && choice < 4 && ticketsImg[0].enabled == true) { choice++; updateChoice(); }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && choice > 1 && ticketsImg[0].enabled == true) { choice--; updateChoice(); }
-        if (Input.GetKeyDown(KeyCode.Return) && choice == 4 && ticketsImg[0].enabled == true) { modeCredits(); }
-        if (Input.GetKeyDown(KeyCode.Return) && choice == 3 && ticketsImg[0].enabled == true)
+        if (Input.GetAxis("DPadVertical") == -1 && choice < 4 && ticketsImg[0].enabled == true && dPadReady) { choice++; updateChoice(); dPadReady = false; }
+        if (Input.GetAxis("DPadVertical") == 1 && choice > 1 && ticketsImg[0].enabled == true && dPadReady) { choice--; updateChoice(); dPadReady = false; }
+        if (Input.GetAxis("DPadVertical") == 0 && ticketsImg[0].enabled == true && !dPadReady) { dPadReady = true; }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 4 && ticketsImg[0].enabled == true) { modeCredits(); }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 3 && ticketsImg[0].enabled == true)
         {
             UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
-        if (Input.GetKeyDown(KeyCode.Return) && choice == 2 && ticketsImg[0].enabled == true) { modeHelp(); }
-        if (Input.GetKeyDown(KeyCode.Return) && choice == 1 && ticketsImg[0].enabled == true) { SceneManager.LoadScene("Main_Scene"); }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 2 && ticketsImg[0].enabled == true) { modeHelp(); }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 1 && ticketsImg[0].enabled == true) { SceneManager.LoadScene("Main_Scene"); }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) { modeMenu(); }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1)) { modeMenu(); }
     }
 
     void updateChoice()
