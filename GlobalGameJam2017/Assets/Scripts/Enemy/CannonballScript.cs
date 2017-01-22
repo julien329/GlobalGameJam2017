@@ -42,7 +42,13 @@ public class CannonballScript : MonoBehaviour {
         if ( distance < 2.5f)
         {
             Debug.Log("It's a hit!");
-            player.GetComponent<PlayerCombat>().ApplyImpulse(player.transform.position - transform.position, 10f);
+            if (distance < 1.0f)
+                player.GetComponent<PlayerCombat>().ApplyDamage(25);
+            else
+                player.GetComponent<PlayerCombat>().ApplyDamage(10);
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            rb.AddExplosionForce(12f, transform.position, 5.0f, 4f, ForceMode.Impulse);
+            //player.GetComponent<PlayerCombat>().ApplyImpulse(player.transform.position - transform.position, 10f);
         }
         Destroy(exp, 5.0f);
         Destroy(gameObject);
