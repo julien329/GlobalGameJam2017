@@ -7,7 +7,7 @@ public class ParticuleEffects : MonoBehaviour
 
     public float defaultSpeed =5;
     public float defaultDamage = 1;
-    public float defaultScaleFactorYSpread = 5f;
+    public float defaultScale= 1f;
 
 
     public GameObject projectile;
@@ -17,8 +17,11 @@ public class ParticuleEffects : MonoBehaviour
     public Color colorB_Power;
     public Color colorX_Spread;
     public Color colorY_Speed;
-    [SerializeField]
+
     public GameObject domeEffect;
+    public GameObject healingEffect;
+    public GameObject speedEffect;
+
     public float timeEmitting = 5f;
 
     public float frequency ;
@@ -43,7 +46,7 @@ public class ParticuleEffects : MonoBehaviour
     void Reset()
     {
          frequency_final = frequency;
-         scale_final = 1f;
+         scale_final = defaultScale;
          speed_final = defaultSpeed;
          heal_final = 0f;
          damage_final = 0f;
@@ -110,6 +113,14 @@ public class ParticuleEffects : MonoBehaviour
                     GameObject obj = Instantiate(domeEffect);
                     obj.transform.position = transform.parent.transform.position;
 
+                    break;
+                case GuitarInput.A_HEAL:
+                    GameObject objHeal = Instantiate(healingEffect,transform.parent);
+                    objHeal.transform.position = transform.parent.position;
+                    break;
+                case GuitarInput.Y_SPEED:
+                    GameObject objSpeed = Instantiate(speedEffect, transform.parent);
+                    objSpeed.transform.position = transform.parent.position;
                     break;
             }
         }

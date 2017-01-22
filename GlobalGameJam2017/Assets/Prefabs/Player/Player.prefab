@@ -1224,7 +1224,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1627329232498940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -20}
+  m_LocalPosition: {x: -0, y: 0, z: -15}
   m_LocalScale: {x: 0.12837191, y: 0.12837195, z: 0.12837195}
   m_Children:
   - {fileID: 4523708015734864}
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 8
   defaultDamage: 1
-  defaultScaleFactorYSpread: 4
+  defaultScale: 0.5
   projectile: {fileID: 1640927735507524, guid: 09f7805b7c88fec4dbdcc60d6d51283e, type: 2}
   light: {fileID: 0}
   colorA_Heal: {r: 0, g: 1, b: 0.08965516, a: 0}
@@ -1638,13 +1638,15 @@ MonoBehaviour:
   colorX_Spread: {r: 0.07586192, g: 0, b: 1, a: 0}
   colorY_Speed: {r: 1, g: 0.93103445, b: 0, a: 0}
   domeEffect: {fileID: 1024780422438824, guid: 4b629490fd64b47b5bf30da687e07316, type: 2}
+  healingEffect: {fileID: 1233997624205386, guid: 83e81a525dca94d8993da72dea44b287,
+    type: 2}
   timeEmitting: 1
   frequency: 3
   speedIncrement: 0.8
   rateIncrement: 1
-  spreadIncrement: 0.25
+  spreadIncrement: 0.4
   damageIncrement: 1
-  healIncrement: 1
+  healIncrement: 4
 --- !u!114 &114664808624899740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1678,6 +1680,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2fa4b2ca726af489aa2d19e970bce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathExplosion: {fileID: 1550611228512522, guid: 7bff242a5568d6b499096d17bab683a6,
+    type: 2}
+  shield: {fileID: 0}
+  healthKnob: {fileID: 0}
   shortHurtSounds:
   - {fileID: 8300000, guid: bbc3fc08399abc64eb8569f42bc1e14c, type: 3}
   - {fileID: 8300000, guid: 724744adb71b1eb4ca2b7564186efa6d, type: 3}
@@ -1691,8 +1697,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9242c8f3b0d7184dbd6918e23314cff, type: 3}
   shieldWeight: 20
   baseWeight: 1
-  deathExplosion: {fileID: 1550611228512522, guid: 7bff242a5568d6b499096d17bab683a6,
-    type: 2}
 --- !u!136 &136103693895000320
 CapsuleCollider:
   m_ObjectHideFlags: 1

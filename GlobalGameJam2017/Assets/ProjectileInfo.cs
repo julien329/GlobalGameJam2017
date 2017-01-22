@@ -10,7 +10,7 @@ public class ProjectileInfo : MonoBehaviour
     private GameObject player;
     public float damage = 0;
     public float lifeSteal = 0f;
-    public float scale = 1.1f;
+    public float scale = 0f;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class ProjectileInfo : MonoBehaviour
     //
     void Update()
     {
-        transform.localScale = new Vector3(transform.localScale.x + scale*Time.deltaTime, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x + scale * Time.deltaTime, transform.localScale.y, transform.localScale.z);
     }
 
 

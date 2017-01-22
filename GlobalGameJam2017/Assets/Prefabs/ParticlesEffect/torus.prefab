@@ -166,7 +166,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.69195396, g: 0.31034482, b: 0.33333334, a: 0}
+  m_Color: {r: 0.35862064, g: 0.33333334, b: 0.3632184, a: 0}
   m_Intensity: 1
   m_Range: 5
   m_SpotAngle: 30
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   lifeSteal: 0
-  scale: 1.1
+  scale: 0.5
 --- !u!114 &114796887886936024
 MonoBehaviour:
   m_ObjectHideFlags: 1

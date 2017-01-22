@@ -8,6 +8,8 @@ public class PlayerCombat : MonoBehaviour {
     GameObject deathExplosion;
     [SerializeField]
     GameObject shield;
+
+    public HealthKnobManager healthKnob;
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +53,12 @@ public class PlayerCombat : MonoBehaviour {
             audioSource.clip = shortHurtSounds[Random.Range(0, shortHurtSounds.Length)];
             audioSource.Play();
         }
+
+        //Modifies health bar
+        if (healthKnob)
+        {
+            healthKnob.damage((float)damage, 100);
+        }
     }
 
 
@@ -66,6 +74,12 @@ public class PlayerCombat : MonoBehaviour {
         HP += ammount;
         if (HP > 100)
             HP = 100;
+
+        //Modifies health bar
+        if (healthKnob)
+        {
+            healthKnob.heal((float)ammount, 100);
+        }
     }
 
 
