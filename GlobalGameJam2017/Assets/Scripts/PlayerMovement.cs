@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public float speed = 4f;                    // The speed that the player will move at.
+    public float reducedSpeedMultiplier = 0.95f;
     public float gravity = -9.8f;
     public float accelerationTime = 0.05f;
     public float rotationTime = 0.05f;
@@ -33,7 +34,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update() {
         Move();
-        Rotate();
         Animating();
     }
 
@@ -57,6 +57,8 @@ public class PlayerMovement : MonoBehaviour {
         velocity.z = Mathf.SmoothDamp(velocity.z, v, ref activeVelocityYSmoothing, accelerationTime);
         velocity = Vector3.ClampMagnitude(velocity, 1.0f);
 
+        Rotate();
+
         // Move current position to target position, smoothed and scaled by speed
         playerRigidbody.MovePosition(transform.position + velocity * speed * Time.deltaTime);
 	}
@@ -69,9 +71,15 @@ public class PlayerMovement : MonoBehaviour {
 
         // Set looking direction of the player
         viewDirection.Set(h, 0f, v);
-        viewDirection = (viewDirection == Vector3.zero) ? velocity : Vector3.ClampMagnitude(viewDirection, 1.0f);
+        if (viewDirection == Vector3.zero) {
+            viewDirection = velocity;
+        }
+        else {
+            viewDirection = Vector3.ClampMagnitude(viewDirection, 1.0f);
+            velocity *= reducedSpeedMultiplier;
+        }
 
-        // If new direction, change rotation of the player
+        // Change rotation of the player
         if (viewDirection != Vector3.zero) {
             Quaternion targetRotation = Quaternion.LookRotation(viewDirection, Vector3.up);
             Quaternion newRotation = Quaternion.Lerp(GetComponent<Rigidbody>().rotation, targetRotation, rotationTime * Time.deltaTime);
@@ -98,7 +106,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 
-	void StartAttackAnim() {
+	public void StartAttackAnim() {
 		anim.SetTrigger ("Attack");
 	}
 }

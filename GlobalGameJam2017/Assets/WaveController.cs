@@ -9,22 +9,15 @@ public class WaveController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    particuleEffects = GetComponent<ParticuleEffects>();
+	    particuleEffects = GetComponentInChildren(typeof(ParticuleEffects)) as ParticuleEffects;
 	}
 
-    void chargeWave(GuitarInput[] guitarInputs)
+    public void chargeWave(GuitarInput[] guitarInputs)
     {
       particuleEffects.readInputs(guitarInputs);
     }
 
-    void Update()
-    {
-        if (Input.anyKey && GuitarInputs.Length>0)
-        {
-            chargeWave(GuitarInputs);
-        }   
-    }
-
+ 
 
     
 }

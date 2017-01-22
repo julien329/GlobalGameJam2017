@@ -14,11 +14,8 @@ public class UIButtonBufferManager : MonoBehaviour {
     private Image[] effects;
     private bool[] buttonIsDisplayed;
     private int slotIndex = 0;
-    private const int BUTTON_A = 0;
-    private const int BUTTON_B = 1;
-    private const int BUTTON_X = 2;
-    private const int BUTTON_Y = 3;
-
+    private GuitarInput[] guitarInputs;
+    private PlayerMovement player;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
@@ -26,6 +23,10 @@ public class UIButtonBufferManager : MonoBehaviour {
 
     void Awake() {
         buttons = new Image[12];
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+
+        guitarInputs = new GuitarInput[3];
+
         buttons[0] = GameObject.Find("A1_Button").GetComponent<Image>();
         buttons[1] = GameObject.Find("A2_Button").GetComponent<Image>();
         buttons[2] = GameObject.Find("A3_Button").GetComponent<Image>();
@@ -72,13 +73,13 @@ public class UIButtonBufferManager : MonoBehaviour {
         }
 
         if (Input.GetButtonDown("Heal"))
-            SetDisplay(BUTTON_A);
+            SetDisplay(GuitarInput.A_HEAL);
         if (Input.GetButtonDown("Damage"))
-            SetDisplay(BUTTON_B);
+            SetDisplay(GuitarInput.B_POWER);
         if (Input.GetButtonDown("Radius"))
-            SetDisplay(BUTTON_X);
+            SetDisplay(GuitarInput.X_SPREAD);
         if (Input.GetButtonDown("Speed"))
-            SetDisplay(BUTTON_Y);
+            SetDisplay(GuitarInput.Y_SPEED);
         if (Input.GetAxisRaw("Play Chord") != 0)
             PlayChord();
         if (Input.GetAxisRaw("Clear Chord") != 0)
@@ -90,28 +91,32 @@ public class UIButtonBufferManager : MonoBehaviour {
     /// METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void SetDisplay(int button) {
+    private void SetDisplay(GuitarInput button) {
         if (slotIndex == 3 || stringEffectManager.GetIsActive() == true) return;
 
         switch (button) {
-            case 0:
+            case GuitarInput.A_HEAL:
                 buttonIsDisplayed[0 + slotIndex] = true;
                 PlayEffect(0 + slotIndex);
+                guitarInputs[slotIndex]= GuitarInput.A_HEAL;
                 slotIndex++;
                 break;
-            case 1:
+            case GuitarInput.B_POWER:
                 buttonIsDisplayed[3 + slotIndex] = true;
                 PlayEffect(3 + slotIndex);
+                guitarInputs[slotIndex] = GuitarInput.B_POWER;
                 slotIndex++;
                 break;
-            case 2:
+            case GuitarInput.X_SPREAD:
                 buttonIsDisplayed[6 + slotIndex] = true;
                 PlayEffect(6 + slotIndex);
+                guitarInputs[slotIndex] = GuitarInput.X_SPREAD;
                 slotIndex++;
                 break;
-            case 3:
+            case GuitarInput.Y_SPEED:
                 buttonIsDisplayed[9 + slotIndex] = true;
                 PlayEffect(9 + slotIndex);
+                guitarInputs[slotIndex] = GuitarInput.Y_SPEED;
                 slotIndex++;
                 break;
             default:
@@ -121,13 +126,11 @@ public class UIButtonBufferManager : MonoBehaviour {
 
 
     private void PlayChord() {
-        if (slotIndex == 3) {
-            stringEffectManager.SetIsActive(true);
-            slotIndex = 0;
-        }
-
-		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		player.SendMessage("StartAttackAnim");
+        if (slotIndex != 3) return;
+        stringEffectManager.SetIsActive(true);
+        slotIndex = 0;
+        player.GetComponent<WaveController>().chargeWave(guitarInputs);
+        player.GetComponent<PlayerMovement>().StartAttackAnim();
     }
 
 
