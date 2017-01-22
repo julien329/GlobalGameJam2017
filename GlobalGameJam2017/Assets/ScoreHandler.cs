@@ -18,6 +18,7 @@ public static class ScoreHandler {
     static Text Ach1;
     static Text Ach2;
     static Text Ach3;
+    static Text Score;
 
     static List<string> achievedFeats;
 
@@ -31,6 +32,7 @@ public static class ScoreHandler {
             Ach1 = GameObject.Find("Ach1").GetComponent<Text>();
             Ach2 = GameObject.Find("Ach2").GetComponent<Text>();
             Ach3 = GameObject.Find("Ach3").GetComponent<Text>();
+            Score = GameObject.Find("ScoreValue").GetComponent<Text>();
 
         }
 
@@ -57,7 +59,7 @@ public static class ScoreHandler {
         achievements[(int)Achievement.ONETRICKPONY] = false;
     }
 
-    static public void DamageTaken() {totalScore -= 5; achievements[(int)Achievement.FLAWLESS] = false; }
+    static public void DamageTaken() {totalScore -= 5; Score.text = totalScore.ToString(); achievements[(int)Achievement.FLAWLESS] = false; }
     static public void UltimateUsed(Ultimate ult) { achievements[(int)Achievement.BICOLOR] = false; achievements[(int)Achievement.TASTETHERAINBOW] = false;
                                         achievements[(int)Achievement.HUMBLE] = false; ultimates[(int)ult]++; }
     static public void BicolorUsed() { achievements[(int)Achievement.TASTETHERAINBOW] = false; }
@@ -118,7 +120,10 @@ public static class ScoreHandler {
                 Ach3.text = achievedFeats[2];
                 totalScore += 1000;
                 break;
+
         }
+        Score.text = totalScore.ToString();
+
     }
 
     public enum Achievement

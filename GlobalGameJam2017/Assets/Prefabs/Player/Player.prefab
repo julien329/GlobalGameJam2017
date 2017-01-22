@@ -1734,7 +1734,7 @@ MonoBehaviour:
   rateIncrement: 1
   spreadIncrement: 0.4
   damageIncrement: 1
-  healIncrement: 4
+  healIncrement: 2
 --- !u!114 &114664808624899740
 MonoBehaviour:
   m_ObjectHideFlags: 1

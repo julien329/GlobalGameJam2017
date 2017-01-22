@@ -86,6 +86,8 @@ public class GameFlow : MonoBehaviour {
     public void PlayerDied() {
         audioSource.clip = longHurtSounds[Random.Range(0, longHurtSounds.Length)];
         audioSource.Play();
+
+        StartCoroutine("GameEndedCountdown");
     }
 
 

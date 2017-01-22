@@ -57,7 +57,7 @@ public class MenuManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 3 && ticketsImg[0].enabled == true) { modeCredits(); }
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 4 && ticketsImg[0].enabled == true)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 2 && ticketsImg[0].enabled == true) { modeHelp(); }
