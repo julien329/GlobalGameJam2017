@@ -10,7 +10,6 @@ public class PlayerCombat : MonoBehaviour {
 
     public AudioClip[] shortHurtSounds;
     public AudioClip[] longHurtSounds;
-    public HealthKnobManager healthKnob;
     public float shieldWeight = 20f;
     public float baseWeight = 1f;
 
@@ -20,6 +19,7 @@ public class PlayerCombat : MonoBehaviour {
     private GameObject shield;
     private AudioSource audioSource;
     private Rigidbody playerRigidbody;
+    private HealthKnobManager healthKnob;
     private int HP;
     private int buffTimer;
 
@@ -31,6 +31,7 @@ public class PlayerCombat : MonoBehaviour {
     void Awake() {
         audioSource = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
+        healthKnob = GameObject.Find("HealthKnob").GetComponent<HealthKnobManager>();
     }
 
 

@@ -1695,7 +1695,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afc85213f92369943a34dde2656ae8d7, type: 3}
   - {fileID: 8300000, guid: dc2c55b4dbaa08b4d8957763fe133137, type: 3}
   - {fileID: 8300000, guid: d9242c8f3b0d7184dbd6918e23314cff, type: 3}
-  healthKnob: {fileID: 0}
   shieldWeight: 20
   baseWeight: 1
   deathExplosion: {fileID: 1550611228512522, guid: 7bff242a5568d6b499096d17bab683a6,
