@@ -25,7 +25,7 @@ public class KnockBack : MonoBehaviour {
 
 
     void Start () {
-        buttonBuffer.setRadiusDisabled();
+        buttonBuffer.SetRadiusDisabled();
 	    enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
             float distance = Vector3.Distance(GameObject.Find("Player").transform.position, enemy.transform.position);

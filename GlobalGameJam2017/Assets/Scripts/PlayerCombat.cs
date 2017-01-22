@@ -120,5 +120,4 @@ public class PlayerCombat : MonoBehaviour {
         playerRigidbody.mass = baseWeight;
         shield.SetActive(false);
     }
-
 }
