@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour {
 
+    [SerializeField]
+    GameObject deathExplosion;
+    [SerializeField]
+    GameObject shield;
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,9 +31,6 @@ public class PlayerCombat : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
-
-    [SerializeField]
-    GameObject deathExplosion;
 
 	void Start () {
         HP = 100;
@@ -72,12 +73,10 @@ public class PlayerCombat : MonoBehaviour {
         gameObject.GetComponent<Rigidbody>().AddForce(direction * power, ForceMode.Impulse);
     }
 
-
-    public void ApplyShield() {
-        ApplyDamage(100); //DEBUG
-
+    public void ApplyShield()
+    {
         gameObject.GetComponent<Rigidbody>().mass = shieldWeight;
-
+        shield.SetActive(true);
         if (buffTimer < 5)
             buffTimer = 15;
         else
@@ -95,8 +94,10 @@ public class PlayerCombat : MonoBehaviour {
 
     }
 
-
-    void EndBuff() {
-        playerRigidbody.mass = baseWeight;
+    void EndBuff()
+    {
+        gameObject.GetComponent<Rigidbody>().mass = baseWeight;
+        shield.SetActive(false);
     }
+
 }
