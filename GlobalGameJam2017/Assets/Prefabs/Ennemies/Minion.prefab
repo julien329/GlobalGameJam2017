@@ -181,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040154572835750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.02}
+  m_LocalPosition: {x: -0.5526329, y: 0.04628542, z: 4.1315665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4976126607990394}
@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitTextObject: {fileID: 1581632627841154, guid: e0d35fd2cd519754db6fdb2d7a30c993,
     type: 2}
+  color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &114551322861817958
 MonoBehaviour:
   m_ObjectHideFlags: 1

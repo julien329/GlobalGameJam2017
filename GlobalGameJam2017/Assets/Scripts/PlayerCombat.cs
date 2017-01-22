@@ -22,7 +22,7 @@ public class PlayerCombat : MonoBehaviour {
     private GameFlow gameflow;
     private int HP;
     private int buffTimer;
-
+    private HitController hitController;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
@@ -33,6 +33,7 @@ public class PlayerCombat : MonoBehaviour {
         playerRigidbody = GetComponent<Rigidbody>();
         healthKnob = GameObject.Find("HealthKnob").GetComponent<HealthKnobManager>();
         gameflow = GameObject.Find("Map").GetComponent<GameFlow>();
+        hitController=GetComponent<HitController>();
     }
 
 
@@ -50,6 +51,10 @@ public class PlayerCombat : MonoBehaviour {
         if (buffTimer > 0)
             damage /= 2;
         HP -= damage;
+
+        //Show hit text
+        hitController.createHitText(damage,transform);
+
         //Warn achievements that we have failed.
         ScoreHandler.DamageTaken();
         if(HP < 1) {

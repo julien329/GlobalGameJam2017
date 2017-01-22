@@ -8,7 +8,6 @@ public class HitText : MonoBehaviour
     public float animationLength;
     
     public Animator animator;
-    public Color color;
 
 
     void Start()
@@ -17,7 +16,7 @@ public class HitText : MonoBehaviour
         Destroy(gameObject,aci.Length);
     }
 
-    public void setText(string text)
+    public void setText(string text,Color color)
     {
           Text damageText = GetComponentInChildren<Text>();
          damageText.color= color;

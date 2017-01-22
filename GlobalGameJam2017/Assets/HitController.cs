@@ -6,7 +6,7 @@ public class HitController : MonoBehaviour
 {
     public GameObject hitTextObject;
     private Canvas canvas;
-
+    public Color color;
 	// Use this for initialization
     void Start()
     {
@@ -19,7 +19,7 @@ public class HitController : MonoBehaviour
         hitTextObj.transform.position = screenPosition;
  
         HitText hitText = hitTextObj.GetComponent<HitText>();
-        hitText.setText(damage.ToString());
+        hitText.setText(damage.ToString(),color);
 
     }
 }
