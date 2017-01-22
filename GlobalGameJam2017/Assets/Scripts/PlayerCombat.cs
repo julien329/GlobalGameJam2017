@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour {
 
-<<<<<<< HEAD
     [SerializeField]
     GameObject deathExplosion;
     [SerializeField]
     GameObject shield;
-=======
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
->>>>>>> d28ba4aa3008f59726ae72d2bdc6a1d081e849fb
 
     public AudioClip[] shortHurtSounds;
     public AudioClip[] longHurtSounds;
@@ -34,9 +31,6 @@ public class PlayerCombat : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
-
-    [SerializeField]
-    GameObject deathExplosion;
 
 	void Start () {
         HP = 100;
@@ -79,15 +73,8 @@ public class PlayerCombat : MonoBehaviour {
         gameObject.GetComponent<Rigidbody>().AddForce(direction * power, ForceMode.Impulse);
     }
 
-<<<<<<< HEAD
     public void ApplyShield()
     {
-=======
-
-    public void ApplyShield() {
-        ApplyDamage(100); //DEBUG
-
->>>>>>> d28ba4aa3008f59726ae72d2bdc6a1d081e849fb
         gameObject.GetComponent<Rigidbody>().mass = shieldWeight;
         shield.SetActive(true);
         if (buffTimer < 5)
@@ -107,16 +94,10 @@ public class PlayerCombat : MonoBehaviour {
 
     }
 
-<<<<<<< HEAD
     void EndBuff()
     {
         gameObject.GetComponent<Rigidbody>().mass = baseWeight;
         shield.SetActive(false);
     }
-=======
->>>>>>> d28ba4aa3008f59726ae72d2bdc6a1d081e849fb
 
-    void EndBuff() {
-        playerRigidbody.mass = baseWeight;
-    }
 }
