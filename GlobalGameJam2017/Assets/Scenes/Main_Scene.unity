@@ -105,7 +105,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e7a7bc08736b5bc44bb4d1490c750d58, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3c3a13901523f8847a752dd217eaf489, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -219,10 +219,15 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114984584175784962, guid: 2c83a835494807a4daf1326186d428cc,
+    - target: {fileID: 114562309203090502, guid: 2c83a835494807a4daf1326186d428cc,
         type: 2}
-      propertyPath: shield
-      value: 
+      propertyPath: defaultDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664808624899740, guid: 2c83a835494807a4daf1326186d428cc,
+        type: 2}
+      propertyPath: reducedSpeedMultiplier
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c83a835494807a4daf1326186d428cc, type: 2}
@@ -391,6 +396,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 224418647651904962, guid: ce187cde4dba4fa48803d92496e8467e,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -481,6 +491,46 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8920773cae42dc14ebdd6b83fe25dc16, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c46b898c0fe7b947ac23b0d1cd3ac09, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 493ed555327376e4380cf7e10a205bf6, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: e41914031bce2a54892d5369962cf3e0, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: f589eee802f3f8e4e94b6a2d8a2bd916, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: f8a389955148299449b253841f221039, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: b041e17a568d4ea45a5d3fe92a4d98c7, type: 3}
+    - target: {fileID: 114016864291134036, guid: ce187cde4dba4fa48803d92496e8467e,
+        type: 2}
+      propertyPath: singleNotesClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1cb26de9aa9bf5f4e8bc33e6a35dd932, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce187cde4dba4fa48803d92496e8467e, type: 2}
   m_IsPrefabParent: 0

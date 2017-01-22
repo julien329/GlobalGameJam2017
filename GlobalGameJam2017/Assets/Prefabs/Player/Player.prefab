@@ -1699,10 +1699,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSpeed: 8
-  defaultDamage: 1
+  defaultDamage: 2
   defaultScale: 0.5
   projectile: {fileID: 1640927735507524, guid: 09f7805b7c88fec4dbdcc60d6d51283e, type: 2}
-  light: {fileID: 0}
   colorA_Heal: {r: 0, g: 1, b: 0.08965516, a: 0}
   colorB_Power: {r: 1, g: 0, b: 0, a: 0}
   colorX_Spread: {r: 0.07586192, g: 0, b: 1, a: 0}
@@ -1739,7 +1738,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bbb36016615e3ce46af21146acd2b7bc, type: 3}
   - {fileID: 8300000, guid: 0544d9194539d834483f3d424147793c, type: 3}
   speed: 6
-  reducedSpeedMultiplier: 0.95
+  reducedSpeedMultiplier: 0.8
   gravity: -25
   accelerationTime: 0.05
   rotationTime: 10
