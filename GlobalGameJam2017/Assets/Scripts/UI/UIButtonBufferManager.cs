@@ -10,12 +10,13 @@ public class UIButtonBufferManager : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     private StringEffectManager stringEffectManager;
+    private PlayerMovement playerMovement;
+    private WaveController waveController;
     private Image[] buttons;
     private Image[] effects;
     private bool[] buttonIsDisplayed;
     private int slotIndex = 0;
     private GuitarInput[] guitarInputs;
-    private PlayerMovement player;
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,9 @@ public class UIButtonBufferManager : MonoBehaviour {
 
     void Awake() {
         buttons = new Image[12];
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+        waveController = player.GetComponent<WaveController>();
 
         guitarInputs = new GuitarInput[3];
 
@@ -130,8 +133,8 @@ public class UIButtonBufferManager : MonoBehaviour {
         if (slotIndex != 3) return;
         stringEffectManager.SetIsActive(true);
         slotIndex = 0;
-        player.GetComponent<WaveController>().chargeWave(guitarInputs);
-        player.GetComponent<PlayerMovement>().StartAttackAnim();
+        waveController.chargeWave(guitarInputs);
+        playerMovement.StartAttackAnim();
     }
 
 
