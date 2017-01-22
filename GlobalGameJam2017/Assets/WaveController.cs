@@ -16,8 +16,5 @@ public class WaveController : MonoBehaviour
     {
       particuleEffects.readInputs(guitarInputs);
     }
-
- 
-
     
 }
