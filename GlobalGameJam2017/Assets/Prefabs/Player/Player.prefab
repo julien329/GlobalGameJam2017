@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 114106266810153326}
   - component: {fileID: 114984584175784962}
   - component: {fileID: 82174538501540706}
+  - component: {fileID: 114446852502712330}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1687,6 +1688,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuitarInputs: 
+--- !u!114 &114446852502712330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627329232498940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faefd7282e5a58e4db599670a55aebe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTextObject: {fileID: 1581632627841154, guid: e0d35fd2cd519754db6fdb2d7a30c993,
+    type: 2}
+  color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &114562309203090502
 MonoBehaviour:
   m_ObjectHideFlags: 1
