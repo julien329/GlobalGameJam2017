@@ -5,9 +5,6 @@ public class ParticuleEffects : MonoBehaviour
 {
     private Renderer rend;
 
-    private Vector3[] _baseVertices;
-    private bool RecalculateNormals = false;
-
     public float defaultSpeed =5;
     public float defaultDamage = 1;
     public float defaultScaleFactorYSpread = 5f;
@@ -38,9 +35,6 @@ public class ParticuleEffects : MonoBehaviour
     private float heal_final = 0f;
     private float damage_final = 0f;
   
-
-    private float targetTime = 1f;
-
     void Start()
     {
         rend = projectile.GetComponentInChildren<Renderer>();
@@ -53,15 +47,7 @@ public class ParticuleEffects : MonoBehaviour
          speed_final = defaultSpeed;
          heal_final = 0f;
          damage_final = 0f;
-}
-
-    void Update()
-    {
-        // GameObject.FindGameObjectWithTag("Player").GetComponent<Rotation>();
-        float Angle = Quaternion.Angle(Quaternion.Euler(new Vector3(0, 0, 0)), transform.rotation);        
-        //main.startRotationY = angle360(Angle,-particleSystem.startRotation3D,transform.parent.right) * Mathf.Deg2Rad;
     }
-
     float angle360(float angle, Vector3 to, Vector3 right)
     {
         return (Vector3.Angle(right, to) > 90f) ? 360f - angle : angle;
@@ -86,7 +72,6 @@ public class ParticuleEffects : MonoBehaviour
             {
                 //Healing
                 case GuitarInput.A_HEAL:
-                    GameObject player = GameObject.FindGameObjectWithTag("Player");
                     result += colorA_Heal;
                     heal_final += healIncrement;
             
@@ -153,33 +138,38 @@ public class ParticuleEffects : MonoBehaviour
         {
 
             GameObject obj = Instantiate(projectile);
-            
+
             // Set position
             obj.transform.position = transform.position;
 
             // Set Rotation
             float angle = Vector3.Angle(Vector3.forward, transform.forward);
             angle = angle360(angle, transform.forward, Vector3.right);
-            obj.transform.Rotate(new Vector3(0,angle,0));
+            obj.transform.Rotate(new Vector3(0, angle, 0));
 
             // Set speed
             Rigidbody rigid = obj.GetComponent<Rigidbody>();
-            rigid.velocity = speed_final  * transform.forward;
+            rigid.velocity = speed_final*transform.forward;
 
 
             // Set scale
             Vector3 scale = obj.transform.localScale;
- 
+
             scale.x = scale_final;
 
             obj.transform.localScale = scale;
 
-            // Set damage
-
-            yield return new WaitForSeconds(1.0f / frequency_final);
+            // Set damage and heal
+            ProjectileInfo projectileInfo = GetComponent<ProjectileInfo>();
+            projectileInfo.damage =  damage_final;
+            projectileInfo.lifeSteal = heal_final;
         }
+
+
+        yield return new WaitForSeconds(1.0f / frequency_final);
+       }
         
-    }
+    
 
   
 }

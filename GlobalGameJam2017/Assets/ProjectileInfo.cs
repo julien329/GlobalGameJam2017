@@ -8,15 +8,21 @@ public class ProjectileInfo : MonoBehaviour
 {
 
     private GameObject player;
-    public float damage = 5f;
+    public float damage = 0;
     public float lifeSteal = 0f;
-
+    public float scale = 1.1f;
 
     void Start()
     {
 
         player = GameObject.Find("Player");
     }
+    //
+    void Update()
+    {
+        transform.localScale = new Vector3(transform.localScale.x + scale*Time.deltaTime, transform.localScale.y, transform.localScale.z);
+    }
+
 
     void OnTriggerEnter(Collider collider)
     {
@@ -24,7 +30,11 @@ public class ProjectileInfo : MonoBehaviour
         if (collider.gameObject.CompareTag("Enemy"))
         {
             IEnemy enemy = collider.GetComponent<IEnemy>();
-            enemy.TakeDamage(5);
+            enemy.TakeDamage((int)damage);
+            if (lifeSteal > 0)
+            {
+                player.GetComponent<PlayerCombat>().RestoreHealth((int)lifeSteal);
+            }
             Debug.Log(collider.gameObject);
 
             // Projectil destruction
