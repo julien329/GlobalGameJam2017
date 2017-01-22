@@ -9,14 +9,19 @@ public class UIButtonBufferManager : MonoBehaviour {
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public int coolDownTime = 5;
+
     private StringEffectManager stringEffectManager;
     private PlayerMovement playerMovement;
     private WaveController waveController;
     private Image[] buttons;
     private Image[] effects;
+    private RawImage[] cooldownLines;
     private bool[] buttonIsDisplayed;
+    private bool[] buttonOnCooldown;
     private int slotIndex = 0;
     private GuitarInput[] guitarInputs;
+    private int countDown;
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +63,12 @@ public class UIButtonBufferManager : MonoBehaviour {
         effects[10] = GameObject.Find("Y2_Effect").GetComponent<Image>();
         effects[11] = GameObject.Find("Y3_Effect").GetComponent<Image>();
 
+        cooldownLines = new RawImage[4];
+        cooldownLines[0] = GameObject.Find("LineBloc4").GetComponent<RawImage>();
+        cooldownLines[1] = GameObject.Find("LineBloc3").GetComponent<RawImage>();
+        cooldownLines[2] = GameObject.Find("LineBloc2").GetComponent<RawImage>();
+        cooldownLines[3] = GameObject.Find("LineBloc1").GetComponent<RawImage>();
+
         stringEffectManager = GameObject.Find("StringEffect").GetComponent<StringEffectManager>();
     }
 
@@ -68,6 +79,11 @@ public class UIButtonBufferManager : MonoBehaviour {
             buttonIsDisplayed[i] = false;
             effects[i].enabled = false;
         }
+
+        buttonOnCooldown = new bool[4];
+        for(int i = 0; i < 4; i++) {
+            buttonOnCooldown[i] = false;
+        }
     }
 
 
@@ -77,13 +93,13 @@ public class UIButtonBufferManager : MonoBehaviour {
                 buttons[i].enabled = buttonIsDisplayed[i];
             }
 
-            if (Input.GetButtonDown("Heal"))
+            if (Input.GetButtonDown("Heal") && !buttonOnCooldown[0])
                 SetDisplay(GuitarInput.A_HEAL);
-            if (Input.GetButtonDown("Damage"))
+            if (Input.GetButtonDown("Damage") && !buttonOnCooldown[1])
                 SetDisplay(GuitarInput.B_POWER);
-            if (Input.GetButtonDown("Radius"))
+            if (Input.GetButtonDown("Radius") && !buttonOnCooldown[2])
                 SetDisplay(GuitarInput.X_SPREAD);
-            if (Input.GetButtonDown("Speed"))
+            if (Input.GetButtonDown("Speed") && !buttonOnCooldown[3])
                 SetDisplay(GuitarInput.Y_SPEED);
             if (Input.GetAxisRaw("Play Chord") != 0)
                 PlayChord();
@@ -95,7 +111,7 @@ public class UIButtonBufferManager : MonoBehaviour {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// METHODS
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void SetDisplay(GuitarInput button) {
         if (slotIndex == 3 || stringEffectManager.GetIsActive() == true) return;
@@ -153,11 +169,46 @@ public class UIButtonBufferManager : MonoBehaviour {
     }
 
 
+    public IEnumerator AbilityCooldown(int index) {
+        buttonOnCooldown[index] = true;
+        cooldownLines[index].enabled = true;
+
+        countDown = coolDownTime;
+        while (countDown > 0) {
+            yield return new WaitForSeconds(1f);
+            countDown--;
+        }
+
+        buttonOnCooldown[index] = false;
+        cooldownLines[index].enabled = false;
+    }
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// GET / SET
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void SetButtonIsDisplayed(int index, bool value) {
         buttonIsDisplayed[index] = value;
+    }
+
+
+    public void setHealingDisabled() {
+        StartCoroutine(AbilityCooldown((int)GuitarInput.A_HEAL - 1));
+    }
+
+
+    public void setPowerDisabled() {
+        StartCoroutine(AbilityCooldown((int)GuitarInput.B_POWER - 1));
+    }
+
+
+    public void setRadiusDisabled() {
+        StartCoroutine(AbilityCooldown((int)GuitarInput.X_SPREAD - 1));
+    }
+
+
+    public void setSpeedDisabled() {
+        StartCoroutine(AbilityCooldown((int)GuitarInput.Y_SPEED - 1));
     }
 }
