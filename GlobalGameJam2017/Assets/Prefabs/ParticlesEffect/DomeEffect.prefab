@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 198524264839878682}
   - component: {fileID: 199201034024356796}
   - component: {fileID: 114811260674527732}
+  - component: {fileID: 114809088846688606}
   m_Layer: 0
   m_Name: DomeEffect
   m_TagString: Untagged
@@ -36,12 +37,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024780422438824}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: -3.57, y: 0.4, z: 1.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114809088846688606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024780422438824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8c579441805e34db53e0cc06974f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 10
+  radius: 4
+  upwardsModifier: 5
 --- !u!114 &114811260674527732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +124,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1052620701
+  randomSeed: -1635678184
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2171,9 +2186,9 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
@@ -2298,7 +2313,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    minKillSpeed: 0
+    minKillSpeed: 8.08
     maxKillSpeed: 10000
     radiusScale: 1
     collidesWith:
@@ -2309,7 +2324,7 @@ ParticleSystem:
     voxelSize: 0.5
     collisionMessages: 0
     collidesWithDynamic: 1
-    interiorCollisions: 1
+    interiorCollisions: 0
   TriggerModule:
     enabled: 0
     collisionShape0: {fileID: 0}
