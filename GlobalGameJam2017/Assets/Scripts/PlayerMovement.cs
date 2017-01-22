@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -7,7 +8,9 @@ public class PlayerMovement : MonoBehaviour {
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public float speed = 4f;                    // The speed that the player will move at.
+    public Vector3 Velocity { get { return velocity; } }
+    public AudioClip[] cheerSounds;
+    public float speed = 4f;                   
     public float reducedSpeedMultiplier = 0.95f;
     public float gravity = -9.8f;
     public float accelerationTime = 0.05f;
@@ -17,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     private Animator anim;                      // Reference to the animator component.
 	private Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
     private Vector3 velocity;
-    public Vector3 Velocity { get { return velocity; } }
+    private AudioSource audioSource;
     private float activeVelocityXSmoothing;
     private float activeVelocityYSmoothing;
 
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     void Awake() {
 		anim = GetComponent<Animator>();
 		playerRigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -108,7 +112,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void StartAttackAnim() {
 		anim.SetTrigger ("Attack");
-	}
+        audioSource.clip = cheerSounds[Random.Range(0, cheerSounds.Length)];
+        audioSource.Play();
+    }
 }
 
 

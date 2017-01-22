@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c579441805e34db53e0cc06974f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 10
-  radius: 4
-  upwardsModifier: 5
+  force: 207.4
+  radius: 84.5
+  upwardsModifier: 68.1
 --- !u!114 &114811260674527732
 MonoBehaviour:
   m_ObjectHideFlags: 1
