@@ -53,9 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef47068dbc5e826429d1243f46b12445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealingPerSecond: 5
   duration: 3
-  fastFactor: 2
+  fastFactor: 1.5
 --- !u!198 &198066020522615974
 ParticleSystem:
   m_ObjectHideFlags: 1

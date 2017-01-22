@@ -52,6 +52,9 @@ public class SpawnManager : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void SetRoundAndStart(int spawnTime, int maxEnnemyOnScene, int nbMummyLeft, int nbMinionLeft, int nbGolemLeft) {
+
+        ScoreHandler.InitRound();
+
         this.spawnTime = spawnTime;
         this.maxEnnemyOnScene = maxEnnemyOnScene;
         this.nbMummyLeft = nbMummyLeft;
