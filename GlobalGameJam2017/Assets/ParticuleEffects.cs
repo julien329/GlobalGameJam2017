@@ -62,8 +62,8 @@ public class ParticuleEffects : MonoBehaviour{
          scale_final = defaultScale;
          speed_final = defaultSpeed;
          heal_final = 0f;
-         damage_final = 0f;
-        keyTracker[0] = 0; keyTracker[1] = 0; keyTracker[2] = 0; keyTracker[3] = 0;
+         damage_final = defaultDamage;
+         keyTracker[0] = 0; keyTracker[1] = 0; keyTracker[2] = 0; keyTracker[3] = 0;
     }
 
 
@@ -87,28 +87,28 @@ public class ParticuleEffects : MonoBehaviour{
                 case GuitarInput.A_HEAL:
                     result += colorA_Heal;
                     heal_final += healIncrement;
-                    guitarInput[0]++;
+                    keyTracker[0]++;
 
                     break;
                 //Power
                 case GuitarInput.B_POWER:
                     damage_final += damageIncrement;
                     result += colorB_Power;
-                    guitarInput[1]++;
+                    keyTracker[1]++;
 
                     break;
                 //Spreads
                 case GuitarInput.X_SPREAD:
                     scale_final += spreadIncrement;
                     result += colorX_Spread;
-                    guitarInput[2]++;
+                    keyTracker[2]++;
                     break;
                 //Speed
                 case GuitarInput.Y_SPEED:
                     speed_final += speedIncrement;
                     frequency_final += rateIncrement;
                     result += colorY_Speed;
-                    guitarInput[3]++;
+                    keyTracker[3]++;
                     break;
             }
             
