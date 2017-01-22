@@ -720,6 +720,15 @@ MonoBehaviour:
   chaseRange: 16
   attackRange: 3
   attackCooldown: 6
+  fameCrystalDrop: 0.2
+  painCrystalDrop: 0.1
+  shieldCrystalDrop: 0.1
+  fameCrystal: {fileID: 1026509927695300, guid: 7faf3f7a71df8364280ef770d234bb4c,
+    type: 2}
+  painCrystal: {fileID: 1707279966548250, guid: db0e8266641eb144192c889b6d737193,
+    type: 2}
+  shieldCrystal: {fileID: 1744259822240700, guid: 60af0e8e7343cef4db4756da420b7d30,
+    type: 2}
   HP: 20
   Speed: 5
 --- !u!114 &114772933911134180

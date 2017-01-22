@@ -26,6 +26,20 @@ public abstract class IEnemy : MonoBehaviour {
     protected float attackCooldown;
     protected bool isCooldown;
 
+    //Drop Chances
+    [SerializeField]
+    protected float fameCrystalDrop;
+    [SerializeField]
+    protected float painCrystalDrop;
+    [SerializeField]
+    protected float shieldCrystalDrop;
+    [SerializeField]
+    GameObject fameCrystal;
+    [SerializeField]
+    GameObject painCrystal;
+    [SerializeField]
+    GameObject shieldCrystal;
+
     //Enemy main stats
     protected int maxHP;
     public int HP;
@@ -57,6 +71,22 @@ public abstract class IEnemy : MonoBehaviour {
         spawnManager = GameObject.Find("Map").GetComponent<SpawnManager>();
         playerCombat = GameObject.Find("Player").GetComponent<PlayerCombat>();
         collider = GetComponent<Collider>();
+    }
+
+    protected void DropItems()
+    {
+        if(Random.Range(0.0f, 1.0f) < shieldCrystalDrop)
+        {
+            Instantiate(shieldCrystal, transform.position + Vector3.up, Quaternion.identity);
+        }
+        else if (Random.Range(0.0f, 1.0f) < painCrystalDrop)
+        {
+            Instantiate(painCrystal, transform.position + Vector3.up, Quaternion.identity);
+        }
+        else if (Random.Range(0.0f, 1.0f) < fameCrystalDrop)
+        {
+            Instantiate(fameCrystal, transform.position + Vector3.up, Quaternion.identity);
+        }
     }
 
     //Used when unit launches an attack

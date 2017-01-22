@@ -8,7 +8,13 @@ public class HealthRuby : IPickup
 
     protected override void PickupAction(GameObject player)
     {
-        player.GetComponent<PlayerCombat>().RestoreHealth(20);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(GameObject.Find("Player").transform.position, enemy.transform.position);
+            enemy.GetComponent<IEnemy>().TakeDamage(UnityEngine.Random.Range(1, 3));
+            
+        }
         var ring = Instantiate(pickupEffect, player.transform.localPosition, Quaternion.LookRotation(Vector3.up, Vector3.right), player.transform);
         Destroy(ring, 5.0f);
         Destroy(gameObject);
