@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class IPickup : MonoBehaviour {
+    [SerializeField]
+    protected GameObject pickupEffect;
+    [SerializeField]
+    protected GameObject expireEffect;
+    [SerializeField]
+    protected GameObject appearEffect;
 
     //Time the pickup stays on the ground
     public float lifetime = 15.0f;
 
 	// Use this for initialization
 	void Start () {
+        var exp = Instantiate(appearEffect, transform.position, transform.rotation);
+        Destroy(exp, 5.0f);
         StartCoroutine("FadeTimer");
 	}
 
@@ -18,6 +26,8 @@ public abstract class IPickup : MonoBehaviour {
         yield return new WaitForSeconds(lifetime);
         if(gameObject != null)
         {
+            var exp = Instantiate(expireEffect, transform.position, transform.rotation);
+            Destroy(exp, 5.0f);
             Destroy(gameObject);
         }
     }
