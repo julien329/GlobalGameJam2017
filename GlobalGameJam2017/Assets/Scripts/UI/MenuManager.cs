@@ -22,13 +22,13 @@ public class MenuManager : MonoBehaviour {
 
         tickets[0] = GameObject.Find("Play").GetComponent<Transform>();
         tickets[1] = GameObject.Find("Help").GetComponent<Transform>();
-        tickets[2] = GameObject.Find("Quit").GetComponent<Transform>();
-        tickets[3] = GameObject.Find("Credit").GetComponent<Transform>();
+        tickets[2] = GameObject.Find("Credit").GetComponent<Transform>();
+        tickets[3] = GameObject.Find("Quit").GetComponent<Transform>();
 
         ticketsImg[0] = GameObject.Find("Play").GetComponent<Image>();
         ticketsImg[1] = GameObject.Find("Help").GetComponent<Image>();
-        ticketsImg[2] = GameObject.Find("Quit").GetComponent<Image>();
-        ticketsImg[3] = GameObject.Find("Credit").GetComponent<Image>();
+        ticketsImg[2] = GameObject.Find("Credit").GetComponent<Image>();
+        ticketsImg[3] = GameObject.Find("Quit").GetComponent<Image>();
 
         creditNames[0] = GameObject.Find("Francis").GetComponent<Image>();
         creditNames[1] = GameObject.Find("Nam").GetComponent<Image>();
@@ -54,8 +54,8 @@ public class MenuManager : MonoBehaviour {
         if (Input.GetAxis("DPadVertical") == -1 && choice < 4 && ticketsImg[0].enabled == true && dPadReady) { choice++; updateChoice(); dPadReady = false; }
         if (Input.GetAxis("DPadVertical") == 1 && choice > 1 && ticketsImg[0].enabled == true && dPadReady) { choice--; updateChoice(); dPadReady = false; }
         if (Input.GetAxis("DPadVertical") == 0 && ticketsImg[0].enabled == true && !dPadReady) { dPadReady = true; }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 4 && ticketsImg[0].enabled == true) { modeCredits(); }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 3 && ticketsImg[0].enabled == true)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 3 && ticketsImg[0].enabled == true) { modeCredits(); }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && choice == 4 && ticketsImg[0].enabled == true)
         {
             UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
