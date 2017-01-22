@@ -15,6 +15,12 @@ public class ParticuleEffects : MonoBehaviour
  //   private float scaleFactorX =1;
   //  private float scaleFactorZ = 1;
 
+
+    public float defaultSpeed =5;
+    public float defaultDamage = 1;
+    public float defaultScaleFactorYSpread = 5f;
+
+
     public Mesh meshWave;
 
     public Color colorA_Heal;
@@ -22,29 +28,33 @@ public class ParticuleEffects : MonoBehaviour
     public Color colorX_Spread;
     public Color colorY_Speed;
 
-    public float speed=1;
-    public float damage=1;
-    public float scaleFactorYSpread = 1;
+
     public float timeEmitting = 5f;
 
-    public float rateOverTime = 1f;
-    public float speedIncrement=1;
-    public float spreadIncrement=1;
-    public float damageIncrement=1;
+    public float rateOverTime ;
+    public float speedIncrement;
+    public float spreadIncrement;
+    public float damageIncrement;
     public float healIncrement=1;
 
     private ParticleSystem.SizeOverLifetimeModule szLifetimeModule;
     private float targetTime = 1f;
     void Reset()
     {
-       //scaleFactorX = 1;
-       // scaleFactorZ = 0.5f;
 
-        setSpread(scaleFactorYSpread);
-        main.startSpeed = speed;
-        damage = 1;
         emission.rateOverTime = rateOverTime;
         main.startRotation3D = true;
+
+        main.startSpeed = defaultSpeed;
+
+
+
+        Vector3 scale = transform.localScale;
+        float yVal = defaultScaleFactorYSpread;
+
+        scale.y = yVal;
+        transform.localScale = scale;
+
     }
     void Start()
     {
@@ -79,21 +89,20 @@ public class ParticuleEffects : MonoBehaviour
 
     public void shoot()
     {
-
-     
-
         particleSystem.Play();
-       // rend.material.color = colorA_Heal;
         particleSystemRenderer.mesh = meshWave;
-        setSpread(scaleFactorYSpread);
         StartCoroutine(WaitAndStop(timeEmitting));
-
 
     }
 
     public void readInputs(GuitarInput[] guitarInput)
     {
         Color result = new Color(0, 0, 0, 0);
+        Reset();
+        float speedAcc = 0;
+        float heallAcc = 0;
+        float damageAcc = 0;
+        float spreadAcc = 0;
         for (int i = 0; i < 3; i++)
         {
             switch (guitarInput[i])
@@ -102,25 +111,30 @@ public class ParticuleEffects : MonoBehaviour
                 case GuitarInput.A_HEAL:
                     GameObject player = GameObject.FindGameObjectWithTag("Player");
                     result += colorA_Heal;
-                    //player.heal(healIncrement);
+                    heallAcc += healIncrement;
+            
                     break;
                 //Power
                 case GuitarInput.B_POWER:
-                    this.damage += damageIncrement;
+                    damageAcc += damageIncrement;
                     result += colorB_Power;
                     break;
                 //Spreads
                 case GuitarInput.X_SPREAD:
-                    scaleFactorYSpread += spreadIncrement;
+                    spreadAcc += spreadIncrement;
                     result += colorX_Spread;
                     break;
                 //Speed
                 case GuitarInput.Y_SPEED:
-                    changeSpeed(speed += speedIncrement);
+                    speedAcc = speedIncrement;
                     result += colorY_Speed;
                     break;
             }
         }
+        //player.heal(heallAcc);
+        //enemy.damage(damageAcc);
+        setSpread(spreadAcc);
+        setSpeed(speedAcc);
         rend.material.color = result/guitarInput.Length;
         rend.material.SetColor("_EmissionColor", rend.material.color);
 
@@ -131,16 +145,18 @@ public class ParticuleEffects : MonoBehaviour
         shoot();
     }
 
-    void changeSpeed(float speed)
+    void setSpeed(float speedIncre)
     {
-        main.startSpeed = speed;
-        //main.startLifetime = range/speed;
+        float speedval = defaultSpeed+speedIncre;
+        main.startSpeed = speedval;
     }
 
     void setSpread(float spread)
     {
         Vector3 scale = transform.localScale;
-        scale.x = scaleFactorYSpread;
+        float yVal = scale.y + spread;
+
+        scale.y = yVal;
         transform.localScale = scale;
     }
 
