@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class ScoreHandler {
 
+    static bool isInit = false;
     static int totalScore;
     static bool[] achievements;
     static int[] ultimates;
@@ -27,9 +28,21 @@ public static class ScoreHandler {
         achievements[(int)Achievement.ONETRICKPONY] = false;
     }
 
-    static public void DamageTaken() { achievements[(int)Achievement.FLAWLESS] = false; }
-    static public void UltimateUsed(Ultimate ult) { achievements[(int)Achievement.BICOLOR] = false; achievements[(int)Achievement.TASTETHERAINBOW] = false;
-                                        achievements[(int)Achievement.HUMBLE] = false; ultimates[(int)ult]++; }
+    static public void DamageTaken()
+    {
+        if (!isInit)
+            InitRound();
+        achievements[(int)Achievement.FLAWLESS] = false;
+    }
+
+    static public void UltimateUsed(Ultimate ult)
+    {
+        if (!isInit)
+            InitRound();
+        achievements[(int)Achievement.BICOLOR] = false;
+        achievements[(int)Achievement.TASTETHERAINBOW] = false;
+        achievements[(int)Achievement.HUMBLE] = false; ultimates[(int)ult]++;
+    }
     static public void BicolorUsed() { achievements[(int)Achievement.TASTETHERAINBOW] = false; }
     static public void TricolorUsed() { achievements[(int)Achievement.BICOLOR] = false; }
 
@@ -59,9 +72,9 @@ public static class ScoreHandler {
 	
     public enum Ultimate
     {
-        SPREAD,
-        SPEED,
+        HARMONY,
         POWER,
-        HARMONY
+        SPREAD,
+        SPEED
     }
 }
