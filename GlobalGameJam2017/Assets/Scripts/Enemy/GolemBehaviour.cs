@@ -204,6 +204,7 @@ public class GolemBehaviour : IEnemy {
     void KnockBack()
     {
         humanPlayer.GetComponent<PlayerCombat>().ApplyImpulse((gameObject.transform.forward + new Vector3(0.0f, 0.5f, 0.0f)), 15.0f);
+        humanPlayer.GetComponent<PlayerCombat>().ApplyDamage(25);
     }
 
     //Increments speed if he has been chassing a while

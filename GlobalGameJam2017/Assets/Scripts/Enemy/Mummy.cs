@@ -150,6 +150,7 @@ public class Mummy : IEnemy {
 
     protected override void LaunchAttack() {
         anim.SetBool("LowKick", true);
+        humanPlayer.GetComponent<PlayerCombat>().ApplyDamage(15);
     }
 
 
