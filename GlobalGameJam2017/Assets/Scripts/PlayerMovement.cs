@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour {
     public float accelerationTime = 0.05f;
     public float rotationTime = 0.05f;
 
-    private Vector3 movement;                   // The vector to store the direction of the player's movement.
     private Vector3 viewDirection;
     private Animator anim;                      // Reference to the animator component.
 	private Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
     private Vector3 velocity;
+    public Vector3 Velocity { get { return velocity; } }
     private float activeVelocityXSmoothing;
     private float activeVelocityYSmoothing;
 

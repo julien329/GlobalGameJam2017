@@ -8,13 +8,22 @@ public class PlayerCombat : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		
+        HP = 100;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public void ApplyDamage(int damage)
+    {
+        HP -= damage;
+        if(HP < 1)
+        {
+            PlayerDies();
+        }
+    }
+
+    public void PlayerDies()
+    {
+
+    }
 
     public void ApplyImpulse(Vector3 direction, float power)
     {
