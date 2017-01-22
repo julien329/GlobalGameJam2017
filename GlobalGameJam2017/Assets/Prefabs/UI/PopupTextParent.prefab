@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 222292793534471612}
   - component: {fileID: 114024426990780330}
   - component: {fileID: 95602667170936188}
+  - component: {fileID: 114648656349109486}
   m_Layer: 5
   m_Name: PopupText
   m_TagString: Untagged
@@ -74,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.2779371}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -110,6 +111,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationLength: 0
   animator: {fileID: 95602667170936188}
+  color: {r: 1, g: 1, b: 1, a: 0}
+--- !u!114 &114648656349109486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732800027783872}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!222 &222292793534471612
 CanvasRenderer:
   m_ObjectHideFlags: 1
