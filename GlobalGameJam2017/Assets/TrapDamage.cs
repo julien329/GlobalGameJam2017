@@ -8,15 +8,15 @@ public class TrapDamage : MonoBehaviour {
 	public float coolDown = 0.5f;
 	private bool isCoolDown = false;
 
-	void OnTriggerStay(Collider other) {
+	void OnCollisionEnter(Collision other) {
 		
-		if (other.gameObject.CompareTag ("Player") && !isCoolDown) {
+		if (other.transform.root.gameObject.CompareTag ("Player") && !isCoolDown) {
 
-			// Apply Damage
-			other.gameObject.GetComponent<PlayerCombat> ().ApplyDamage (damage);
-
-			// Star Cooldown
-			isCoolDown = true;
+            // Apply Damage
+            other.transform.root.gameObject.GetComponent<PlayerCombat>().ApplyDamage(damage);
+            other.transform.root.gameObject.GetComponent<PlayerCombat>().ApplyImpulse(transform.position - other.transform.root.gameObject.transform.position, 50f);
+            // Star Cooldown
+            isCoolDown = true;
 			StartCoroutine ("coolingDown");
 		}
 	}
