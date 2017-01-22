@@ -39,6 +39,7 @@ public abstract class IEnemy : MonoBehaviour {
     protected delegate void ActionType();
     protected State state;
     protected ActionType action;
+    protected SpawnManager spawnManager;
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +53,7 @@ public abstract class IEnemy : MonoBehaviour {
         state = State.IDLE;
         navMeshAgent.speed = idleSpeed;
         humanPlayer = GameObject.Find("Player");
+        spawnManager = GameObject.Find("Map").GetComponent<SpawnManager>();
     }
 
     //Used when unit launches an attack

@@ -805,9 +805,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4261842692165340}
   - component: {fileID: 33510147132147224}
-  - component: {fileID: 65965425933501134}
   - component: {fileID: 23500811309252264}
   - component: {fileID: 114803839009844418}
+  - component: {fileID: 65917666691275982}
+  - component: {fileID: 114996108889051408}
   m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
@@ -3974,7 +3975,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1.0000001, z: 1.0000007}
   m_Center: {x: -0.00000011920929, y: 0, z: 0.0000009536743}
---- !u!65 &65965425933501134
+--- !u!65 &65917666691275982
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3984,7 +3985,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.0000004, y: 1, z: 1.0000004}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65968975212723470
 BoxCollider:
@@ -4228,6 +4229,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   themeMusic: {fileID: 8300000, guid: e7a7bc08736b5bc44bb4d1490c750d58, type: 3}
+  initSpawnTime: 3
+  spawnTimeGrowth: 0
+  initMaxNbEnemies: 3
+  maxNbEnemiesGrowth: 1
+  initNbMummy: 3
+  nbMummyGrowth: 1.5
+  initNbMinion: 1
+  nbMinionGowth: 1
+  initNbGolem: 0
+  nbGolemGrowth: 0.5
+  timeBetweenWaves: 10
 --- !u!114 &114803839009844418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4249,6 +4261,23 @@ MonoBehaviour:
   refractLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114996108889051408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667023679244110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6c863f12f919748a72cfbd60e173ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!208 &208252949471380408
 NavMeshObstacle:
   m_ObjectHideFlags: 1

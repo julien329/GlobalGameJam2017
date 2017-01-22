@@ -86,11 +86,14 @@ public class Mummy : IEnemy {
 
 
     public override void EnemyDie() {
-        state = State.DYING;
-        action = DyingAction;
-        clearAnimParameters();
-        anim.SetBool("isDeath", true);
-        StartCoroutine("DeathDelay");
+        if (state != State.DYING) {
+            spawnManager.EnnemyDied();
+            state = State.DYING;
+            action = DyingAction;
+            clearAnimParameters();
+            anim.SetBool("isDeath", true);
+            StartCoroutine("DeathDelay");
+        }
     }
 
 

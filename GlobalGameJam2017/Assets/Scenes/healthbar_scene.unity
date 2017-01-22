@@ -135,12 +135,6 @@ Prefab:
       propertyPath: healthKnob
       value: 
       objectReference: {fileID: 1098395690}
-    - target: {fileID: 114562309203090502, guid: 2c83a835494807a4daf1326186d428cc,
-        type: 2}
-      propertyPath: speedEffect
-      value: 
-      objectReference: {fileID: 1233997624205386, guid: 3967784892e01ac44a0644d28867b5a3,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c83a835494807a4daf1326186d428cc, type: 2}
   m_IsPrefabParent: 0

@@ -8,14 +8,15 @@ public class GolemBehaviour : IEnemy {
     Animator anim;
     float rageSpeed;
 
-    public override void EnemyDie()
-    {
-        state = State.DYING;
-        action = DyingAction;
-        clearAnimParameters();
-        anim.SetBool("isDeath", true);
-        StartCoroutine("DeathDelay");
-
+    public override void EnemyDie() {
+        if (state != State.DYING) {
+            spawnManager.EnnemyDied();
+            state = State.DYING;
+            action = DyingAction;
+            clearAnimParameters();
+            anim.SetBool("isDeath", true);
+            StartCoroutine("DeathDelay");
+        }
     }
 
     public override void TakeDamage(int damage)
