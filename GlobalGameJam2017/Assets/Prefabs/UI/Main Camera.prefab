@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 81926868537186584}
   - component: {fileID: 114820173570760408}
   - component: {fileID: 114095474491658228}
-  - component: {fileID: 82108047357760940}
+  - component: {fileID: 82063547298849816}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -87,7 +87,7 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586741098841204}
   m_Enabled: 1
---- !u!82 &82108047357760940
+--- !u!82 &82063547298849816
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,7 +98,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3c3a13901523f8847a752dd217eaf489, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -27,7 +27,7 @@ public class SpeedEffect : MonoBehaviour {
 
 
     void Start() {
-        buttonBuffer.setSpeedDisabled();
+        buttonBuffer.SetSpeedDisabled();
         Destroy(gameObject, duration);
         pm.speed = pm.speed * fastFactor;
     }

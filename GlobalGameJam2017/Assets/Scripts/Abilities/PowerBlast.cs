@@ -23,7 +23,7 @@ public class PowerBlast : MonoBehaviour {
 
 
     void Start () {
-        buttonBuffer.setPowerDisabled();
+        buttonBuffer.SetPowerDisabled();
         Destroy(gameObject, 5.0f);
         timeSpent = 0.0f;
 

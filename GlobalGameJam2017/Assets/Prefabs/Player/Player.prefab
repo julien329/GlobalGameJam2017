@@ -1747,11 +1747,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheerSounds:
-  - {fileID: 8300000, guid: 50d1143ef266e7f48accc728f642af0c, type: 3}
-  - {fileID: 8300000, guid: 6cdbd401c41141b4d85003c2ec47b71f, type: 3}
-  - {fileID: 8300000, guid: 3f6b14a845db0e94caf189464522e4a3, type: 3}
-  - {fileID: 8300000, guid: bbb36016615e3ce46af21146acd2b7bc, type: 3}
-  - {fileID: 8300000, guid: 0544d9194539d834483f3d424147793c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   speed: 6
   reducedSpeedMultiplier: 0.8
   gravity: -25
@@ -1769,12 +1769,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortHurtSounds:
-  - {fileID: 8300000, guid: bbc3fc08399abc64eb8569f42bc1e14c, type: 3}
-  - {fileID: 8300000, guid: 724744adb71b1eb4ca2b7564186efa6d, type: 3}
-  - {fileID: 8300000, guid: de875342d54faf34f8a165214655bc29, type: 3}
-  - {fileID: 8300000, guid: fee64afdca71ce443ab9eb2222fee0e2, type: 3}
-  - {fileID: 8300000, guid: 38bc205de58d22c499840572161347ec, type: 3}
-  - {fileID: 8300000, guid: 313fece7e35bcba499a7760455def0c1, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shieldWeight: 20
   baseWeight: 1
   deathExplosion: {fileID: 1550611228512522, guid: 7bff242a5568d6b499096d17bab683a6,
