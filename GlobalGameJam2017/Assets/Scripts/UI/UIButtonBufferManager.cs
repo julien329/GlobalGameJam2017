@@ -69,25 +69,27 @@ public class UIButtonBufferManager : MonoBehaviour {
             effects[i].enabled = false;
         }
     }
-	
 
-	void Update () {
-        for (int i = 0; i < 12; i++) {
-            buttons[i].enabled = buttonIsDisplayed[i];
+
+    void Update() {
+        if (playerMovement) {
+            for (int i = 0; i < 12; i++) {
+                buttons[i].enabled = buttonIsDisplayed[i];
+            }
+
+            if (Input.GetButtonDown("Heal"))
+                SetDisplay(GuitarInput.A_HEAL);
+            if (Input.GetButtonDown("Damage"))
+                SetDisplay(GuitarInput.B_POWER);
+            if (Input.GetButtonDown("Radius"))
+                SetDisplay(GuitarInput.X_SPREAD);
+            if (Input.GetButtonDown("Speed"))
+                SetDisplay(GuitarInput.Y_SPEED);
+            if (Input.GetAxisRaw("Play Chord") != 0)
+                PlayChord();
+            if (Input.GetAxisRaw("Clear Chord") != 0)
+                ClearChord();
         }
-
-        if (Input.GetButtonDown("Heal"))
-            SetDisplay(GuitarInput.A_HEAL);
-        if (Input.GetButtonDown("Damage"))
-            SetDisplay(GuitarInput.B_POWER);
-        if (Input.GetButtonDown("Radius"))
-            SetDisplay(GuitarInput.X_SPREAD);
-        if (Input.GetButtonDown("Speed"))
-            SetDisplay(GuitarInput.Y_SPEED);
-        if (Input.GetAxisRaw("Play Chord") != 0)
-            PlayChord();
-        if (Input.GetAxisRaw("Clear Chord") != 0)
-            ClearChord();
     }
 
 
