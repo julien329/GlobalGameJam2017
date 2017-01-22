@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class ScoreHandler {
 
@@ -12,10 +13,33 @@ public static class ScoreHandler {
     static int flawlessStreak = 0;
     static string rank;
 
+    static Text Annoucement;
+    static Text AnnText;
+    static Text Ach1;
+    static Text Ach2;
+    static Text Ach3;
+
     static List<string> achievedFeats;
 
     static public void InitRound()
     {
+        if(!isInit)
+        {
+            isInit = true;
+            Annoucement = GameObject.Find("AnnTitle").GetComponent<Text>();
+            AnnText = GameObject.Find("AnnText").GetComponent<Text>();
+            Ach1 = GameObject.Find("Ach1").GetComponent<Text>();
+            Ach2 = GameObject.Find("Ach2").GetComponent<Text>();
+            Ach3 = GameObject.Find("Ach3").GetComponent<Text>();
+
+        }
+
+        Annoucement.text = "";
+        AnnText.text = "";
+        Ach1.text = "";
+        Ach2.text = "";
+        Ach3.text = "";
+
         achievedFeats = new List<string>();
         achievements = new bool[(int)Achievement.TOTAL];
         ultimates = new int[4];
@@ -67,23 +91,35 @@ public static class ScoreHandler {
         {
             case 0:
                 rank = "Garage Band \n Nothing to write home about.";
+                Annoucement.text = "Garage Band";
+                AnnText.text = "\"Nothing to write home about.\"";
                 break;
             case 1:
                 rank = "Kinda good \n Don't you dare brag about this one. +100 fame";
+                Annoucement.text = "Kinda good";
+                AnnText.text = "\"Don't you dare brag about this one.\" +100 fame";
+                Ach1.text = achievedFeats[0];
                 totalScore += 100;
                 break;
             case 2:
                 rank = "Local Legend \n On a scale from 1 to Batman: Robin. +400 fame";
+                Annoucement.text = "Local Legend";
+                AnnText.text = "\"On a scale from 1 to Batman: Robin.\" +400 fame";
+                Ach1.text = achievedFeats[0];
+                Ach2.text = achievedFeats[1];
                 totalScore += 400;
                 break;
             case 3:
                 rank = "Magic Fingers \n Don't need a pick when you got fingers like these. +1000 fame";
+                Annoucement.text = "Magic Fingers";
+                AnnText.text = "\"Don't need a pick when you got fingers like these.\" +1000 fame";
+                Ach1.text = achievedFeats[0];
+                Ach2.text = achievedFeats[1];
+                Ach3.text = achievedFeats[2];
                 totalScore += 1000;
                 break;
         }
     }
-
-
 
     public enum Achievement
     {

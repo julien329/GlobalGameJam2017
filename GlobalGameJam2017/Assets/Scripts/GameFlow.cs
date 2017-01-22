@@ -61,6 +61,7 @@ public class GameFlow : MonoBehaviour {
 
     public void WaveEnded() {
         StartCoroutine(BetweenWavesCountdown());
+        ScoreHandler.EndOfRound();
     }
 
 
