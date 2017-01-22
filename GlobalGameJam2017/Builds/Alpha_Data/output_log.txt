@@ -1,0 +1,70 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 750M (ID=0xfe4)
+    Vendor:   NVIDIA
+    VRAM:     2019 MB
+    Driver:   21.21.13.7595
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.023 seconds
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\julie\Documents\GlobalGameJam2017\GlobalGameJam2017\Builds\Alpha_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.523305 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 7d8 -> priority: 1 
+  Thread -> id: 33d8 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.708479 ms
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1786.
+Total: 1.064859 ms (FindLiveObjects: 0.117604 ms CreateObjectMapping: 0.034212 ms MarkObjects: 0.673555 ms  DeleteObjects: 0.239058 ms)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
