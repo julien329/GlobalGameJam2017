@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4898869644693756}
   - component: {fileID: 198524264839878682}
   - component: {fileID: 199201034024356796}
+  - component: {fileID: 114811260674527732}
   m_Layer: 0
   m_Name: DomeEffect
   m_TagString: Untagged
@@ -41,6 +42,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114811260674527732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024780422438824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc024942fccf9a4db8e48d79c108fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 3
 --- !u!198 &198524264839878682
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -96,7 +109,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 925509254
+  randomSeed: -1052620701
   InitialModule:
     serializedVersion: 3
     enabled: 1
