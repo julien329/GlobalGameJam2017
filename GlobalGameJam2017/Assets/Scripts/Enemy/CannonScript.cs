@@ -140,6 +140,7 @@ public class CannonScript : IEnemy {
             action = DyingAction;
             DropItems();
             ScoreHandler.totalScore += pointWorth;
+            ScoreHandler.UpdateScore();
             clearAnimParameters();
             anim.SetBool("isDeath", true);
             Destroy(gameObject, 0.5f);

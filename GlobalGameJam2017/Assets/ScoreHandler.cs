@@ -22,6 +22,11 @@ public static class ScoreHandler {
 
     static List<string> achievedFeats;
 
+    static public void UpdateScore()
+    {
+        Score.text = totalScore.ToString();
+    }
+
     static public void InitRound()
     {
         if(!isInit)
