@@ -13,6 +13,7 @@ public class Mummy : IEnemy {
 
     private Animator anim;
 
+   
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
@@ -22,6 +23,7 @@ public class Mummy : IEnemy {
         base.Init();
         anim = transform.GetChild(0).gameObject.GetComponent<Animator>();
         isCooldown = false;
+
     }
 
 
@@ -103,6 +105,10 @@ public class Mummy : IEnemy {
         anim.SetBool("isDamage", true);
         HP -= damage;
         gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
+
+        //Floating text
+        hitController.createHitText(damage, transform);
+
         if (HP < 1 && state != State.DYING) {
             EnemyDie();
         }

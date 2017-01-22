@@ -33,6 +33,10 @@ public class CannonScript : IEnemy {
         anim.SetBool("isDamage", true);
         HP -= damage;
         gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
+
+        //Floating text
+        hitController.createHitText(damage, transform);
+
         if (HP < 1 && state != State.DYING)
         {
             EnemyDie();

@@ -54,7 +54,7 @@ public abstract class IEnemy : MonoBehaviour {
     protected Transform humanPlayer;
     protected NavMeshAgent navMeshAgent;
     protected Collider collider;
-
+    protected HitController hitController;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// METHODS
@@ -71,6 +71,8 @@ public abstract class IEnemy : MonoBehaviour {
         spawnManager = GameObject.Find("Map").GetComponent<SpawnManager>();
         playerCombat = GameObject.Find("Player").GetComponent<PlayerCombat>();
         collider = GetComponent<Collider>();
+
+        hitController = GetComponent<HitController>();
     }
 
     protected void DropItems()
