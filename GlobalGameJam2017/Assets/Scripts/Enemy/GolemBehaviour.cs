@@ -196,9 +196,16 @@ public class GolemBehaviour : IEnemy {
         Destroy(gameObject);
     }
 
+    public override void ShockwaveHit(float distance)
+    {
+        AttackIsOver();
+        StartCoroutine("Cooldown", (6/distance));
+    }
+
     void KnockBack()
     {
         humanPlayer.GetComponent<PlayerCombat>().ApplyImpulse((gameObject.transform.forward + new Vector3(0.0f, 0.5f, 0.0f)), 15.0f);
+        humanPlayer.GetComponent<PlayerCombat>().ApplyDamage(25);
     }
 
     //Increments speed if he has been chassing a while

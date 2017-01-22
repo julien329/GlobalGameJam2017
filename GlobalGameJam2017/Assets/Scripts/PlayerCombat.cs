@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour {
 
     public AudioClip[] shortHurtSounds;
     public AudioClip[] longHurtSounds;
+    public HealthKnobManager healthKnob;
     public float shieldWeight = 20f;
     public float baseWeight = 1f;
 
@@ -52,6 +53,11 @@ public class PlayerCombat : MonoBehaviour {
             audioSource.clip = shortHurtSounds[Random.Range(0, shortHurtSounds.Length)];
             audioSource.Play();
         }
+
+        //Modifies health bar
+        if (healthKnob) {
+            healthKnob.damage((float)damage, 100);
+        }
     }
 
 
@@ -67,6 +73,11 @@ public class PlayerCombat : MonoBehaviour {
         HP += ammount;
         if (HP > 100)
             HP = 100;
+
+        //Modifies health bar
+        if (healthKnob) {
+            healthKnob.heal((float)ammount, 100);
+        }
     }
 
 

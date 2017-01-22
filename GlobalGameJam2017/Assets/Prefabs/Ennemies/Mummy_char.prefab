@@ -1184,7 +1184,7 @@ MonoBehaviour:
   chaseRange: 25
   attackRange: 3
   attackCooldown: 4
-  HP: 4
+  HP: 20
   Speed: 2
 --- !u!136 &136679357856888246
 CapsuleCollider:

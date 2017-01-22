@@ -5,12 +5,9 @@ public class ParticuleEffects : MonoBehaviour
 {
     private Renderer rend;
 
-    private Vector3[] _baseVertices;
-    private bool RecalculateNormals = false;
-
     public float defaultSpeed =5;
     public float defaultDamage = 1;
-    public float defaultScaleFactorYSpread = 5f;
+    public float defaultScale= 1f;
 
 
     public GameObject projectile;
@@ -20,8 +17,11 @@ public class ParticuleEffects : MonoBehaviour
     public Color colorB_Power;
     public Color colorX_Spread;
     public Color colorY_Speed;
-    [SerializeField]
+
     public GameObject domeEffect;
+    public GameObject healingEffect;
+    public GameObject speedEffect;
+
     public float timeEmitting = 5f;
 
     public float frequency ;
@@ -38,9 +38,6 @@ public class ParticuleEffects : MonoBehaviour
     private float heal_final = 0f;
     private float damage_final = 0f;
   
-
-    private float targetTime = 1f;
-
     void Start()
     {
         rend = projectile.GetComponentInChildren<Renderer>();
@@ -49,19 +46,11 @@ public class ParticuleEffects : MonoBehaviour
     void Reset()
     {
          frequency_final = frequency;
-         scale_final = 1f;
+         scale_final = defaultScale;
          speed_final = defaultSpeed;
          heal_final = 0f;
          damage_final = 0f;
-}
-
-    void Update()
-    {
-        // GameObject.FindGameObjectWithTag("Player").GetComponent<Rotation>();
-        float Angle = Quaternion.Angle(Quaternion.Euler(new Vector3(0, 0, 0)), transform.rotation);        
-        //main.startRotationY = angle360(Angle,-particleSystem.startRotation3D,transform.parent.right) * Mathf.Deg2Rad;
     }
-
     float angle360(float angle, Vector3 to, Vector3 right)
     {
         return (Vector3.Angle(right, to) > 90f) ? 360f - angle : angle;
@@ -86,7 +75,6 @@ public class ParticuleEffects : MonoBehaviour
             {
                 //Healing
                 case GuitarInput.A_HEAL:
-                    GameObject player = GameObject.FindGameObjectWithTag("Player");
                     result += colorA_Heal;
                     heal_final += healIncrement;
             
@@ -126,6 +114,14 @@ public class ParticuleEffects : MonoBehaviour
                     obj.transform.position = transform.parent.transform.position;
 
                     break;
+                case GuitarInput.A_HEAL:
+                    GameObject objHeal = Instantiate(healingEffect,transform.parent);
+                    objHeal.transform.position = transform.parent.position;
+                    break;
+                case GuitarInput.Y_SPEED:
+                    GameObject objSpeed = Instantiate(speedEffect, transform.parent);
+                    objSpeed.transform.position = transform.parent.position;
+                    break;
             }
         }
         else
@@ -142,44 +138,43 @@ public class ParticuleEffects : MonoBehaviour
         }
         
 
-
-
-        
     }
 
     IEnumerator shoot()
     {
         for (int i = 0; i < frequency_final; i++)
         {
-
+            Debug.Log(i);
             GameObject obj = Instantiate(projectile);
-            
+
             // Set position
             obj.transform.position = transform.position;
 
             // Set Rotation
             float angle = Vector3.Angle(Vector3.forward, transform.forward);
             angle = angle360(angle, transform.forward, Vector3.right);
-            obj.transform.Rotate(new Vector3(0,angle,0));
+            obj.transform.Rotate(new Vector3(0, angle, 0));
 
             // Set speed
             Rigidbody rigid = obj.GetComponent<Rigidbody>();
-            rigid.velocity = speed_final  * transform.forward;
+            rigid.velocity = speed_final*transform.forward;
 
 
             // Set scale
             Vector3 scale = obj.transform.localScale;
- 
             scale.x = scale_final;
-
             obj.transform.localScale = scale;
 
-            // Set damage
-
+            // Set damage and heal
+            ProjectileInfo projectileInfo = obj.GetComponent<ProjectileInfo>();
+            projectileInfo.damage =  damage_final;
+            projectileInfo.lifeSteal = heal_final;
+   
             yield return new WaitForSeconds(1.0f / frequency_final);
         }
-        
     }
+        
+    
 
   
 }
