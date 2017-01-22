@@ -101,6 +101,7 @@ public class Mummy : IEnemy {
     public override void TakeDamage(int damage) {
         anim.SetBool("isDamage", true);
         HP -= damage;
+        gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
         if (HP < 1) {
             EnemyDie();
         }

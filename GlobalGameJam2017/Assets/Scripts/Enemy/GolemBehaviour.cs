@@ -13,21 +13,20 @@ public class GolemBehaviour : IEnemy {
     float rageSpeed;
 
 
-<<<<<<< HEAD
     public override void TakeDamage(int damage)
     {
         anim.SetTrigger("isDamage");
         HP -= damage;
+        gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
+
         if (HP < 1)
         {
             EnemyDie();
         }
     }
-=======
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
->>>>>>> 07f9039c352b29bf0c79745c2130340b9a08b9a6
 
     void Start() {
         base.Init();
@@ -109,17 +108,7 @@ public class GolemBehaviour : IEnemy {
             StartCoroutine("DeathDelay");
         }
     }
-
-
-    public override void TakeDamage(int damage) {
-        anim.SetTrigger("isDamage");
-        HP -= damage;
-        if (HP < 1) {
-            EnemyDie();
-        }
-    }
-
-
+    
     protected override void AggressiveAction() {
         navMeshAgent.SetDestination(humanPlayer.position);
     }

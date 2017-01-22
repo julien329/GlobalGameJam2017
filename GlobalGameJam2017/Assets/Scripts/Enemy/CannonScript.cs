@@ -28,11 +28,11 @@ public class CannonScript : IEnemy {
     //Transform desiredRotation;
 
 
-<<<<<<< HEAD
     public override void TakeDamage(int damage)
     {
         anim.SetBool("isDamage", true);
         HP -= damage;
+        gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
         if (HP < 1)
         {
             EnemyDie();
@@ -49,14 +49,13 @@ public class CannonScript : IEnemy {
             isReadyToShoot = true;
             StartCoroutine("ShootDelay", shootDelay);
         }
- 
+
         turnSpeed = Mathf.Min(angleToTurn, turnSpeed + turnSpeedChange * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Clamp01(angleToTurn > 0 ? turnSpeed * Time.deltaTime / angleToTurn : 0f));
-=======
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
->>>>>>> 07f9039c352b29bf0c79745c2130340b9a08b9a6
 
     void Start() {
         base.Init();
@@ -141,30 +140,6 @@ public class CannonScript : IEnemy {
             Destroy(gameObject, 0.5f);
             Instantiate(DeathExplosion, transform.position, Quaternion.identity);
         }
-    }
-
-
-    public override void TakeDamage(int damage) {
-        anim.SetBool("isDamage", true);
-        HP -= damage;
-        if (HP < 1) {
-            EnemyDie();
-        }
-    }
-
-
-    protected override void AggressiveAction() {
-        targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.transform.position - transform.position));
-        float angleToTurn = Quaternion.Angle(transform.rotation, targetRotation);
-        if (!isReadyToShoot && angleToTurn < 10.0f) {
-            Debug.Log("Locked on");
-            isReadyToShoot = true;
-            StartCoroutine("ShootDelay", shootDelay);
-        }
- 
-        turnSpeed = Mathf.Min(angleToTurn, turnSpeed + turnSpeedChange * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Clamp01(angleToTurn > 0 ? turnSpeed * Time.deltaTime / angleToTurn : 0f));
-
     }
 
 
