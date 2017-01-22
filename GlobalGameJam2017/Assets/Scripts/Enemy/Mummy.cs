@@ -91,6 +91,7 @@ public class Mummy : IEnemy {
             spawnManager.EnnemyDied();
             state = State.DYING;
             action = DyingAction;
+            DropItems();
             clearAnimParameters();
             anim.SetBool("isDeath", true);
             StartCoroutine("DeathDelay");
@@ -102,7 +103,7 @@ public class Mummy : IEnemy {
         anim.SetBool("isDamage", true);
         HP -= damage;
         gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
-        if (HP < 1) {
+        if (HP < 1 && state != State.DYING) {
             EnemyDie();
         }
     }
@@ -191,7 +192,7 @@ public class Mummy : IEnemy {
         isCooldown = true;
         anim.SetBool("isRun", false);
         anim.SetBool("isWalk", false);
-        navMeshAgent.ResetPath();
+        //navMeshAgent.ResetPath();
         yield return new WaitForSeconds(time);
         //Cooldown over
         if(gameObject != null && state != State.DYING && isCooldown) {
