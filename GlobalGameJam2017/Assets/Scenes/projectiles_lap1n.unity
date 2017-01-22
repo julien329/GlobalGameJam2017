@@ -173,7 +173,7 @@ Prefab:
     - target: {fileID: 198540951442669100, guid: 2c83a835494807a4daf1326186d428cc,
         type: 2}
       propertyPath: randomSeed
-      value: -102115924
+      value: -504147773
       objectReference: {fileID: 0}
     - target: {fileID: 198540951442669100, guid: 2c83a835494807a4daf1326186d428cc,
         type: 2}
@@ -263,12 +263,12 @@ Prefab:
     - target: {fileID: 198540951442669100, guid: 2c83a835494807a4daf1326186d428cc,
         type: 2}
       propertyPath: LightsModule.intensityCurve.scalar
-      value: 4.51
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 198540951442669100, guid: 2c83a835494807a4daf1326186d428cc,
         type: 2}
       propertyPath: LightsModule.rangeCurve.scalar
-      value: 34.81
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 198540951442669100, guid: 2c83a835494807a4daf1326186d428cc,
         type: 2}

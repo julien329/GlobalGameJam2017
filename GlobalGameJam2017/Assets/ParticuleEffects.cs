@@ -53,6 +53,7 @@ public class ParticuleEffects : MonoBehaviour
         float yVal = defaultScaleFactorYSpread;
 
         scale.y = yVal;
+        scale.x = 5;
         transform.localScale = scale;
 
     }
