@@ -26,8 +26,10 @@ public class Mummy : IEnemy {
 
 
     void Update() {
-        EvaluateState();
-        action();
+        if (humanPlayer) {
+            EvaluateState();
+            action();
+        }
     }
 
 
@@ -35,16 +37,15 @@ public class Mummy : IEnemy {
     /// METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-
     protected override void EvaluateState() {
         switch (state) {
             case State.IDLE:
-                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange) {
+                if (Vector3.Distance(humanPlayer.position, transform.position) < attackRange) {
                     state = State.ATTACKING;
                     action = AggressiveAction;
                     LaunchAttack();
                 }
-                else if (Vector3.Distance(humanPlayer.transform.position, transform.position) < chaseRange) {
+                else if (Vector3.Distance(humanPlayer.position, transform.position) < chaseRange) {
                     state = State.FOLLOWING;
                     action = FollowingAction;
                     anim.SetBool("isRun", true);
@@ -52,20 +53,20 @@ public class Mummy : IEnemy {
                 }
                 break;
             case State.FOLLOWING:
-                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange) {
+                if (Vector3.Distance(humanPlayer.position, transform.position) < attackRange) {
                     state = State.ATTACKING;
                     action = AggressiveAction;
                     LaunchAttack();
                 }
                 break;
             case State.ROAMING:
-                if (Vector3.Distance(humanPlayer.transform.position, transform.position) < attackRange) {
+                if (Vector3.Distance(humanPlayer.position, transform.position) < attackRange) {
                     state = State.ATTACKING;
                     action = AggressiveAction;
                     LaunchAttack();
                     isCooldown = false;
                 }
-                else if (Vector3.Distance(humanPlayer.transform.position, transform.position) < chaseRange) {
+                else if (Vector3.Distance(humanPlayer.position, transform.position) < chaseRange) {
                     state = State.FOLLOWING;
                     action = FollowingAction;
                     anim.SetBool("isRun", true);
@@ -109,7 +110,7 @@ public class Mummy : IEnemy {
 
 
     protected override void AggressiveAction() {
-        navMeshAgent.SetDestination(humanPlayer.transform.position);
+        navMeshAgent.SetDestination(humanPlayer.position);
     }
 
 
@@ -133,7 +134,7 @@ public class Mummy : IEnemy {
 
 
     protected override void FollowingAction() {
-        navMeshAgent.SetDestination(humanPlayer.transform.position);
+        navMeshAgent.SetDestination(humanPlayer.position);
     }
 
 
@@ -155,7 +156,7 @@ public class Mummy : IEnemy {
 
     protected override void LaunchAttack() {
         anim.SetBool("LowKick", true);
-        humanPlayer.GetComponent<PlayerCombat>().ApplyDamage(15);
+        playerCombat.ApplyDamage(15);
     }
 
 
@@ -204,9 +205,7 @@ public class Mummy : IEnemy {
 
     //Delay where the corpse is on the ground
     IEnumerator DeathDelay() {
-        Collider collider = GetComponent<Collider>();
-        NavMeshAgent nv = GetComponent<NavMeshAgent>();
-        nv.enabled = false;
+        navMeshAgent.enabled = false;
         collider.enabled = false;
 
         float waitTime = 3f;
@@ -220,8 +219,8 @@ public class Mummy : IEnemy {
         Destroy(gameObject);
     }
 
-    public override void ShockwaveHit(float distance)
-    {
+
+    public override void ShockwaveHit(float distance) {
         AttackIsOver();
         StartCoroutine("Cooldown", (10 / distance));
     }

@@ -9,11 +9,6 @@ public abstract class IEnemy : MonoBehaviour {
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //NavMeshAgent component in order to find paths
-    protected NavMeshAgent navMeshAgent;
-    //Human player is kept in memory in order to track his movements and decide on actions
-    public GameObject humanPlayer;
-
     //AI element
     [SerializeField]
     protected float idleSpeed;
@@ -41,6 +36,10 @@ public abstract class IEnemy : MonoBehaviour {
     protected State state;
     protected ActionType action;
     protected SpawnManager spawnManager;
+    protected PlayerCombat playerCombat;
+    protected Transform humanPlayer;
+    protected NavMeshAgent navMeshAgent;
+    protected Collider collider;
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,8 +53,10 @@ public abstract class IEnemy : MonoBehaviour {
         action = IdleAction;
         state = State.IDLE;
         navMeshAgent.speed = idleSpeed;
-        humanPlayer = GameObject.Find("Player");
+        humanPlayer = GameObject.Find("Player").transform;
         spawnManager = GameObject.Find("Map").GetComponent<SpawnManager>();
+        playerCombat = GameObject.Find("Player").GetComponent<PlayerCombat>();
+        collider = GetComponent<Collider>();
     }
 
     //Used when unit launches an attack

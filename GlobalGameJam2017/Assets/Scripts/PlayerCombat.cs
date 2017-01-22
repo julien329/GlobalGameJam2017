@@ -9,8 +9,6 @@ public class PlayerCombat : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public AudioClip[] shortHurtSounds;
-    public AudioClip[] longHurtSounds;
-    public HealthKnobManager healthKnob;
     public float shieldWeight = 20f;
     public float baseWeight = 1f;
 
@@ -20,6 +18,8 @@ public class PlayerCombat : MonoBehaviour {
     private GameObject shield;
     private AudioSource audioSource;
     private Rigidbody playerRigidbody;
+    private HealthKnobManager healthKnob;
+    private GameFlow gameflow;
     private int HP;
     private int buffTimer;
 
@@ -31,6 +31,8 @@ public class PlayerCombat : MonoBehaviour {
     void Awake() {
         audioSource = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
+        healthKnob = GameObject.Find("HealthKnob").GetComponent<HealthKnobManager>();
+        gameflow = GameObject.Find("Map").GetComponent<GameFlow>();
     }
 
 
@@ -62,17 +64,18 @@ public class PlayerCombat : MonoBehaviour {
 
 
     public void PlayerDies() {
-        audioSource.clip = longHurtSounds[Random.Range(0, longHurtSounds.Length)];
-        audioSource.Play();
+        gameflow.PlayerDied();
 		var exp = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.Euler(-90,0,0));
         Destroy(exp, 5.0f);
+        Destroy(gameObject);
     }
 
 
     public void RestoreHealth(int ammount) {
         HP += ammount;
-        if (HP > 100)
+        if (HP > 100) {
             HP = 100;
+        }
 
         //Modifies health bar
         if (healthKnob) {
@@ -89,19 +92,21 @@ public class PlayerCombat : MonoBehaviour {
     public void ApplyShield() {
         playerRigidbody.mass = shieldWeight;
         shield.SetActive(true);
-        if (buffTimer < 5)
+        if (buffTimer < 5) {
             buffTimer = 15;
-        else
+        }
+        else {
             buffTimer += 10;
+        }
     }
 
 
     public void DecrementTimer() {
         if (buffTimer > 0) {
-
             buffTimer--;
-            if (buffTimer <= 0)
+            if (buffTimer <= 0) {
                 EndBuff();
+            }
         }
     }
 
