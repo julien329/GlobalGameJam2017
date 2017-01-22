@@ -27,6 +27,9 @@ public class GolemBehaviour : IEnemy {
         {
             EnemyDie();
         }
+        else
+            gameObject.GetComponentInChildren<HealthBar>().UpdateBar(HPMax, HP);
+
     }
 
     protected override void AggressiveAction()

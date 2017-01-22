@@ -100,9 +100,11 @@ public class Mummy : IEnemy {
     public override void TakeDamage(int damage) {
         anim.SetBool("isDamage", true);
         HP -= damage;
+        gameObject.GetComponentInChildren<HealthBar>().UpdateBar(HPMax, HP);
         if (HP < 1) {
             EnemyDie();
         }
+            
     }
 
 
@@ -189,7 +191,7 @@ public class Mummy : IEnemy {
         isCooldown = true;
         anim.SetBool("isRun", false);
         anim.SetBool("isWalk", false);
-        navMeshAgent.ResetPath();
+        //navMeshAgent.ResetPath();
         yield return new WaitForSeconds(time);
         //Cooldown over
         if(gameObject != null && state != State.DYING && isCooldown) {
