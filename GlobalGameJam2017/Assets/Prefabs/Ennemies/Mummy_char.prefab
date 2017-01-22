@@ -1415,7 +1415,7 @@ MonoBehaviour:
     type: 2}
   shieldCrystal: {fileID: 1744259822240700, guid: 60af0e8e7343cef4db4756da420b7d30,
     type: 2}
-  pointWorth: 0
+  pointWorth: 10
   HP: 7
   Speed: 2
   attackClips:
