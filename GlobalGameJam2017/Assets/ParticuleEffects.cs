@@ -40,12 +40,16 @@ public class ParticuleEffects : MonoBehaviour{
     private float heal_final = 0f;
     private float damage_final = 0f;
 
+    private int [] keyTracker;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Start() {
         rend = projectile.GetComponentInChildren<Renderer>();
+        keyTracker = new int[4];
+        keyTracker[0] = 0; keyTracker[1] = 0; keyTracker[2] = 0; keyTracker[3] = 0;
     }
 
 
@@ -59,6 +63,7 @@ public class ParticuleEffects : MonoBehaviour{
          speed_final = defaultSpeed;
          heal_final = 0f;
          damage_final = 0f;
+        keyTracker[0] = 0; keyTracker[1] = 0; keyTracker[2] = 0; keyTracker[3] = 0;
     }
 
 
@@ -82,23 +87,28 @@ public class ParticuleEffects : MonoBehaviour{
                 case GuitarInput.A_HEAL:
                     result += colorA_Heal;
                     heal_final += healIncrement;
-            
+                    guitarInput[0]++;
+
                     break;
                 //Power
                 case GuitarInput.B_POWER:
                     damage_final += damageIncrement;
                     result += colorB_Power;
+                    guitarInput[1]++;
+
                     break;
                 //Spreads
                 case GuitarInput.X_SPREAD:
                     scale_final += spreadIncrement;
                     result += colorX_Spread;
+                    guitarInput[2]++;
                     break;
                 //Speed
                 case GuitarInput.Y_SPEED:
                     speed_final += speedIncrement;
                     frequency_final += rateIncrement;
                     result += colorY_Speed;
+                    guitarInput[3]++;
                     break;
             }
             
@@ -112,14 +122,17 @@ public class ParticuleEffects : MonoBehaviour{
                 case GuitarInput.X_SPREAD:
                     GameObject obj = Instantiate(domeEffect);
                     obj.transform.position = transform.parent.transform.position;
+                    ScoreHandler.UltimateUsed(ScoreHandler.Ultimate.SPREAD);
                     break;
                 case GuitarInput.A_HEAL:
                     GameObject objHeal = Instantiate(healingEffect, transform.parent);
                     objHeal.transform.position = transform.parent.position;
+                    ScoreHandler.UltimateUsed(ScoreHandler.Ultimate.HARMONY);
                     break;
                 case GuitarInput.Y_SPEED:
                     GameObject objSpeed = Instantiate(speedEffect, transform.parent);
                     objSpeed.transform.position = transform.parent.position;
+                    ScoreHandler.UltimateUsed(ScoreHandler.Ultimate.SPEED);
                     break;
                 case GuitarInput.B_POWER:
                     GameObject strSpeed = Instantiate(powerEffect);
@@ -127,10 +140,24 @@ public class ParticuleEffects : MonoBehaviour{
                     float angle = Vector3.Angle(Vector3.forward, transform.forward);
                     angle = angle360(angle, transform.forward, Vector3.right);
                     strSpeed.transform.Rotate(new Vector3(0, 0, angle));
+                    ScoreHandler.UltimateUsed(ScoreHandler.Ultimate.POWER);
                     break;
             }
         }
         else {
+            //See if the key is a tri or a duo
+            bool duo = false;
+            for (int i = 0; i < 4 && !duo; i++)
+            {
+                if (keyTracker[i] == 2)
+                {
+                    ScoreHandler.BicolorUsed();
+                    duo = true;
+                }
+            }
+            if (!duo)
+                ScoreHandler.TricolorUsed();
+
             // Set Material Color
             rend.sharedMaterial.color = result / guitarInput.Length;
             rend.sharedMaterial.SetColor("_EmissionColor", rend.sharedMaterial.color);

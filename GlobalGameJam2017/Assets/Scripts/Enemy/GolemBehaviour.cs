@@ -11,8 +11,7 @@ public class GolemBehaviour : IEnemy {
 
     Animator anim;
     float rageSpeed;
-
-
+    
     public override void TakeDamage(int damage)
     {
         anim.SetTrigger("isDamage");
@@ -104,6 +103,7 @@ public class GolemBehaviour : IEnemy {
             state = State.DYING;
             action = DyingAction;
             DropItems();
+            ScoreHandler.totalScore += pointWorth;
             clearAnimParameters();
             anim.SetBool("isDeath", true);
             StartCoroutine("DeathDelay");

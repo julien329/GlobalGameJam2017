@@ -92,6 +92,7 @@ public class Mummy : IEnemy {
             state = State.DYING;
             action = DyingAction;
             DropItems();
+            ScoreHandler.totalScore += pointWorth;
             clearAnimParameters();
             anim.SetBool("isDeath", true);
             StartCoroutine("DeathDelay");
