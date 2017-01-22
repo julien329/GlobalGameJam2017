@@ -53,6 +53,7 @@ public class PlayerCombat : MonoBehaviour {
         HP -= damage;
 
         //Show hit text
+        hitController.color = Color.red;
         hitController.createHitText(damage,transform);
 
         //Warn achievements that we have failed.
@@ -86,6 +87,9 @@ public class PlayerCombat : MonoBehaviour {
         if (HP > 100) {
             HP = 100;
         }
+        //Show heal text
+        hitController.color=Color.green;
+        hitController.createHitText(ammount, transform);
 
         //Modifies health bar
         if (healthKnob) {
