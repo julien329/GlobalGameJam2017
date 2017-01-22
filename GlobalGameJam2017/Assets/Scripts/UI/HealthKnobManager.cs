@@ -17,26 +17,15 @@ public class HealthKnobManager : MonoBehaviour {
     Image[] dashes;
     int knobValue { get; set; }
 
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void Start()
-    {
-        knobPositions = new pair[19];
-        for (int i = 0; i < 19; i++)
-        {
-            knobPositions[i].isRed = true;
-            knobPositions[i].angle = 90 - i*10;
-        }
-        knobValue = 18;
-    }
-
-	// Use this for initialization
-	void Awake () {
+    void Awake() {
         knobTransform = GameObject.Find("Knob").GetComponent<RectTransform>();
-        dashes = new Image[19];
 
+        dashes = new Image[19];
         dashes[18] = GameObject.Find("Dash1").GetComponent<Image>();
         dashes[17] = GameObject.Find("Dash2").GetComponent<Image>();
         dashes[16] = GameObject.Find("Dash3").GetComponent<Image>();
@@ -57,36 +46,54 @@ public class HealthKnobManager : MonoBehaviour {
         dashes[1] = GameObject.Find("Dash18").GetComponent<Image>();
         dashes[0] = GameObject.Find("Dash19").GetComponent<Image>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && knobValue < 18) knobValue++;
-        if (Input.GetKeyDown(KeyCode.DownArrow) && knobValue > 0) knobValue--;
 
-        for (int i = 0; i < 19; i++)
-        {
-            if (i > knobValue) knobPositions[i].isRed = false;
-            else knobPositions[i].isRed = true;
+    void Start() {
+        knobPositions = new pair[19];
+        for (int i = 0; i < 19; i++) {
+            knobPositions[i].isRed = true;
+            knobPositions[i].angle = 90 - i*10;
+        }
+        knobValue = 18;
+    }
+
+
+	void Update () {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && knobValue < 18) {
+            knobValue++;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow) && knobValue > 0) {
+            knobValue--;
         }
 
-        for (int i = 0; i < 19; i++) dashes[i].enabled = knobPositions[i].isRed;
+        for (int i = 0; i < 19; i++) {
+            if (i > knobValue) {
+                knobPositions[i].isRed = false;
+            }
+            else {
+                knobPositions[i].isRed = true;
+            }
+        }
+
+        for (int i = 0; i < 19; i++) {
+            dashes[i].enabled = knobPositions[i].isRed;
+        }
 
         knobTransform.transform.localRotation = Quaternion.Euler(knobTransform.transform.localRotation.x, knobTransform.transform.localRotation.y, knobPositions[knobValue].angle);
     }
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void damage(float value, float max)
-    {
+    public void damage(float value, float max) {
         float damTaken = 19.0f * value / max;
         knobValue -= (int)(Mathf.Round(damTaken));
         if (knobValue < 0) knobValue = 0;
     }
 
-    public void heal(float value, float max)
-    {
+
+    public void heal(float value, float max) {
         float healAmount = 19.0f * value / max;
         knobValue += (int)(Mathf.Round(healAmount));
         if (knobValue > 18) knobValue = 18;

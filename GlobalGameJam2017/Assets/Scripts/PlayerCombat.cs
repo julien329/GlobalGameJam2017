@@ -47,7 +47,11 @@ public class PlayerCombat : MonoBehaviour {
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void ApplyDamage(int damage) {
+        if (buffTimer > 0)
+            damage /= 2;
         HP -= damage;
+        //Warn achievements that we have failed.
+        ScoreHandler.DamageTaken();
         if(HP < 1) {
             PlayerDies();
         }

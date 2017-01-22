@@ -39,6 +39,8 @@ public abstract class IEnemy : MonoBehaviour {
     GameObject painCrystal;
     [SerializeField]
     GameObject shieldCrystal;
+    [SerializeField]
+    protected int pointWorth;
 
     //Enemy main stats
     protected int maxHP;
