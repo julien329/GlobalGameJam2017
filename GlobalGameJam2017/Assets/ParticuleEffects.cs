@@ -39,12 +39,17 @@ public class ParticuleEffects : MonoBehaviour{
     private float speed_final = 0f;
     private float heal_final = 0f;
     private float damage_final = 0f;
+    private UIButtonBufferManager bufferManager;
 
     private int [] keyTracker;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Awake() {
+        bufferManager = GameObject.Find("Tab").GetComponent<UIButtonBufferManager>();
+    }
 
     void Start() {
         rend = projectile.GetComponentInChildren<Renderer>();
@@ -165,6 +170,8 @@ public class ParticuleEffects : MonoBehaviour{
             // Set Light color
             Light light = projectile.GetComponentInChildren<Light>();
             light.color = rend.sharedMaterial.color;
+
+            bufferManager.PlayRegularAttack();
 
             StartCoroutine("shoot");
         }

@@ -1839,6 +1839,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8eed2a9d517cc11429f3c81d4e6bba0f, type: 3}
   - {fileID: 8300000, guid: 729bc28abdbddfd469abe6bb6b824842, type: 3}
   - {fileID: 8300000, guid: 4ebb422fbccf203408e5bcc7b8c60588, type: 3}
+  longFinishersClips:
+  - {fileID: 8300000, guid: c4bdaa3d0b3b9394c864b0a7625d786e, type: 3}
+  - {fileID: 8300000, guid: da6da3ab09c149f4382ed461a4ccccf5, type: 3}
+  - {fileID: 8300000, guid: dd4ba350fb43ad0428034d0e3fa2338b, type: 3}
+  - {fileID: 8300000, guid: 0e65a7ec3c48efd44844c14ea472fbb5, type: 3}
+  - {fileID: 8300000, guid: 9af47eeaac795a6468c79803fc2c48f2, type: 3}
 --- !u!114 &114018747907046656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2369,7 +2375,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4005,7 +4011,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4172,7 +4178,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
