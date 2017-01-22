@@ -404,6 +404,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4474082776693804}
   - component: {fileID: 114536445333060696}
+  - component: {fileID: 114646584675305316}
+  - component: {fileID: 82765155971692040}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1151,7 +1153,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486757450882760}
-  m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
+  m_LocalRotation: {x: 0, y: -0.98004556, z: 0, w: -0.19877318}
   m_LocalPosition: {x: 0, y: -0.000000038146972, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1842,7 +1844,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013881637529768}
-  m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
+  m_LocalRotation: {x: 0, y: -0.98004556, z: 0, w: -0.19877318}
   m_LocalPosition: {x: 0, y: -0.000000038146972, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4018,6 +4020,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000001, z: 1.0000005}
   m_Center: {x: 0, y: -0.000000029802322, z: 0.0000009536743}
+--- !u!82 &82765155971692040
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392885429729042}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e7a7bc08736b5bc44bb4d1490c750d58, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!111 &111111369460054424
 Animation:
   m_ObjectHideFlags: 1
@@ -4103,22 +4185,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3025404bacfe63428c7a3270321f44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 4509580686477436}
-  - {fileID: 4669352946346438}
-  - {fileID: 4104994106348162}
-  - {fileID: 4387937469992374}
-  - {fileID: 4410563099595044}
-  - {fileID: 4614472579583690}
-  player: {fileID: 0}
   mummy: {fileID: 1168465176638700, guid: 10cd63c4cc2a74f048124e10198394f2, type: 2}
   minion: {fileID: 1040154572835750, guid: f40282525baca41a49991db9a9e41c59, type: 2}
   golem: {fileID: 1378496901127716, guid: 306de812b191447ce9613dac6006d21b, type: 2}
-  spawnTime: 3
-  maxEnnemyOnScene: 10
-  nbMummyLeft: 10
-  nbMinionLeft: 10
-  nbGolemLeft: 10
+--- !u!114 &114646584675305316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392885429729042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7113a69b204950144a2ad3c7eae8fe9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeMusic: {fileID: 8300000, guid: e7a7bc08736b5bc44bb4d1490c750d58, type: 3}
 --- !u!114 &114803839009844418
 MonoBehaviour:
   m_ObjectHideFlags: 1

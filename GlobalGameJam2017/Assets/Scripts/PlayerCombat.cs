@@ -4,51 +4,90 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour {
 
+<<<<<<< HEAD
     [SerializeField]
     GameObject deathExplosion;
     [SerializeField]
     GameObject shield;
+=======
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// VARIABLES
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+>>>>>>> d28ba4aa3008f59726ae72d2bdc6a1d081e849fb
 
-    int HP;
-    int buffTimer;
+    public AudioClip[] shortHurtSounds;
+    public AudioClip[] longHurtSounds;
     public float shieldWeight = 20f;
     public float baseWeight = 1f;
-    
-	// Use this for initialization
+
+    private AudioSource audioSource;
+    private Rigidbody playerRigidbody;
+    private int HP;
+    private int buffTimer;
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// UNITY
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Awake() {
+        audioSource = GetComponent<AudioSource>();
+        playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    [SerializeField]
+    GameObject deathExplosion;
+
 	void Start () {
         HP = 100;
         InvokeRepeating("DecrementTimer", 1.0f, 1.0f);
 	}
 
-    public void ApplyDamage(int damage)
-    {
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /// METHODS
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void ApplyDamage(int damage) {
         HP -= damage;
-        if(HP < 1)
-        {
+        if(HP < 1) {
             PlayerDies();
+        }
+        else {
+            audioSource.clip = shortHurtSounds[Random.Range(0, shortHurtSounds.Length)];
+            audioSource.Play();
         }
     }
 
-    public void PlayerDies()
-    {
-        var exp = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.Euler(-90,0,0));
+
+    public void PlayerDies() {
+        audioSource.clip = longHurtSounds[Random.Range(0, longHurtSounds.Length)];
+        audioSource.Play();
+		var exp = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.Euler(-90,0,0));
         Destroy(exp, 5.0f);
     }
 
-    public void RestoreHealth(int ammount)
-    {
+
+    public void RestoreHealth(int ammount) {
         HP += ammount;
         if (HP > 100)
             HP = 100;
     }
 
-    public void ApplyImpulse(Vector3 direction, float power)
-    {
+
+    public void ApplyImpulse(Vector3 direction, float power) {
         gameObject.GetComponent<Rigidbody>().AddForce(direction * power, ForceMode.Impulse);
     }
 
+<<<<<<< HEAD
     public void ApplyShield()
     {
+=======
+
+    public void ApplyShield() {
+        ApplyDamage(100); //DEBUG
+
+>>>>>>> d28ba4aa3008f59726ae72d2bdc6a1d081e849fb
         gameObject.GetComponent<Rigidbody>().mass = shieldWeight;
         shield.SetActive(true);
         if (buffTimer < 5)
@@ -57,10 +96,9 @@ public class PlayerCombat : MonoBehaviour {
             buffTimer += 10;
     }
 
-    public void DecrementTimer()
-    {
-        if (buffTimer > 0)
-        {
+
+    public void DecrementTimer() {
+        if (buffTimer > 0) {
 
             buffTimer--;
             if (buffTimer <= 0)
@@ -69,10 +107,16 @@ public class PlayerCombat : MonoBehaviour {
 
     }
 
+<<<<<<< HEAD
     void EndBuff()
     {
         gameObject.GetComponent<Rigidbody>().mass = baseWeight;
         shield.SetActive(false);
     }
+=======
+>>>>>>> d28ba4aa3008f59726ae72d2bdc6a1d081e849fb
 
+    void EndBuff() {
+        playerRigidbody.mass = baseWeight;
+    }
 }
