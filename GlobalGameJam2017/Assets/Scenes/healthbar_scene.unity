@@ -130,11 +130,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114984584175784962, guid: 2c83a835494807a4daf1326186d428cc,
-        type: 2}
-      propertyPath: healthKnob
-      value: 
-      objectReference: {fileID: 1098395690}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c83a835494807a4daf1326186d428cc, type: 2}
   m_IsPrefabParent: 0
@@ -398,12 +393,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10cd63c4cc2a74f048124e10198394f2, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1098395690 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114282719471881050, guid: ce187cde4dba4fa48803d92496e8467e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1785558391}
-  m_Script: {fileID: 11500000, guid: 8bc8a31ae085c6d45bd82318cca99ce6, type: 3}
 --- !u!1001 &1184082858
 Prefab:
   m_ObjectHideFlags: 0

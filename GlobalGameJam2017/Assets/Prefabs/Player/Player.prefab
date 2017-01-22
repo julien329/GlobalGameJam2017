@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 114106266810153326}
   - component: {fileID: 114984584175784962}
   - component: {fileID: 82174538501540706}
+  - component: {fileID: 114446852502712330}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1687,6 +1688,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuitarInputs: 
+--- !u!114 &114446852502712330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627329232498940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faefd7282e5a58e4db599670a55aebe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTextObject: {fileID: 1581632627841154, guid: e0d35fd2cd519754db6fdb2d7a30c993,
+    type: 2}
+  color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &114562309203090502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1732,11 +1747,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheerSounds:
-  - {fileID: 8300000, guid: 50d1143ef266e7f48accc728f642af0c, type: 3}
-  - {fileID: 8300000, guid: 6cdbd401c41141b4d85003c2ec47b71f, type: 3}
-  - {fileID: 8300000, guid: 3f6b14a845db0e94caf189464522e4a3, type: 3}
-  - {fileID: 8300000, guid: bbb36016615e3ce46af21146acd2b7bc, type: 3}
-  - {fileID: 8300000, guid: 0544d9194539d834483f3d424147793c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   speed: 6
   reducedSpeedMultiplier: 0.8
   gravity: -25
@@ -1754,12 +1769,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortHurtSounds:
-  - {fileID: 8300000, guid: bbc3fc08399abc64eb8569f42bc1e14c, type: 3}
-  - {fileID: 8300000, guid: 724744adb71b1eb4ca2b7564186efa6d, type: 3}
-  - {fileID: 8300000, guid: de875342d54faf34f8a165214655bc29, type: 3}
-  - {fileID: 8300000, guid: fee64afdca71ce443ab9eb2222fee0e2, type: 3}
-  - {fileID: 8300000, guid: 38bc205de58d22c499840572161347ec, type: 3}
-  - {fileID: 8300000, guid: 313fece7e35bcba499a7760455def0c1, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shieldWeight: 20
   baseWeight: 1
   deathExplosion: {fileID: 1550611228512522, guid: 7bff242a5568d6b499096d17bab683a6,

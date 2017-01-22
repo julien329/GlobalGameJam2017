@@ -28,7 +28,7 @@ public class HealingOverTime : MonoBehaviour {
 
 
     void Start () {
-        buttonBuffer.setHealingDisabled();
+        buttonBuffer.SetHealingDisabled();
         Destroy(gameObject, duration);
         playerMovement.speed = playerMovement.speed / slowFactor;
 	    StartCoroutine("healingOverTime");
