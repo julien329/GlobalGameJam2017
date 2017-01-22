@@ -84,19 +84,20 @@ public class SpawnManager : MonoBehaviour {
         }
 
         nbEnemyOnScene++;
+        SortSpawnsByDistance();
         int spawnIndex = Random.Range(1, spawnPoints.Length);
         Instantiate(nextEnnemy(), spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
     }
 
 
     private void SortSpawnsByDistance() {
-        Vector3 playerPosition = player.position;
-
-        for(int i = 1; i < spawnPoints.Length; i++) {
-            if(Vector3.Distance(player.position, spawnPoints[i].position) < Vector3.Distance(player.position, spawnPoints[i - 1].position)) {
-                Transform temp = spawnPoints[i];
-                spawnPoints[i] = spawnPoints[i - 1];
-                spawnPoints[i - 1] = temp;
+        for (int i = 0; i < spawnPoints.Length; i++) {
+            for (int j = i + 1; j < spawnPoints.Length; j++) {
+                if (Vector3.Distance(player.position, spawnPoints[i].position) > Vector3.Distance(player.position, spawnPoints[j].position)) {
+                    Transform temp = spawnPoints[i];
+                    spawnPoints[i] = spawnPoints[j];
+                    spawnPoints[j] = temp;
+                }
             }
         }
     }

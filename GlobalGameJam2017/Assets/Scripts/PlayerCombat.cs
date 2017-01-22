@@ -64,8 +64,9 @@ public class PlayerCombat : MonoBehaviour {
 
 
     public void PlayerDies() {
+        healthKnob.damage(100, 100);
         gameflow.PlayerDied();
-		var exp = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.Euler(-90,0,0));
+		var exp = Instantiate(deathExplosion, transform.position, Quaternion.Euler(-90,0,0));
         Destroy(exp, 5.0f);
         Destroy(gameObject);
     }
