@@ -127,16 +127,13 @@ public class ParticuleEffects : MonoBehaviour
         }
         
 
-
-
-        
     }
 
     IEnumerator shoot()
     {
         for (int i = 0; i < frequency_final; i++)
         {
-
+            Debug.Log(i);
             GameObject obj = Instantiate(projectile);
 
             // Set position
@@ -154,20 +151,17 @@ public class ParticuleEffects : MonoBehaviour
 
             // Set scale
             Vector3 scale = obj.transform.localScale;
-
             scale.x = scale_final;
-
             obj.transform.localScale = scale;
 
             // Set damage and heal
-            ProjectileInfo projectileInfo = GetComponent<ProjectileInfo>();
+            ProjectileInfo projectileInfo = obj.GetComponent<ProjectileInfo>();
             projectileInfo.damage =  damage_final;
             projectileInfo.lifeSteal = heal_final;
+   
+            yield return new WaitForSeconds(1.0f / frequency_final);
         }
-
-
-        yield return new WaitForSeconds(1.0f / frequency_final);
-       }
+    }
         
     
 
