@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour {
 
-    [SerializeField]
-    GameObject deathExplosion;
-    [SerializeField]
-    GameObject shield;
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +13,10 @@ public class PlayerCombat : MonoBehaviour {
     public float shieldWeight = 20f;
     public float baseWeight = 1f;
 
+    [SerializeField]
+    private GameObject deathExplosion;
+    [SerializeField]
+    private GameObject shield;
     private AudioSource audioSource;
     private Rigidbody playerRigidbody;
     private int HP;
@@ -31,6 +31,7 @@ public class PlayerCombat : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
+
 
 	void Start () {
         HP = 100;
@@ -70,12 +71,12 @@ public class PlayerCombat : MonoBehaviour {
 
 
     public void ApplyImpulse(Vector3 direction, float power) {
-        gameObject.GetComponent<Rigidbody>().AddForce(direction * power, ForceMode.Impulse);
+        playerRigidbody.AddForce(direction * power, ForceMode.Impulse);
     }
 
-    public void ApplyShield()
-    {
-        gameObject.GetComponent<Rigidbody>().mass = shieldWeight;
+
+    public void ApplyShield() {
+        playerRigidbody.mass = shieldWeight;
         shield.SetActive(true);
         if (buffTimer < 5)
             buffTimer = 15;
@@ -91,12 +92,11 @@ public class PlayerCombat : MonoBehaviour {
             if (buffTimer <= 0)
                 EndBuff();
         }
-
     }
 
-    void EndBuff()
-    {
-        gameObject.GetComponent<Rigidbody>().mass = baseWeight;
+
+    void EndBuff() {
+        playerRigidbody.mass = baseWeight;
         shield.SetActive(false);
     }
 

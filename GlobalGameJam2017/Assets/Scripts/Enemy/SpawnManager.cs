@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour {
 
@@ -12,10 +13,15 @@ public class SpawnManager : MonoBehaviour {
     public GameObject minion;
     public GameObject golem;
 
-    private List<GameObject> ennemyAvailable;
+    private List<GameObject> enemyAvailable;
+    private GameFlow gameFlow;
     private Transform[] spawnPoints;
     private Transform player;
-    private int nbEnnemy = 0;
+    private Text roundNumberText;
+    private Text remainingTargets;
+    private int waveNumber = 0;
+    private int remainingEnemies;
+    private int nbEnemyOnScene = 0;
     private int spawnTime;
     private int maxEnnemyOnScene;
     private int nbMummyLeft;
@@ -29,7 +35,10 @@ public class SpawnManager : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Awake () {
-        ennemyAvailable = new List<GameObject>();
+        roundNumberText = GameObject.Find("WaveCounterValue").GetComponent<Text>();
+        remainingTargets = GameObject.Find("EnemyCounterValue").GetComponent<Text>();
+        gameFlow = GetComponent<GameFlow>();
+        enemyAvailable = new List<GameObject>();
         player = GameObject.Find("Player").transform;
         spawnPoints = new Transform[NB_SPAWNS];
         for (int i = 0; i < NB_SPAWNS; i++) {
@@ -48,12 +57,15 @@ public class SpawnManager : MonoBehaviour {
         this.nbMummyLeft = nbMummyLeft;
         this.nbMinionLeft = nbMinionLeft;
         this.nbGolemLeft = nbGolemLeft;
-        nbEnnemy = 0;
+        roundNumberText.text = (++waveNumber).ToString();
+        remainingEnemies = nbMummyLeft + nbMinionLeft + nbGolemLeft;
+        remainingTargets.text = remainingEnemies.ToString();
+        nbEnemyOnScene = 0;
 
-        ennemyAvailable.Clear();
-        ennemyAvailable.Add(mummy);
-        ennemyAvailable.Add(minion);
-        ennemyAvailable.Add(golem);
+        enemyAvailable.Clear();
+        enemyAvailable.Add(mummy);
+        enemyAvailable.Add(minion);
+        enemyAvailable.Add(golem);
 
         CancelInvoke("SpawnEnnemy");
         InvokeRepeating("SpawnEnnemy", spawnTime, spawnTime);
@@ -61,11 +73,11 @@ public class SpawnManager : MonoBehaviour {
 
 
     private void SpawnEnnemy() {
-        if(nbEnnemy >= maxEnnemyOnScene || ennemyAvailable.Count == 0) {
+        if(nbEnemyOnScene >= maxEnnemyOnScene || enemyAvailable.Count == 0) {
             return;
         }
 
-        nbEnnemy++;
+        nbEnemyOnScene++;
         int spawnIndex = Random.Range(1, spawnPoints.Length);
         Instantiate(nextEnnemy(), spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
     }
@@ -85,25 +97,25 @@ public class SpawnManager : MonoBehaviour {
 
 
     private GameObject nextEnnemy() {
-        int ennemyIndex = Random.Range(0, ennemyAvailable.Count);
-        GameObject newEnnemy = ennemyAvailable[ennemyIndex];
+        int ennemyIndex = Random.Range(0, enemyAvailable.Count);
+        GameObject newEnnemy = enemyAvailable[ennemyIndex];
 
         if( newEnnemy == mummy) {
             nbMummyLeft--;
             if(nbMummyLeft == 0) {
-                ennemyAvailable.Remove(mummy);
+                enemyAvailable.Remove(mummy);
             }
         }
         else if (newEnnemy == minion) {
             nbMinionLeft--;
             if (nbMinionLeft == 0) {
-                ennemyAvailable.Remove(minion);
+                enemyAvailable.Remove(minion);
             }
         }
         else if (newEnnemy == golem) {
             nbGolemLeft--;
             if (nbGolemLeft == 0) {
-                ennemyAvailable.Remove(golem);
+                enemyAvailable.Remove(golem);
             }
         }
 
@@ -112,6 +124,12 @@ public class SpawnManager : MonoBehaviour {
 
 
     public void EnnemyDied() {
-        nbEnnemy--;
+        nbEnemyOnScene--;
+        remainingEnemies--;
+        remainingTargets.text = remainingEnemies.ToString();
+        if (nbEnemyOnScene == 0 && enemyAvailable.Count == 0) {
+            CancelInvoke("SpawnEnnemy");
+            gameFlow.WaveEnded();
+        }
     }
 }

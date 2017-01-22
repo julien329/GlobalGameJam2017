@@ -23,14 +23,16 @@ public class CannonScript : IEnemy {
     bool isReadyToShoot;
     //Transform desiredRotation;
 
-    public override void EnemyDie()
-    {
-        state = State.DYING;
-        action = DyingAction;
-        clearAnimParameters();
-        anim.SetBool("isDeath", true);
-        Destroy(gameObject, 0.5f);
-        Instantiate(DeathExplosion, transform.position, Quaternion.identity);
+    public override void EnemyDie() {
+        if (state != State.DYING) {
+            spawnManager.EnnemyDied();
+            state = State.DYING;
+            action = DyingAction;
+            clearAnimParameters();
+            anim.SetBool("isDeath", true);
+            Destroy(gameObject, 0.5f);
+            Instantiate(DeathExplosion, transform.position, Quaternion.identity);
+        }
     }
 
     public override void TakeDamage(int damage)
