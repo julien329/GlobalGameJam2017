@@ -43,6 +43,7 @@ public abstract class IEnemy : MonoBehaviour
         action = IdleAction;
         state = State.IDLE;
         navMeshAgent.speed = idleSpeed;
+        humanPlayer = GameObject.Find("Player");
     }
 
     //Used when unit launches an attack
