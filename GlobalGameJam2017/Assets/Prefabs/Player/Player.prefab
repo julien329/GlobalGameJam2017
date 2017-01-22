@@ -1640,6 +1640,10 @@ MonoBehaviour:
   domeEffect: {fileID: 1024780422438824, guid: 4b629490fd64b47b5bf30da687e07316, type: 2}
   healingEffect: {fileID: 1233997624205386, guid: 83e81a525dca94d8993da72dea44b287,
     type: 2}
+  speedEffect: {fileID: 1233997624205386, guid: 3967784892e01ac44a0644d28867b5a3,
+    type: 2}
+  powerEffect: {fileID: 1673977559213532, guid: dd41953e212315b4fb29755a1576afc5,
+    type: 2}
   timeEmitting: 1
   frequency: 3
   speedIncrement: 0.8

@@ -21,6 +21,7 @@ public class ParticuleEffects : MonoBehaviour
     public GameObject domeEffect;
     public GameObject healingEffect;
     public GameObject speedEffect;
+    public GameObject powerEffect;
 
     public float timeEmitting = 5f;
 
@@ -121,6 +122,17 @@ public class ParticuleEffects : MonoBehaviour
                 case GuitarInput.Y_SPEED:
                     GameObject objSpeed = Instantiate(speedEffect, transform.parent);
                     objSpeed.transform.position = transform.parent.position;
+                    break;
+                case GuitarInput.B_POWER:
+                    GameObject strSpeed = Instantiate(powerEffect);
+                    strSpeed.transform.position = transform.position + transform.forward*1.5f;
+
+
+
+                    float angle = Vector3.Angle(Vector3.forward, transform.forward);
+                    angle = angle360(angle, transform.forward, Vector3.right);
+                    strSpeed.transform.Rotate(new Vector3(0, 0, angle));
+
                     break;
             }
         }
