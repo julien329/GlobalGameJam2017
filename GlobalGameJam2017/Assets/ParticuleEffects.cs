@@ -27,15 +27,17 @@ public class ParticuleEffects : MonoBehaviour
     public Color colorB_Power;
     public Color colorX_Spread;
     public Color colorY_Speed;
-
-
+    [SerializeField]
+    public GameObject domeEffect;
     public float timeEmitting = 5f;
 
     public float rateOverTime ;
     public float speedIncrement;
+    public float rateIncrement;
     public float spreadIncrement;
     public float damageIncrement;
     public float healIncrement=1;
+  
 
     private ParticleSystem.SizeOverLifetimeModule szLifetimeModule;
     private float targetTime = 1f;
@@ -101,9 +103,14 @@ public class ParticuleEffects : MonoBehaviour
         Color result = new Color(0, 0, 0, 0);
         Reset();
         float speedAcc = 0;
+        float rateAcc = 0;
+
         float heallAcc = 0;
         float damageAcc = 0;
         float spreadAcc = 0;
+
+        int inputStreak=0;
+        GuitarInput lastGuitarInput= guitarInput[0];
         for (int i = 0; i < 3; i++)
         {
             switch (guitarInput[i])
@@ -127,15 +134,35 @@ public class ParticuleEffects : MonoBehaviour
                     break;
                 //Speed
                 case GuitarInput.Y_SPEED:
-                    speedAcc = speedIncrement;
+                    speedAcc += speedIncrement;
+                    rateAcc += rateIncrement;
                     result += colorY_Speed;
                     break;
+
             }
+            /*
+            if (guitarInput[i]==lastGuitarInput)
+            {
+                inputStreak++;
+            }
+            if (inputStreak == 3)
+            {
+                switch (lastGuitarInput)
+                {
+                    case GuitarInput.X_SPREAD:
+                        Instantiate(domeEffect);
+                        
+                        break;
+                }
+            }*/
+          
         }
         //player.heal(heallAcc);
         //enemy.damage(damageAcc);
         setSpread(spreadAcc);
         setSpeed(speedAcc);
+        emission.rateOverTime =rateOverTime+rateAcc;
+
         rend.material.color = result/guitarInput.Length;
         rend.material.SetColor("_EmissionColor", rend.material.color);
 
@@ -166,6 +193,7 @@ public class ParticuleEffects : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         print("WaitAndPrint " );
        
-        particleSystem.Stop();
+        particleSystem.Stop(true);
+        
     }
 }

@@ -25,6 +25,7 @@ public class CannonScript : IEnemy {
     {
         state = State.DYING;
         action = DyingAction;
+        clearAnimParameters();
         anim.SetBool("isDeath", true);
     }
 
@@ -215,7 +216,19 @@ public class CannonScript : IEnemy {
     //Delay where the corpse is on the ground
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(3.0f);
+        Collider collider = GetComponent<Collider>();
+        NavMeshAgent nv = GetComponent<NavMeshAgent>();
+        nv.enabled = false;
+        collider.enabled = false;
+
+        float waitTime = 3f;
+        int increment = 10;
+
+        for (int i = 0; i < increment; i++)
+        {
+            transform.Translate(0.1f * Vector3.down, Space.World);
+            yield return new WaitForSeconds(waitTime / increment);
+        }
         Destroy(gameObject);
     }
 
@@ -223,7 +236,7 @@ public class CannonScript : IEnemy {
     void Start()
     {
         base.Init();
-        anim = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         isCooldown = false;
         isReadyToShoot = false;
     }
@@ -233,5 +246,18 @@ public class CannonScript : IEnemy {
     {
         EvaluateState();
         action();
+    }
+
+    void clearAnimParameters()
+    {
+        anim.SetBool("isWalk", false);
+        anim.SetBool("isRun", false);
+        anim.SetBool("isAnother", false);
+        anim.SetBool("Attack", false);
+        anim.SetBool("LowKick", false);
+        anim.SetBool("isDeath", false);
+        anim.SetBool("isDeath2", false);
+        anim.SetBool("HitStrike", false);
+        anim.SetBool("isDamage", false);
     }
 }

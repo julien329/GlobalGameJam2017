@@ -75,4 +75,6 @@ public abstract class IEnemy : MonoBehaviour
         COOLDOWN,
         DYING
     }
+
+   
 }
