@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
         // Change rotation of the player
         if (viewDirection != Vector3.zero) {
             Quaternion targetRotation = Quaternion.LookRotation(viewDirection, Vector3.up);
-            Quaternion newRotation = Quaternion.Lerp(GetComponent<Rigidbody>().rotation, targetRotation, rotationTime * Time.deltaTime);
+            Quaternion newRotation = Quaternion.Lerp(playerRigidbody.rotation, targetRotation, rotationTime * Time.deltaTime);
             playerRigidbody.MoveRotation(newRotation);
         }
     }

@@ -10,11 +10,9 @@ public class CannonballScript : MonoBehaviour {
     public float force;
     public float liftFactor;
 
-	// Use this for initialization
 	void Start () {
         rb = gameObject.GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        Debug.Log(player.GetComponent<Rigidbody>().velocity);
         Vector3 target = player.transform.position + player.GetComponent<PlayerMovement>().Velocity * 2;
 
         //Set force depending on target distance
@@ -31,8 +29,7 @@ public class CannonballScript : MonoBehaviour {
         else
             force = 180;
 
-        rb.AddForce(Vector3.Normalize(target - transform.position) * force + new Vector3(0,30f,0), ForceMode.Impulse);
-        //rb.AddExplosionForce(force, transform.position - transform.forward, 3.0f, liftFactor, ForceMode.Impulse);
+        rb.AddForce(Vector3.Normalize(transform.forward) * force + new Vector3(0,30f,0), ForceMode.Impulse);
 	}
 	
 	void OnCollisionEnter(Collision coll) {
@@ -47,7 +44,6 @@ public class CannonballScript : MonoBehaviour {
                     player.GetComponent<PlayerCombat>().ApplyDamage(10);
                 Rigidbody rb = player.GetComponent<Rigidbody>();
                 rb.AddExplosionForce(12f, transform.position, 5.0f, 4f, ForceMode.Impulse);
-                //player.GetComponent<PlayerCombat>().ApplyImpulse(player.transform.position - transform.position, 10f);
             }
         }
 

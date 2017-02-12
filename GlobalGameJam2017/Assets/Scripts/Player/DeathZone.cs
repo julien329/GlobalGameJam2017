@@ -9,7 +9,6 @@ public class DeathZone : MonoBehaviour {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public LayerMask playerLayer;
-    public LayerMask enemyLayer;
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,9 +18,6 @@ public class DeathZone : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (((1 << other.gameObject.layer) & playerLayer) != 0) { 
                 other.GetComponent<PlayerCombat>().PlayerDies();
-        }
-        else if (other.gameObject.layer == enemyLayer.value) {
-
         }
     }
 }

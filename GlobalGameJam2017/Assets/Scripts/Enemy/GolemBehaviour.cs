@@ -234,7 +234,7 @@ public class GolemBehaviour : IEnemy {
     //Increments speed if he has been chassing a while
     void RageIncrement() {        
         if(state == State.FOLLOWING) {
-            if (rageSpeed < 6.0f) {
+            if (rageSpeed < chaseSpeed) {
                 rageSpeed += 1.0f;
             }
         }

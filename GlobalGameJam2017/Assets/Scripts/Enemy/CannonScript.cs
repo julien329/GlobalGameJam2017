@@ -10,52 +10,20 @@ public class CannonScript : IEnemy {
     /// VARIABLES
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    Animator anim;
+    private Animator anim;
     [SerializeField]
-    GameObject CannonBall;
+    private GameObject CannonBall;
     [SerializeField]
-    GameObject CannonPosition;
+    private GameObject CannonPosition;
     [SerializeField]
-    GameObject DeathExplosion;
+    private GameObject DeathExplosion;
+    private Quaternion targetRotation;
+    private bool isReadyToShoot;
 
-    //Look at rotation
-    Quaternion targetRotation;
-    float turnSpeed = 720f;
-    float turnSpeedChange = 20f;
-    float shootDelay = 2.0f;
-    bool isReadyToShoot;
-    //Transform desiredRotation;
+    public float rotationSpeed = 4.0f;
+    public float shootDelay = 2.0f;
 
 
-    public override void TakeDamage(int damage)
-    {
-        anim.SetBool("isDamage", true);
-        HP -= damage;
-        gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
-
-        //Floating text
-        hitController.createHitText(damage, transform);
-
-        if (HP < 1 && state != State.DYING)
-        {
-            EnemyDie();
-        }
-    }
-
-    protected override void AggressiveAction()
-    {
-        targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.transform.position - transform.position));
-        float angleToTurn = Quaternion.Angle(transform.rotation, targetRotation);
-        if (!isReadyToShoot && angleToTurn < 10.0f)
-        {
-            Debug.Log("Locked on");
-            isReadyToShoot = true;
-            StartCoroutine("ShootDelay", shootDelay);
-        }
-
-        turnSpeed = Mathf.Min(angleToTurn, turnSpeed + turnSpeedChange * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Clamp01(angleToTurn > 0 ? turnSpeed * Time.deltaTime / angleToTurn : 0f));
-    }
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// UNITY
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,6 +101,34 @@ public class CannonScript : IEnemy {
         }
     }
 
+
+    public override void TakeDamage(int damage) {
+        anim.SetBool("isDamage", true);
+        HP -= damage;
+        gameObject.GetComponentInChildren<HealthBar>().UpdateBar(maxHP, HP);
+
+        //Floating text
+        hitController.createHitText(damage, transform);
+
+        if (HP < 1 && state != State.DYING) {
+            EnemyDie();
+        }
+    }
+
+    protected override void AggressiveAction() {
+        targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.transform.position - transform.position));
+
+        float angleToTurn = Quaternion.Angle(transform.rotation, targetRotation);
+        if (!isReadyToShoot && angleToTurn < 10.0f) {
+            Debug.Log("Locked on");
+            isReadyToShoot = true;
+            StartCoroutine("ShootDelay", shootDelay);
+        }
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+
     public override void EnemyDie() {
         if (state != State.DYING) {
             spawnManager.EnnemyDied();
@@ -196,9 +192,7 @@ public class CannonScript : IEnemy {
         audioSource.clip = attackClips[Random.Range(0, attackClips.Length)];
         audioSource.Play();
 
-        targetRotation.SetLookRotation(Vector3.Normalize(humanPlayer.position - transform.position));
         var news = Instantiate(CannonBall, CannonPosition.transform.position, targetRotation);
-        Debug.Log(news.transform.position);
         AttackIsOver();
     }
 
@@ -262,7 +256,6 @@ public class CannonScript : IEnemy {
     }
 
    
-
     void clearAnimParameters() {
         anim.SetBool("isWalk", false);
         anim.SetBool("isRun", false);
@@ -274,6 +267,7 @@ public class CannonScript : IEnemy {
         anim.SetBool("HitStrike", false);
         anim.SetBool("isDamage", false);
     }
+
 
     public override void ShockwaveHit(float distance) {
         AttackIsOver();

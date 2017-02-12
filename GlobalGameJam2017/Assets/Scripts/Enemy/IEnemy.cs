@@ -45,7 +45,6 @@ public abstract class IEnemy : MonoBehaviour {
     //Enemy main stats
     protected int maxHP;
     public int HP;
-    public int Speed;
 
     //Function delegate to run the actions correctly
     protected delegate void ActionType();

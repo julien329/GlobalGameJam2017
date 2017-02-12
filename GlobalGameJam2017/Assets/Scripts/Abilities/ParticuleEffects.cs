@@ -180,7 +180,6 @@ public class ParticuleEffects : MonoBehaviour{
 
     IEnumerator shoot() {
         for (int i = 0; i < frequency_final; i++) {
-            Debug.Log(i);
             GameObject obj = Instantiate(projectile);
 
             // Set position

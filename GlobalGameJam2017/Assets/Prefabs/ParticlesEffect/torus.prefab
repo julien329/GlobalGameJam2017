@@ -52,7 +52,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4257577522735032}
-  - component: {fileID: 114796887886936024}
   - component: {fileID: 54559531978687776}
   - component: {fileID: 114104325481127686}
   - component: {fileID: 136014988949000184}
@@ -166,7 +165,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.35862064, g: 0.33333334, b: 0.3632184, a: 0}
+  m_Color: {r: 0.69195396, g: 0.31034482, b: 0.33333334, a: 0}
   m_Intensity: 1
   m_Range: 5
   m_SpotAngle: 30
@@ -205,18 +204,6 @@ MonoBehaviour:
   damage: 0
   lifeSteal: 0
   scale: 0.5
---- !u!114 &114796887886936024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1640927735507524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc024942fccf9a4db8e48d79c108fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 1
 --- !u!136 &136014988949000184
 CapsuleCollider:
   m_ObjectHideFlags: 1

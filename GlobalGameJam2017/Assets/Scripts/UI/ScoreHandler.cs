@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public static class ScoreHandler {
 
-    static bool isInit = false;
     static public int totalScore;
     static bool[] achievements;
     static int[] ultimates;
@@ -27,20 +26,18 @@ public static class ScoreHandler {
         Score.text = totalScore.ToString();
     }
 
+    static public void InitScoreHandler() 
+    {
+        Annoucement = GameObject.Find("AnnTitle").GetComponent<Text>();
+        AnnText = GameObject.Find("AnnText").GetComponent<Text>();
+        Ach1 = GameObject.Find("Ach1").GetComponent<Text>();
+        Ach2 = GameObject.Find("Ach2").GetComponent<Text>();
+        Ach3 = GameObject.Find("Ach3").GetComponent<Text>();
+        Score = GameObject.Find("ScoreValue").GetComponent<Text>();
+    }
+
     static public void InitRound()
     {
-        if(!isInit)
-        {
-            isInit = true;
-            Annoucement = GameObject.Find("AnnTitle").GetComponent<Text>();
-            AnnText = GameObject.Find("AnnText").GetComponent<Text>();
-            Ach1 = GameObject.Find("Ach1").GetComponent<Text>();
-            Ach2 = GameObject.Find("Ach2").GetComponent<Text>();
-            Ach3 = GameObject.Find("Ach3").GetComponent<Text>();
-            Score = GameObject.Find("ScoreValue").GetComponent<Text>();
-
-        }
-
         Annoucement.text = "";
         AnnText.text = "";
         Ach1.text = "";

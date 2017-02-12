@@ -40,6 +40,8 @@ public class GameFlow : MonoBehaviour {
     void Awake () {
         audioSource = GetComponent<AudioSource>();
         spawnManager = GetComponent<SpawnManager>();
+
+        ScoreHandler.InitScoreHandler();
     }
 
 

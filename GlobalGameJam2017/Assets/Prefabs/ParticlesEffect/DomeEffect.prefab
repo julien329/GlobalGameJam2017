@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4898869644693756}
   - component: {fileID: 198524264839878682}
   - component: {fileID: 199201034024356796}
-  - component: {fileID: 114811260674527732}
   - component: {fileID: 114809088846688606}
   m_Layer: 0
   m_Name: DomeEffect
@@ -57,18 +56,6 @@ MonoBehaviour:
   force: 207.4
   radius: 84.5
   upwardsModifier: 68.1
---- !u!114 &114811260674527732
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1024780422438824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc024942fccf9a4db8e48d79c108fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 3
 --- !u!198 &198524264839878682
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -1402,7 +1402,7 @@ MonoBehaviour:
   idleSpeed: 3
   idleWait: 4
   idleRoamRange: 6
-  chaseSpeed: 5.5
+  chaseSpeed: 5
   chaseRange: 16
   attackRange: 2.5
   attackCooldown: 4
